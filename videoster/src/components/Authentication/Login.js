@@ -1,8 +1,13 @@
 import './style.css';
 
 import React from "react";
+import { connect } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from 'react-router-dom';
+
+import server from "../../apis/server";
+
+import { checkLogIn } from "../../actions/index";
 
 class Login extends React.Component {
   render() {
@@ -22,8 +27,8 @@ class Login extends React.Component {
           }
           return errors;
         }}
-        onSubmit={(values) => {
-          console.log(values);
+        onSubmit={async (values) => {
+          this.props.checkLogIn(values);
         }}
       >
         {({ isSubmitting }) => (
@@ -52,8 +57,8 @@ class Login extends React.Component {
           </div>
         )}
       </Formik>
-    )
+    );
   }
 }
 
-export default Login;
+export default connect(null, { checkLogIn })(Login);

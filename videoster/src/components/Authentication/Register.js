@@ -29,7 +29,7 @@ class Login extends React.Component {
         {({ isSubmitting }) => (
           <div className="card text-center ">
             <div className="card-header">
-              Login
+              Register
             </div>
             <div className="card-body">
               <Form>
@@ -47,7 +47,7 @@ class Login extends React.Component {
               </Form>
             </div>
             <div className="card-footer">
-              <Link to="/Register" >Register</Link>
+              <Link to="/" >Login</Link>
             </div>
           </div>
         )}

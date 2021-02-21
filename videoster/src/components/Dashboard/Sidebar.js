@@ -1,5 +1,4 @@
 import React from 'react';
-import { ListGroup, Form, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 class Sidebar extends React.Component {
@@ -7,7 +6,9 @@ class Sidebar extends React.Component {
   renderCategory = () => {
     return (
       <div className="category">
-        General
+        <span className="underline makeGray">
+          General
+        </span>
       </div>
     )
   }
@@ -21,7 +22,10 @@ class Sidebar extends React.Component {
         {this.renderCategory()}
 
         <div className="addCategory">
-          <ion-icon name="add"></ion-icon>
+          <span className="makeGray">
+            <ion-icon name="add"></ion-icon>
+
+          </span>
         </div>
       </div >
     );

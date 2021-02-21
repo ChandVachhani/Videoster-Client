@@ -7,7 +7,7 @@ class Channels extends React.Component {
     return (
       <div className="channel">
         <Image
-          className="channelList--img"
+          className="channelIcon"
           src="https://yt3.ggpht.com/ytc/AAUvwnhZR6J03u4p40scsmZXKBQAHZDkGGtbNzDhWQQ=s88-c-k-c0x00ffffff-no-rj"
           roundedCircle
         />
@@ -20,9 +20,6 @@ class Channels extends React.Component {
         <div className="addChannel">
           <ion-icon name="add" size="large"></ion-icon>
         </div>
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
         {this.renderChannels()}
         {this.renderChannels()}
         {this.renderChannels()}

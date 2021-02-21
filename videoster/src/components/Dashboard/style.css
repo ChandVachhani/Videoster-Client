@@ -8,8 +8,16 @@
   z-index: 10;
 }
 
+.headerbtn{
+  margin-left: 20px;
+}
+
+.appName{
+  cursor: pointer;
+}
+
 .front{
-  padding-top: 60px;
+  padding-top: 30px;
 }
 
 .sidebar{
@@ -24,17 +32,21 @@
   padding-left: 12%;
   padding-top: 18px;
   font-size: 17px;
+  cursor: pointer;
 }
 
 .addCategory{
   padding-left: 12%;
   padding-top: 18px;
   font-size: 17px;
+  cursor: pointer;
 }
 
 .channels{  
   padding-left: 16%;
-  padding-top: 69px;  
+  padding-top: 60px;  
+  background-color: black;
+  z-index: 8;
 }
 
 .addChannel{
@@ -47,48 +59,86 @@
 .channel{
   display: inline-block;
   transform: scale(0.75);
+  margin-bottom: -10px;
+}
+
+.channelIcon{
+  /* display: block; */
 }
 
 .sidebarHr{
   border-top: 0.01px solid rgb(110, 110, 110);
-  margin-top: 1px;
+  margin-top: 1px;  
 }
 
 .channelHr{
-  border-top: 0.01px solid rgb(110, 110, 110);
+  border-top: 0.01px solid rgb(110, 110, 110);  
 }
 
 .feed{
   padding-top: 80px;
 }
 
-.feed--part{
-  padding-left: 35px;    
-  padding-right: 35px;    
-  padding-top: 20px;
-}
-
-.feed--video--card{
+.feedCard{
   margin-bottom: 30px;
   background-color: black;
 }
 
-.feed--video--channel--image{
+.feedChannelImage{
   max-width: 100%;
 }
 
-.feed--video--body{
+.feedBody{
   padding-left: 4%;
 }
 
-.feed--video--title{
+.feedTitle{
   margin-bottom: 4px;
   line-height: 22px;    
 }
 
-.feed--video--channel--link{
+.feedChannelLink{
   margin-bottom: 1px;
   color:#aaaaaa;
   line-height: 17px;
   font-size: 14px;
+}
+
+.underline{
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.underline:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: gray;  
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.2s ease-in-out;
+}
+
+.underline:hover:before {
+  visibility: visible;
+  transform: scaleX(1);
+}
+
+.makeGray{
+  color: white;
+}
+
+.makeGray:hover{
+  color: gray;
+}
+
+.dot{
+  border-radius: 2px solid white;
+}
+
+.addDot{
+  display: none;
 }

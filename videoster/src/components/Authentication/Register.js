@@ -4,7 +4,10 @@ import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from 'react-router-dom';
 
-class Login extends React.Component {
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/index";
+
+class Register extends React.Component {
   render() {
     return (
       <Formik
@@ -23,7 +26,7 @@ class Login extends React.Component {
           return errors;
         }}
         onSubmit={(values) => {
-          console.log(values);
+          this.props.registerUser(values);
         }}
       >
         {({ isSubmitting }) => (
@@ -56,4 +59,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default connect(null, { registerUser })(Register);

@@ -37,10 +37,12 @@ class Login extends React.Component {
             <div className="card-body">
               <Form>
                 <div className="field">
+                  userName / email
                   <Field type="userName" name="userName" />
                   <ErrorMessage name="userName" component="div" />
                 </div>
                 <div className="field">
+                  password
                   <Field type="password" name="password" />
                   <ErrorMessage name="password" component="div" />
                 </div>

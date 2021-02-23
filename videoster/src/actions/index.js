@@ -11,6 +11,7 @@ export const checkLogIn = (values) => {
           "Content-Type": "application/json",
         }
       });
+      localStorage.setItem("token", res.data.token);
       history.push("/Dashboard");
       dispatch({
         type: "LOGIN",
@@ -41,7 +42,17 @@ export const registerUser = (values) => {
   }
 }
 
+export const addCategory = () => {
 
+}
+
+export const searchChannels = () => {
+
+}
+
+export const addChannels = () => {
+
+}
 
 export const toggleSidebar = (action) => {
   return {

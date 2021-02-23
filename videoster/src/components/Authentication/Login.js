@@ -1,4 +1,5 @@
 import './style.css';
+import FingerprintJS from "@fingerprintjs/fingerprintjs";
 
 import React from "react";
 import { connect } from "react-redux";
@@ -8,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { checkLogIn } from "../../actions/index";
 
 class Login extends React.Component {
+
   render() {
     return (
       <Formik

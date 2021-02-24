@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 
-import { toggleSidebar } from "../../actions/index";
+import { toggleSidebar, logOut } from "../../actions/index";
 import { connect } from "react-redux";
 
 import history from "../../history";
@@ -40,8 +40,8 @@ class Header extends React.Component {
               }}>
                 Import
               </Button>
-              <Button className="headerbtn" onClick={() => {
-                history.push("/");
+              <Button className="headerbtn" onClick={async () => {
+                await this.props.logOut();
               }}>
                 SignOut
               </Button>
@@ -53,4 +53,4 @@ class Header extends React.Component {
   }
 }
 
-export default connect(null, { toggleSidebar })(Header);
+export default connect(null, { toggleSidebar, logOut })(Header);

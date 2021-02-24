@@ -2,16 +2,38 @@ import server from "../apis/server";
 import history from "../history";
 import { createNotification } from "../utils/createNotification";
 
+export const verifyLogin = () => {
+  return {
+    type: "VERIFY_LOGIN",
+    payload: {
+      userId: localStorage.getItem("userId"),
+      userName: localStorage.getItem("userName")
+    }
+  }
+}
+
+export const logOut = () => {
+  history.push("/");
+  localStorage.removeItem("token");
+  localStorage.removeItem("userId");
+  localStorage.removeItem("userName");
+  return {
+    type: "LOG_OUT",
+  }
+}
+
 export const checkLogIn = (values) => {
   return async (dispatch) => {
     try {
-      const res = await server.post("/auth/Login", JSON.stringify(values), {
+      const res = await server.post("/auth/Login", values, {
         headers: {
-          "Content-Type": "application/json",
+          'Authorization': `Basic ${localStorage.getItem("token")}`
         }
       });
       localStorage.setItem("token", res.data.token);
-      history.push("/Dashboard");
+      localStorage.setItem("userId", res.data.userId);
+      localStorage.setItem("userName", res.data.userName);
+      history.push("/LandingPlace");
       dispatch({
         type: "LOGIN",
         payload: {
@@ -28,9 +50,9 @@ export const checkLogIn = (values) => {
 export const registerUser = (values) => {
   return async (dispatch) => {
     try {
-      const res = await server.post("/auth/Register", JSON.stringify(values), {
+      const res = await server.post("/auth/Register", values, {
         headers: {
-          "Content-Type": "application/json",
+          'Authorization': `Basic ${localStorage.getItem("token")}`
         }
       });
       history.push("/");
@@ -47,7 +69,11 @@ export const addCategory = (category) => {
       const values = {
         category
       }
-      await server.post("/users/addCategory", values);
+      await server.post("/users/addCategory", values, {
+        headers: {
+          'Authorization': `Basic ${localStorage.getItem("token")}`
+        }
+      });
       dispatch({
         type: "ADD_CATEGORY",
         payload: category
@@ -65,8 +91,16 @@ export const searchChannels = (searchWord) => {
       const values = {
         searchWord
       };
-      const channels = await server.post("/users/searchChannels", values);
-      console.log(channels);
+      let channels = await server.post("/users/searchChannels", values, {
+        headers: {
+          'Authorization': `Basic ${localStorage.getItem("token")}`
+        }
+      });
+      channels = channels.data.data;
+      dispatch({
+        type: "SEARCHED_CHANNELS",
+        payload: channels
+      });
     }
     catch (err) {
       console.error(err);
@@ -74,15 +108,28 @@ export const searchChannels = (searchWord) => {
   }
 }
 
-export const addChannels = (category, channels) => {
-  return async (dispatch) => {
+export const addChannels = (channels) => {
+  return async (dispatch, getStatus) => {
     try {
+      const category = getStatus().selectedCategory;
       const values = {
         category,
         channels
       };
-      const addedChannels = await server.post("/users/addChannels", values);
-      console.log(addedChannels);
+      const addedChannels = await server.post("/users/addChannels", values, {
+        headers: {
+          'Authorization': `Basic ${localStorage.getItem("token")}`
+        }
+      });
+      console.log("kk => ", addedChannels.data.channels);
+      history.push("/Dashboard");
+      dispatch({
+        type: "ADD_CHANNELS",
+        payload: {
+          category,
+          addedChannels: addedChannels.data.channels
+        }
+      });
     }
     catch (err) {
       console.error(err);
@@ -94,14 +141,32 @@ export const getCategories = () => {
   return async (dispatch) => {
     try {
       const values = {};
-      const data = await server.post("/users/getCategories", values);
+      let data = await server.get("/users/getCategories", {
+        headers: {
+          'Authorization': `Basic ${localStorage.getItem("token")}`
+        }
+      });
+      data = data.data.requiredData;
       console.log(data);
+      dispatch({
+        type: "GET_CATEGORIES",
+        payload: data
+      });
     }
     catch (err) {
       console.error(err);
     }
   }
 }
+
+
+export const selectCategory = (category) => {
+  return {
+    type: "SELECT_CATEGORY",
+    payload: category
+  }
+}
+
 
 export const toggleSidebar = (action) => {
   return {

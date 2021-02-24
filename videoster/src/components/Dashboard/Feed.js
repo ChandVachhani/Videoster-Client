@@ -1,36 +1,44 @@
 import React from 'react';
 import { Col, Row, Card, Image } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 class Feed extends React.Component {
 
   renderCards = () => {
-    return (
-      <Col lg={3} md={12} sm={6} className="d-flex justify-content-center">
-        <Card className="feedCard" style={{ width: '25rem' }} >
-          <Card.Img variant="top" src="https://yt3.ggpht.com/ytc/AAUvwnhZR6J03u4p40scsmZXKBQAHZDkGGtbNzDhWQQ=s88-c-k-c0x00ffffff-no-rj" />
-          <Card.Body style={{ padding: '0px', paddingTop: '15px' }}>
-            <Row>
-              <Col xs={2} className="" style={{ paddingRight: '0px' }}>
-                <Card.Text>
-                  <Image className="feedChannelImage" src="https://yt3.ggpht.com/ytc/AAUvwnhZR6J03u4p40scsmZXKBQAHZDkGGtbNzDhWQQ=s88-c-k-c0x00ffffff-no-rj" roundedCircle />
-                </Card.Text>
-              </Col>
-              <Col xs={10} className="feedBody">
-                <Card.Text className="feedTitle">
-                  Chand
+    if (!this.props.categories[this.props.selectedCategory]) return null;
+    return this.props.categories[this.props.selectedCategory].map((channel) => {
+      return (
+        channel.videos.map((video) => {
+          return (
+            <Col lg={3} md={12} sm={6} className="d-flex justify-content-center">
+              <Card className="feedCard" style={{ width: '25rem' }} >
+                <Card.Img variant="top" src={video.avatarHigh} />
+                <Card.Body style={{ padding: '0px', paddingTop: '15px' }}>
+                  <Row>
+                    <Col xs={2} className="" style={{ paddingRight: '0px' }}>
+                      <Card.Text>
+                        <Image className="feedChannelImage" src={channel.avatarHigh} roundedCircle />
+                      </Card.Text>
+                    </Col>
+                    <Col xs={10} className="feedBody">
+                      <Card.Text className="feedTitle">
+                        {video.title}
+                      </Card.Text>
+                      <Card.Text className="feedChannelLink small">
+                        {channel.name}
+                      </Card.Text>
+                      <Card.Text className="ffeedChannelLink small">
+                        6.5K views • 5 hours ago
                   </Card.Text>
-                <Card.Text className="feedChannelLink small">
-                  Chand
-                  </Card.Text>
-                <Card.Text className="ffeedChannelLink small">
-                  6.5K views • 5 hours ago
-                  </Card.Text>
-              </Col>
-            </Row>
-          </Card.Body>
-        </Card>
-      </Col>
-    )
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
+            </Col>
+          )
+        })
+      )
+    });
   }
 
   render() {
@@ -38,16 +46,14 @@ class Feed extends React.Component {
       <div className="feed">
         <Row>
           {this.renderCards()}
-          {this.renderCards()}
-          {this.renderCards()}
-          {this.renderCards()}
-          {this.renderCards()}
-          {this.renderCards()}
         </Row>
       </div>
     );
   }
 }
 
+const mapStateToProps = (state) => {
+  return { categories: state.categories, selectedCategory: state.selectedCategory };
+}
 
-export default Feed;
+export default connect(mapStateToProps, {})(Feed);

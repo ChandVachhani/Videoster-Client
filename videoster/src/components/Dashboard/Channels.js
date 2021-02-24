@@ -2,36 +2,34 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Image } from "react-bootstrap";
 
+import history from "../../history";
+import { connect } from 'react-redux';
+
 class Channels extends React.Component {
   renderChannels = () => {
+    if (!this.props.categories[this.props.selectedCategory]) return null;
     return (
-      <div className="channel">
-        <Image
-          className="channelIcon"
-          src="https://yt3.ggpht.com/ytc/AAUvwnhZR6J03u4p40scsmZXKBQAHZDkGGtbNzDhWQQ=s88-c-k-c0x00ffffff-no-rj"
-          roundedCircle
-        />
-      </div>
+      this.props.categories[this.props.selectedCategory].map((channel) => {
+        return (
+          < div className="channel" >
+            <Image
+              className="channelIcon"
+              src={channel.avatarDefault}
+              roundedCircle
+            />
+          </div >
+        )
+      })
     )
   }
   render() {
     return (
       <div className="channels fixed-top">
-        <div className="addChannel">
+        <div className="addChannel" onClick={() => {
+          history.push("/SearchChannels");
+        }}>
           <ion-icon name="add" size="large"></ion-icon>
         </div>
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
-        {this.renderChannels()}
         {this.renderChannels()}
 
         <hr className="channelHr" />
@@ -40,5 +38,8 @@ class Channels extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return { categories: state.categories, selectedCategory: state.selectedCategory };
+}
 
-export default Channels;
+export default connect(mapStateToProps, {})(Channels);

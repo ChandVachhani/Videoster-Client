@@ -39,9 +39,9 @@ class Register extends React.Component {
           }
           return errors;
         }}
-        onSubmit={(values) => {
+        onSubmit={async (values) => {
           delete values.confirmPassword;
-          this.props.registerUser(values);
+          await this.props.registerUser(values);
         }}
       >
         {({ isSubmitting }) => (

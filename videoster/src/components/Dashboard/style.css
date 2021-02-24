@@ -142,3 +142,29 @@
 .addDot{
   display: none;
 }
+
+
+.searchChannelsCard{    
+  display: inline-block;
+  border: 2px solid black;
+  margin: 10PX;
+  padding: 5px;
+  width: 15%;
+}
+
+.searchCchannelsCardSelection{
+  transform: scale(1.05);
+}
+
+
+.searchChannelsCardAvatar{
+  vertical-align: middle;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.searchChannelCardTitle{
+  display: inline-block;
+}

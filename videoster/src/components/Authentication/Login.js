@@ -6,9 +6,23 @@ import { connect } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from 'react-router-dom';
 
-import { checkLogIn } from "../../actions/index";
+import { checkLogIn, verifyLogin } from "../../actions/index";
+
+import history from "../../history";
 
 class Login extends React.Component {
+
+  async componentDidMount() {
+    if (this.props.user.userId) {
+      history.push("/landingPlace");
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.props.user.userId) {
+      history.push("/landingPlace");
+    }
+  }
 
   render() {
     return (
@@ -28,7 +42,7 @@ class Login extends React.Component {
           return errors;
         }}
         onSubmit={async (values) => {
-          this.props.checkLogIn(values);
+          await this.props.checkLogIn(values);
         }}
       >
         {({ isSubmitting }) => (
@@ -63,4 +77,8 @@ class Login extends React.Component {
   }
 }
 
-export default connect(null, { checkLogIn })(Login);
+const mapStateToProps = (state) => {
+  return { user: state.user };
+}
+
+export default connect(mapStateToProps, { checkLogIn, verifyLogin })(Login);

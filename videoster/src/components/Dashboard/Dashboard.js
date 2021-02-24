@@ -8,7 +8,15 @@ import Sidebar from "./Sidebar";
 import Channels from "./Channels";
 import Feed from "./Feed";
 
+import { getCategories } from "../../actions/index";
+import { connect } from "react-redux";
+
 class DashBoard extends React.Component {
+
+  async componentDidMount() {
+
+  }
+
   render() {
     return (
       <div className="dashboard">
@@ -31,4 +39,4 @@ class DashBoard extends React.Component {
   }
 }
 
-export default DashBoard;
+export default connect(null, { getCategories })(DashBoard);

@@ -1,9 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addCategory, selectCategory } from "../../actions/index";
+import { addCategory, selectCategory, getCategories } from "../../actions/index";
 
 class Sidebar extends React.Component {
+  async componentDidMount() {
+    await this.props.getCategories();
+  }
+
   renderCategory = () => {
     return this.props.categories.map((category, ind) => {
       return (
@@ -49,6 +53,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addCategory, selectCategory })(
+export default connect(mapStateToProps, { addCategory, selectCategory, getCategories })(
   Sidebar
 );

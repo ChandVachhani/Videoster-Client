@@ -16,7 +16,12 @@ import { connect } from "react-redux";
 
 class App extends React.Component {
   async componentDidMount() {
+    console.log("app.componentDidMount");
     await this.props.verifyLogin();
+  }
+
+  componentDidUpdate(){
+    console.log("app.componentDidUpdate");
   }
 
   render() {

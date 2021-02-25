@@ -8,17 +8,15 @@ import Sidebar from "./Sidebar";
 import Channels from "./Channels";
 import Feed from "./Feed";
 
-import { getChannels, getCategories } from "../../actions/index";
 import { connect } from "react-redux";
 
 class DashBoard extends React.Component {
   async componentDidMount() {
-    console.log("componentDidMount");
-    await this.props.getCategories();
+    console.log("Dashboard.componentDidMount");
   }
 
   async componentDidUpdate() {
-    console.log("componentDidUpdate");
+    console.log("Dashboard.componentDidUpdate");
   }
 
   render() {
@@ -43,10 +41,4 @@ class DashBoard extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { categories: state.props };
-};
-
-export default connect(mapStateToProps, { getChannels, getCategories })(
-  DashBoard
-);
+export default connect(null, {})(DashBoard);

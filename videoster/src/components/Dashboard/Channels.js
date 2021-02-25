@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import { getChannels } from "../../actions/index";
 
 class Channels extends React.Component {
-  async componentDidMount() {
+  async componentDidMount() {    
     await this.props.getChannels();
   }
 

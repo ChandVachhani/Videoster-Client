@@ -12,10 +12,7 @@ import { getCategories } from "../../actions/index";
 import { connect } from "react-redux";
 
 class DashBoard extends React.Component {
-
-  async componentDidMount() {
-
-  }
+  async componentDidMount() {}
 
   render() {
     return (
@@ -35,7 +32,7 @@ class DashBoard extends React.Component {
           </Row>
         </div>
       </div>
-    )
+    );
   }
 }
 

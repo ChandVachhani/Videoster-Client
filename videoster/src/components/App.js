@@ -15,10 +15,8 @@ import { verifyLogin, getCategories } from "../actions/index";
 import { connect } from "react-redux";
 
 class App extends React.Component {
-
   async componentDidMount() {
-    await this.props.verifyLogin();
-    // await this.props.getCategories();
+    await this.props.verifyLogin();    
   }
 
   async componentDidUpdate(preProps) {
@@ -36,22 +34,22 @@ class App extends React.Component {
         <Route path="/LandingPlace" exact>
           <LandingPlace />
         </Route>
-        <Route path="/Register" exact >
+        <Route path="/Register" exact>
           <Register />
         </Route>
-        <Route path="/SearchChannels" exact >
+        <Route path="/SearchChannels" exact>
           <SearchChannels />
         </Route>
-        <Route path="/Dashboard" exact >
+        <Route path="/Dashboard" exact>
           <DashBoard />
         </Route>
       </Router>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return { user: state.user, categories: state.categories };
-}
+};
 
 export default connect(mapStateToProps, { verifyLogin, getCategories })(App);

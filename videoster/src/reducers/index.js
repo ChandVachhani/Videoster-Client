@@ -2,10 +2,10 @@ import { combineReducers } from "redux";
 
 const INITIAL_USER = {
   userId: null,
-  userName: null
-}
+  userName: null,
+};
 
-const Login = (state = INITIAL_USER, action) => {
+const auth = (state = INITIAL_USER, action) => {
   switch (action.type) {
     case "LOGIN":
     case "VERIFY_LOGIN":
@@ -15,36 +15,7 @@ const Login = (state = INITIAL_USER, action) => {
     default:
       return state;
   }
-}
-
-const categories = (state = {}, action) => {
-  switch (action.type) {
-    case "ADD_CATEGORY":
-      return { ...state, [`${action.payload}`]: [] };
-    case "GET_CATEGORIES":
-      return { ...action.payload };
-    case "ADD_CHANNELS":
-      return { ...state, [`${action.payload.category}`]: [...state[action.payload.category], ...action.payload.addedChannels] };
-    default:
-      return state;
-  }
-}
-
-const searchChannels = (state = [], action) => {
-  switch (action.type) {
-    case "SEARCHED_CHANNELS":
-      return action.payload;
-    default:
-      return state;
-  }
-}
-
-const toggleSidebar = (state = true, action) => {
-  if (action.type === 'TOGGLE_SIDEBAR') {
-    return action.payload;
-  }
-  return state;
-}
+};
 
 const selectedCategory = (state = "", action) => {
   switch (action.type) {
@@ -53,12 +24,51 @@ const selectedCategory = (state = "", action) => {
     default:
       return state;
   }
-}
+};
+
+const categories = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_CATEGORY":
+      return [...state, action.payload];
+    case "GET_CATEGORIES":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const channels = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_CHANNELS":
+      return [...state, action.payload.addedChannels];
+    case "GET_CHANNELS":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const searchChannels = (state = [], action) => {
+  switch (action.type) {
+    case "SEARCHED_CHANNELS":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const toggleSidebar = (state = true, action) => {
+  if (action.type === "TOGGLE_SIDEBAR") {
+    return action.payload;
+  }
+  return state;
+};
 
 export default combineReducers({
-  user: Login,
-  hideSidebar: toggleSidebar,
-  categories,
-  searchChannels,
+  user: auth,
   selectedCategory,
+  categories,
+  channels,
+  searchChannels,
+  hideSidebar: toggleSidebar,
 });

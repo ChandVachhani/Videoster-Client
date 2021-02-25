@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Container, Nav, Navbar } from 'react-bootstrap';
+import React from "react";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 import { toggleSidebar, logOut } from "../../actions/index";
 import { connect } from "react-redux";
@@ -10,39 +10,54 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        <Navbar variant="dark" bg="dark" expand="lg" style={{ height: "60px" }} className="fixed-top">
+        <Navbar
+          variant="dark"
+          bg="dark"
+          expand="lg"
+          style={{ height: "60px" }}
+          className="fixed-top"
+        >
           <Navbar.Collapse>
             <Navbar.Brand>
               <span className="makeGray">
-                <ion-icon
-                  name="menu-outline"
-                  size="large"
-                ></ion-icon>
+                <ion-icon name="menu-outline" size="large"></ion-icon>
               </span>
             </Navbar.Brand>
-            <Navbar.Brand >
-              <h4 className="appName makeGray" onClick={() => {
-                history.push("/Dashboard")
-              }}>
+            <Navbar.Brand>
+              <h4
+                className="appName makeGray"
+                onClick={() => {
+                  history.push("/Dashboard");
+                }}
+              >
                 Videoster
               </h4>
-            </Navbar.Brand >
+            </Navbar.Brand>
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Brand>
-              <Button className="headerbtn" onClick={() => {
-                history.push("/");
-              }}>
+              <Button
+                className="headerbtn"
+                onClick={() => {
+                  history.push("/");
+                }}
+              >
                 Token
               </Button>
-              <Button className="headerbtn" onClick={() => {
-                history.push("/");
-              }}>
+              <Button
+                className="headerbtn"
+                onClick={() => {
+                  history.push("/");
+                }}
+              >
                 Import
               </Button>
-              <Button className="headerbtn" onClick={async () => {
-                await this.props.logOut();
-              }}>
+              <Button
+                className="headerbtn"
+                onClick={async () => {
+                  await this.props.logOut();
+                }}
+              >
                 SignOut
               </Button>
             </Navbar.Brand>

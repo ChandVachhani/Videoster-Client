@@ -1,110 +1,110 @@
-.dashboard{
+.dashboard {
   background-color: black;
   color: white;
   min-height: 99vh;
 }
 
-.header{
+.header {
   z-index: 10;
 }
 
-.headerbtn{
+.headerbtn {
   margin-left: 20px;
 }
 
-.appName{
+.appName {
   cursor: pointer;
 }
 
-.front{
+.front {
   padding-top: 30px;
 }
 
-.sidebar{
+.sidebar {
   margin-top: 60px;
   background-color: #343a40;
-  min-height: 93vh; 
-  width: 15%;   
+  min-height: 93vh;
+  width: 15%;
   z-index: 9;
 }
 
-.category{
+.category {
   padding-left: 12%;
   padding-top: 18px;
   font-size: 17px;
   cursor: pointer;
 }
 
-.addCategory{
+.addCategory {
   padding-left: 12%;
   padding-top: 18px;
   font-size: 17px;
   cursor: pointer;
 }
 
-.channels{  
+.channels {
   padding-left: 16%;
-  padding-top: 60px;  
+  padding-top: 60px;
   background-color: black;
   z-index: 8;
 }
 
-.addChannel{
+.addChannel {
   display: inline-block;
   transform: translateY(20%) scale(1.3);
   text-align: center;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
-.channel{
+.channel {
   display: inline-block;
   transform: scale(0.75);
   margin-bottom: -10px;
 }
 
-.channelIcon{
+.channelIcon {
   /* display: block; */
 }
 
-.sidebarHr{
+.sidebarHr {
   border-top: 0.01px solid rgb(110, 110, 110);
-  margin-top: 1px;  
+  margin-top: 1px;
 }
 
-.channelHr{
-  border-top: 0.01px solid rgb(110, 110, 110);  
+.channelHr {
+  border-top: 0.01px solid rgb(110, 110, 110);
 }
 
-.feed{
+.feed {
   padding-top: 80px;
 }
 
-.feedCard{
+.feedCard {
   margin-bottom: 30px;
   background-color: black;
 }
 
-.feedChannelImage{
+.feedChannelImage {
   max-width: 100%;
 }
 
-.feedBody{
+.feedBody {
   padding-left: 4%;
 }
 
-.feedTitle{
+.feedTitle {
   margin-bottom: 4px;
-  line-height: 22px;    
+  line-height: 22px;
 }
 
-.feedChannelLink{
+.feedChannelLink {
   margin-bottom: 1px;
-  color:#aaaaaa;
+  color: #aaaaaa;
   line-height: 17px;
   font-size: 14px;
 }
 
-.underline{
+.underline {
   position: relative;
   padding-bottom: 5px;
 }
@@ -116,7 +116,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: gray;  
+  background-color: gray;
   visibility: hidden;
   transform: scaleX(0);
   transition: all 0.2s ease-in-out;
@@ -127,37 +127,35 @@
   transform: scaleX(1);
 }
 
-.makeGray{
+.makeGray {
   color: white;
 }
 
-.makeGray:hover{
+.makeGray:hover {
   color: rgba(255, 255, 255, 0.63);
 }
 
-.dot{
+.dot {
   border-radius: 2px solid white;
 }
 
-.addDot{
+.addDot {
   display: none;
 }
 
-
-.searchChannelsCard{    
+.searchChannelsCard {
   display: inline-block;
   border: 2px solid black;
-  margin: 10PX;
+  margin: 10px;
   padding: 5px;
   width: 15%;
 }
 
-.searchCchannelsCardSelection{
+.searchCchannelsCardSelection {
   transform: scale(1.05);
 }
 
-
-.searchChannelsCardAvatar{
+.searchChannelsCardAvatar {
   vertical-align: middle;
   width: 70px;
   height: 70px;
@@ -165,6 +163,6 @@
   display: inline-block;
 }
 
-.searchChannelCardTitle{
+.searchChannelCardTitle {
   display: inline-block;
 }

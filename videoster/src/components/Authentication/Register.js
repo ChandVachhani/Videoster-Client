@@ -1,8 +1,8 @@
-import './style.css';
+import "./style.css";
 
 import React from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/index";
@@ -12,30 +12,30 @@ class Register extends React.Component {
     return (
       <Formik
         initialValues={{
-          userName: '',
-          password: '',
-          confirmPassword: '',
-          email: ''
+          userName: "",
+          password: "",
+          confirmPassword: "",
+          email: "",
         }}
-        validate={values => {
+        validate={(values) => {
           const errors = {};
           if (!values.userName) {
-            errors.userName = 'Required';
+            errors.userName = "Required";
           }
           if (!values.password) {
-            errors.password = 'Required';
+            errors.password = "Required";
           }
           if (!values.confirmPassword) {
-            errors.confirmPassword = 'Required';
-          }
-          else if (values.password != values.confirmPassword) {
+            errors.confirmPassword = "Required";
+          } else if (values.password != values.confirmPassword) {
             errors.confirmPassword = "Password dosen't match";
           }
           if (!values.email) {
-            errors.email = 'Required';
-          }
-          else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-            errors.email = 'Invalid email address';
+            errors.email = "Required";
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+          ) {
+            errors.email = "Invalid email address";
           }
           return errors;
         }}
@@ -46,9 +46,7 @@ class Register extends React.Component {
       >
         {({ isSubmitting }) => (
           <div className="card text-center ">
-            <div className="card-header">
-              Register
-            </div>
+            <div className="card-header">Register</div>
             <div className="card-body">
               <Form>
                 <div className="field">
@@ -77,12 +75,12 @@ class Register extends React.Component {
               </Form>
             </div>
             <div className="card-footer">
-              <Link to="/" >Login</Link>
+              <Link to="/">Login</Link>
             </div>
           </div>
         )}
       </Formik>
-    )
+    );
   }
 }
 

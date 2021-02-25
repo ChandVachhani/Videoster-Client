@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 
 class Feed extends React.Component {
   renderCards = () => {
-    if (!this.props.categories[this.props.selectedCategory]) return null;
-    return this.props.categories[this.props.selectedCategory].map((channel) => {
+    return this.props.channels.map((channel) => {
       return channel.videos.map((video) => {
         return (
           <Col lg={3} md={12} sm={6} className="d-flex justify-content-center">
@@ -51,8 +50,7 @@ class Feed extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.categories,
-    selectedCategory: state.selectedCategory,
+    channels: state.channels,
   };
 };
 

@@ -5,7 +5,7 @@ import { addCategory, selectCategory } from "../../actions/index";
 
 class Sidebar extends React.Component {
   renderCategory = () => {
-    return Object.keys(this.props.categories).map((category, ind) => {
+    return this.props.categories.map((category, ind) => {
       return (
         <div
           className="category"
@@ -46,7 +46,6 @@ class Sidebar extends React.Component {
 const mapStateToProps = (state) => {
   return {
     categories: state.categories,
-    selectedCategory: state.selectedCategory,
   };
 };
 

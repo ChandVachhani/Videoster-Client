@@ -56,6 +56,9 @@ export const registerUser = (values) => {
           Authorization: `Basic ${localStorage.getItem("token")}`,
         },
       });
+      dispatch({
+        type: "REGISTER",
+      });
       history.push("/");
     } catch (err) {
       window.alert("Wrong");
@@ -87,19 +90,14 @@ export const addCategory = (category) => {
 export const searchChannels = (searchWord) => {
   return async (dispatch, getStatus) => {
     try {
-      const category = getStatus().selectedCategory;
       const values = {
         searchWord,
       };
-      let channels = await server.post(
-        `/users/${category}/searchChannels`,
-        values,
-        {
-          headers: {
-            Authorization: `Basic ${localStorage.getItem("token")}`,
-          },
-        }
-      );
+      let channels = await server.post(`/users/searchChannels`, values, {
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("token")}`,
+        },
+      });
       channels = channels.data.data;
       dispatch({
         type: "SEARCHED_CHANNELS",
@@ -146,7 +144,7 @@ export const getCategories = () => {
   return async (dispatch) => {
     try {
       const values = {};
-      let data = await server.get("/users/getCategories", {
+      let data = await server.get("/users/gerCategories", {
         headers: {
           Authorization: `Basic ${localStorage.getItem("token")}`,
         },
@@ -164,10 +162,11 @@ export const getCategories = () => {
 };
 
 export const getChannels = () => {
-  return async (dispatch) => {
+  return async (dispatch, getStatus) => {
     try {
       const values = {};
-      let data = await server.get("/users/getChannels", {
+      const category = getStatus().selectedCategory;
+      let data = await server.get(`/users/${category}/getChannels`, {
         headers: {
           Authorization: `Basic ${localStorage.getItem("token")}`,
         },

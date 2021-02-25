@@ -6,13 +6,17 @@ import { connect } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
 
-import { checkLogIn, verifyLogin, selectCategory } from "../../actions/index";
+import { getCategories, selectCategory } from "../../actions/index";
 
 import history from "../../history";
 
 class LandingPlace extends React.Component {
+  async componentDidMount() {
+    await this.props.getCategories();
+  }
+
   renderCategories = () => {
-    return Object.keys(this.props.categories).map((category) => {
+    return this.props.categories.map((category) => {
       return (
         <button
           className="btn btn-primary"
@@ -33,11 +37,9 @@ class LandingPlace extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user, categories: state.categories };
+  return { categories: state.categories };
 };
 
-export default connect(mapStateToProps, {
-  checkLogIn,
-  verifyLogin,
-  selectCategory,
-})(LandingPlace);
+export default connect(mapStateToProps, { getCategories, selectCategory })(
+  LandingPlace
+);

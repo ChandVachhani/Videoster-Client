@@ -30,8 +30,10 @@ const categories = (state = [], action) => {
   switch (action.type) {
     case "ADD_CATEGORY":
       return [...state, action.payload];
+    case "REGISTER":
+      return ["General"];
     case "GET_CATEGORIES":
-      return action.payload;
+      return [...action.payload];
     default:
       return state;
   }
@@ -40,7 +42,7 @@ const categories = (state = [], action) => {
 const channels = (state = [], action) => {
   switch (action.type) {
     case "ADD_CHANNELS":
-      return [...state, action.payload.addedChannels];
+      return [...state, ...action.payload.addedChannels];
     case "GET_CHANNELS":
       return action.payload;
     default:

@@ -5,10 +5,21 @@ import { Image } from "react-bootstrap";
 import history from "../../history";
 import { connect } from "react-redux";
 
+import { getChannels } from "../../actions/index";
+
 class Channels extends React.Component {
+  async componentDidMount() {
+    await this.props.getChannels();
+  }
+
+  async componentDidUpdate(preProps) {
+    if (preProps.selectedCategory != this.props.selectedCategory) {
+      await this.props.getChannels();
+    }
+  }
+
   renderChannels = () => {
-    if (!this.props.categories[this.props.selectedCategory]) return null;
-    return this.props.categories[this.props.selectedCategory].map((channel) => {
+    return this.props.channels.map((channel) => {
       return (
         <div className="channel">
           <Image
@@ -41,9 +52,9 @@ class Channels extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    categories: state.categories,
+    channels: state.channels,
     selectedCategory: state.selectedCategory,
   };
 };
 
-export default connect(mapStateToProps, {})(Channels);
+export default connect(mapStateToProps, { getChannels })(Channels);

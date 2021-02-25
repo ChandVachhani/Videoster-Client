@@ -6,20 +6,20 @@ import { connect } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
 
-import { checkLogIn, verifyLogin } from "../../actions/index";
+import { takeMeIn, verifyLogin } from "../../actions/index";
 
 import history from "../../history";
 
 class Login extends React.Component {
   async componentDidMount() {
     if (this.props.user.userId) {
-      history.push("/landingPlace");
+      history.push("/LandingPlace");
     }
   }
 
   componentDidUpdate() {
     if (this.props.user.userId) {
-      history.push("/landingPlace");
+      history.push("/LandingPlace");
     }
   }
 
@@ -41,7 +41,7 @@ class Login extends React.Component {
           return errors;
         }}
         onSubmit={async (values) => {
-          await this.props.checkLogIn(values);
+          await this.props.takeMeIn(values);
         }}
       >
         {({ isSubmitting }) => (
@@ -78,4 +78,4 @@ const mapStateToProps = (state) => {
   return { user: state.user };
 };
 
-export default connect(mapStateToProps, { checkLogIn, verifyLogin })(Login);
+export default connect(mapStateToProps, { takeMeIn, verifyLogin })(Login);

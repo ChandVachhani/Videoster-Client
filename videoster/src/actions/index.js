@@ -137,11 +137,33 @@ export const addChannels = (channels) => {
   }
 }
 
-export const getCategories = () => {
+// export const getCategories = () => {
+//   return async (dispatch) => {
+//     try {
+//       const values = {};
+//       let data = await server.get("/users/getCategories", {
+//         headers: {
+//           'Authorization': `Basic ${localStorage.getItem("token")}`
+//         }
+//       });
+//       data = data.data.requiredData;
+//       console.log(data);
+//       dispatch({
+//         type: "GET_CATEGORIES",
+//         payload: data
+//       });
+//     }
+//     catch (err) {
+//       console.error(err);
+//     }
+//   }
+// }
+
+export const getChannels = () => {
   return async (dispatch) => {
     try {
       const values = {};
-      let data = await server.get("/users/getCategories", {
+      let data = await server.get("/users/getChannels", {
         headers: {
           'Authorization': `Basic ${localStorage.getItem("token")}`
         }
@@ -149,7 +171,7 @@ export const getCategories = () => {
       data = data.data.requiredData;
       console.log(data);
       dispatch({
-        type: "GET_CATEGORIES",
+        type: "GET_CHANNELS",
         payload: data
       });
     }

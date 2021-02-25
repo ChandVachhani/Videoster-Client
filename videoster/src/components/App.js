@@ -18,7 +18,7 @@ class App extends React.Component {
 
   async componentDidMount() {
     await this.props.verifyLogin();
-    await this.props.getCategories();
+    // await this.props.getCategories();
   }
 
   async componentDidUpdate(preProps) {
@@ -51,7 +51,7 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user };
+  return { user: state.user, categories: state.categories };
 }
 
 export default connect(mapStateToProps, { verifyLogin, getCategories })(App);

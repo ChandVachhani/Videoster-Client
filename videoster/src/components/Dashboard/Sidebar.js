@@ -1,10 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { addCategory, selectCategory, getCategories } from "../../actions/index";
+import {
+  addCategory,
+  selectCategory,
+  getCategories,
+} from "../../actions/index";
 
 class Sidebar extends React.Component {
-  async componentDidMount() {    
+  async componentDidMount() {
     await this.props.getCategories();
   }
 
@@ -37,6 +41,7 @@ class Sidebar extends React.Component {
             onClick={async () => {
               const category = window.prompt();
               await this.props.addCategory(category);
+              await this.props.selectCategory(category);
             }}
           >
             <ion-icon name="add"></ion-icon>
@@ -53,6 +58,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addCategory, selectCategory, getCategories })(
-  Sidebar
-);
+export default connect(mapStateToProps, {
+  addCategory,
+  selectCategory,
+  getCategories,
+})(Sidebar);

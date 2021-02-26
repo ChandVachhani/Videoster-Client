@@ -77,7 +77,7 @@ export const addCategory = (category) => {
         headers: {
           Authorization: `Basic ${localStorage.getItem("token")}`,
         },
-      });
+      });      
       dispatch({
         type: "ADD_CATEGORY",
         payload: category,

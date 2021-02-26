@@ -11,17 +11,22 @@ import DashBoard from "./Dashboard/Dashboard";
 import LandingPlace from "./Authentication/LandingPlace";
 import SearchChannels from "./Dashboard/SearchChannels";
 
-import { verifyLogin, getCategories } from "../actions/index";
+import { verifyLogin, getChannels, getCategories } from "../actions/index";
 import { connect } from "react-redux";
 
 class App extends React.Component {
   async componentDidMount() {
     console.log("app.componentDidMount");
     await this.props.verifyLogin();
+    await this.props.getCategories();
+    await this.props.getChannels();
   }
 
-  componentDidUpdate() {
+  async componentDidUpdate(preProps) {
     console.log("app.componentDidUpdate");
+    if (preProps.selectedCategory != this.props.selectedCategory) {
+      await this.props.getChannels();
+    }
   }
 
   render() {
@@ -83,4 +88,8 @@ const mapStateToProps = (state) => {
   return { user: state.user, selectedCategory: state.selectedCategory };
 };
 
-export default connect(mapStateToProps, { verifyLogin })(App);
+export default connect(mapStateToProps, {
+  verifyLogin,
+  getChannels,
+  getCategories,
+})(App);

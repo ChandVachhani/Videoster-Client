@@ -8,13 +8,13 @@ import { connect } from "react-redux";
 import { getChannels } from "../../actions/index";
 
 class Channels extends React.Component {
-  async componentDidMount() {    
-    await this.props.getChannels();
+  async componentDidMount() {
+    // await this.props.getChannels();
   }
 
   async componentDidUpdate(preProps) {
     if (preProps.selectedCategory != this.props.selectedCategory) {
-      await this.props.getChannels();
+      // await this.props.getChannels();
     }
   }
 

@@ -9,7 +9,7 @@ import {
 
 class Sidebar extends React.Component {
   async componentDidMount() {
-    await this.props.getCategories();
+    // await this.props.getCategories();
   }
 
   renderCategory = () => {

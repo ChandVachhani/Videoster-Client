@@ -64,6 +64,7 @@ const searchChannels = (state = [], action) => {
     case "SEARCHED_CHANNELS":
       return action.payload;
     case "LOG_OUT":
+    case "CLEAR_SEARCHED_CHANNELS":
       return [];
     default:
       return state;

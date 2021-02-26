@@ -3,7 +3,11 @@ import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 import { ErrorMessage, Field, Form, Formik } from "formik";
 
-import { searchChannels, addChannels } from "../../actions/index";
+import {
+  searchChannels,
+  addChannels,
+  clearSearchedChannels,
+} from "../../actions/index";
 import { connect } from "react-redux";
 
 import history from "../../history";
@@ -99,6 +103,7 @@ class Header extends React.Component {
               });
               arr = arr.filter((a) => a != 0);
               await this.props.addChannels(arr);
+              await this.props.clearSearchedChannels();
             }}
           >
             Add
@@ -113,6 +118,8 @@ const mapStateToProps = (state) => {
   return { searchedChannels: state.searchChannels };
 };
 
-export default connect(mapStateToProps, { searchChannels, addChannels })(
-  Header
-);
+export default connect(mapStateToProps, {
+  searchChannels,
+  addChannels,
+  clearSearchedChannels,
+})(Header);

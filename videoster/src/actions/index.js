@@ -77,7 +77,7 @@ export const addCategory = (category) => {
         headers: {
           Authorization: `Basic ${localStorage.getItem("token")}`,
         },
-      });      
+      });
       dispatch({
         type: "ADD_CATEGORY",
         payload: category,
@@ -189,6 +189,13 @@ export const selectCategory = (category) => {
   return {
     type: "SELECT_CATEGORY",
     payload: category,
+  };
+};
+
+export const clearSearchedChannels = () => {
+  console.log("-------------------------------");
+  return {
+    type: "CLEAR_SEARCHED_CHANNELS",
   };
 };
 

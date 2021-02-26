@@ -17,10 +17,15 @@ const auth = (state = INITIAL_USER, action) => {
   }
 };
 
-const selectedCategory = (state = "", action) => {
+const selectedCategory = (
+  state = localStorage.getItem("VideosterSelectedCategory"),
+  action
+) => {
   switch (action.type) {
     case "SELECT_CATEGORY":
       return action.payload;
+    case "LOG_OUT":
+      return "";
     default:
       return state;
   }
@@ -34,6 +39,8 @@ const categories = (state = [], action) => {
       return ["General"];
     case "GET_CATEGORIES":
       return [...action.payload];
+    case "LOG_OUT":
+      return [];
     default:
       return state;
   }
@@ -45,6 +52,8 @@ const channels = (state = [], action) => {
       return [...state, ...action.payload.addedChannels];
     case "GET_CHANNELS":
       return action.payload;
+    case "LOG_OUT":
+      return [];
     default:
       return state;
   }
@@ -54,16 +63,20 @@ const searchChannels = (state = [], action) => {
   switch (action.type) {
     case "SEARCHED_CHANNELS":
       return action.payload;
+    case "LOG_OUT":
+      return [];
     default:
       return state;
   }
 };
 
 const toggleSidebar = (state = true, action) => {
-  if (action.type === "TOGGLE_SIDEBAR") {
-    return action.payload;
+  switch (action.type) {
+    case "TOGGLE_SIDEBAR":
+      return action.payload;
+    default:
+      return state;
   }
-  return state;
 };
 
 export default combineReducers({

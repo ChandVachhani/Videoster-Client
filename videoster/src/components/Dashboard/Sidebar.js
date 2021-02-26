@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { addCategory, selectCategory, getCategories } from "../../actions/index";
 
 class Sidebar extends React.Component {
-  async componentDidMount() {
+  async componentDidMount() {    
     await this.props.getCategories();
   }
 

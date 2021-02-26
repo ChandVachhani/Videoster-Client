@@ -7,16 +7,17 @@ export const verifyLogin = () => {
   return {
     type: "VERIFY_LOGIN",
     payload: {
-      userId: localStorage.getItem("userId"),
-      userName: localStorage.getItem("userName"),
+      userId: localStorage.getItem("VideosterUserId"),
+      userName: localStorage.getItem("VideosterUserName"),
     },
   };
 };
 
 export const logOut = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("userId");
-  localStorage.removeItem("userName");
+  localStorage.removeItem("VideosterToken");
+  localStorage.removeItem("VideosterUserId");
+  localStorage.removeItem("VideosterUserName");
+  localStorage.removeItem("VideosterSelectedCategory");
   history.push("/");
   return {
     type: "LOG_OUT",
@@ -31,9 +32,9 @@ export const takeMeIn = (values) => {
           Authorization: `Basic ${localStorage.getItem("token")}`,
         },
       });
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("userId", res.data.userId);
-      localStorage.setItem("userName", res.data.userName);
+      localStorage.setItem("VideosterToken", res.data.token);
+      localStorage.setItem("VideosterUserId", res.data.userId);
+      localStorage.setItem("VideosterUserName", res.data.userName);
       history.push("/LandingPlace");
       dispatch({
         type: "LOGIN",
@@ -184,6 +185,7 @@ export const getChannels = () => {
 };
 
 export const selectCategory = (category) => {
+  localStorage.setItem("VideosterSelectedCategory", category);
   return {
     type: "SELECT_CATEGORY",
     payload: category,

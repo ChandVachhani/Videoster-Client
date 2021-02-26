@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Route } from "react-router-dom";
+import { Router, Route, Redirect } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.css";
 
@@ -20,7 +20,7 @@ class App extends React.Component {
     await this.props.verifyLogin();
   }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     console.log("app.componentDidUpdate");
   }
 
@@ -30,21 +30,57 @@ class App extends React.Component {
         <Route path="/" exact>
           <Login />
         </Route>
-        <Route path="/LandingPlace" exact>
-          <LandingPlace />
-        </Route>
-        <Route path="/Register" exact>
-          <Register />
-        </Route>
-        <Route path="/SearchChannels" exact>
-          <SearchChannels />
-        </Route>
-        <Route path="/Dashboard" exact>
-          <DashBoard />
-        </Route>
+        <Route
+          path="/LandingPlace"
+          exact
+          render={() => {
+            return this.props.user.userId ? (
+              <LandingPlace />
+            ) : (
+              <Redirect to="/" />
+            );
+          }}
+        ></Route>
+        <Route
+          path="/Register"
+          exact
+          render={() => {
+            return this.props.user.userId ? <Register /> : <Redirect to="/" />;
+          }}
+        ></Route>
+        <Route
+          path="/SearchChannels"
+          exact
+          render={() => {
+            return this.props.user.userId ? (
+              <SearchChannels />
+            ) : (
+              <Redirect to="/" />
+            );
+          }}
+        ></Route>
+        <Route
+          path="/Dashboard"
+          exact
+          render={() => {
+            return this.props.user.userId ? (
+              this.props.selectedCategory ? (
+                <DashBoard />
+              ) : (
+                <Redirect to="/LandingPlace" />
+              )
+            ) : (
+              <Redirect to="/" />
+            );
+          }}
+        ></Route>
       </Router>
     );
   }
 }
 
-export default connect(null, { verifyLogin })(App);
+const mapStateToProps = (state) => {
+  return { user: state.user, selectedCategory: state.selectedCategory };
+};
+
+export default connect(mapStateToProps, { verifyLogin })(App);

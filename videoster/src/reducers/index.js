@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 
 const INITIAL_USER = {
-  userId: null,
-  userName: null,
+  userId: localStorage.getItem("VideosterUserId"),
+  userName: localStorage.getItem("VideosterUserName"),
 };
 
 const auth = (state = INITIAL_USER, action) => {

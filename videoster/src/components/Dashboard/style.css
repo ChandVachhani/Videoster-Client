@@ -2,6 +2,7 @@
   background-color: black;
   color: white;
   min-height: 99vh;
+  overflow-x: hidden;
 }
 
 .header {
@@ -23,7 +24,7 @@
 .sidebar {
   margin-top: 60px;
   background-color: #343a40;
-  min-height: 93vh;
+  min-height: 100vh;
   width: 15%;
   z-index: 9;
 }

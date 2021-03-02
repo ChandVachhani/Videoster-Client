@@ -66,6 +66,8 @@
 
 .channelIcon {
   /* display: block; */
+  border-radius: 50%;
+  transition: 0.2s;
 }
 
 .sidebarHr {

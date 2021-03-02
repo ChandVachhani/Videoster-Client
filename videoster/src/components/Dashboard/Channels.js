@@ -26,7 +26,16 @@ class Channels extends React.Component {
           <Image
             className="channelIcon"
             src={channel.avatarDefault}
-            roundedCircle
+            // roundedCircle
+            onClick={(event) => {
+              // event.currentTarget.style.borderRadius = "25%";
+            }}
+            onMouseEnter={(event) => {
+              event.currentTarget.style.borderRadius = "25%";
+            }}
+            onMouseLeave={(event) => {
+              event.currentTarget.style.borderRadius = "50%";
+            }}
           />
         </div>
       );

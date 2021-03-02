@@ -16,13 +16,24 @@ class Header extends React.Component {
   renderChannels = () => {
     return this.props.searchedChannels.map((channel, ind) => {
       return (
-        <div className="searchChannelsCard">
+        <div
+          className="searchChannelsCard"
+          onClick={(event) => {
+            event.currentTarget.classList.toggle(
+              "searchCchannelsCardSelection"
+            );
+          }}
+        >
           <img
             src={channel.snippet.thumbnails.high.url}
             alt="Avatar"
             className="searchChannelsCardAvatar"
           />
-          <div className="searchChannelData">Chand</div>
+          {/* <span className="searchChannelData">Chand</span> */}
+          {/* <p>{channel.snippet.description}</p>
+          <p>{channel.statistics.subscriberCount}</p>
+          <p>{channel.statistics.videoCount}</p>
+          <p>{channel.statistics.viewCount}</p> */}
         </div>
       );
       // return (
@@ -53,44 +64,44 @@ class Header extends React.Component {
   render() {
     return (
       <div className="searchChannelsBody">
-        <div>
-          <Formik
-            initialValues={{
-              searchWord: "",
-            }}
-            validate={(values) => {
-              const errors = {};
-              if (!values.searchWord) {
-                errors.searchWord = "Required";
-              }
-              return errors;
-            }}
-            onSubmit={async (values) => {
-              await this.props.searchChannels(values.searchWord);
-            }}
-          >
-            {({ isSubmitting }) => (
-              <div className="searchChannelsSearchArea">
-                <Form>
-                  <center>
-                    <div className="field" style={{ display: "inline-block" }}>
-                      <Field type="searchWord" name="searchWord" />
-                      <ErrorMessage name="searchWord" component="div" />
-                    </div>
-                    <button type="submit" className="submit btn btn-primary">
-                      search
-                    </button>
-                  </center>
-                </Form>
-              </div>
-            )}
-          </Formik>
-        </div>
-        <div className="renderSearchChannels">{this.renderChannels()}</div>
         <center>
-          <div className="addSearchChannels">
+          <div>
+            <Formik
+              initialValues={{
+                searchWord: "",
+              }}
+              validate={(values) => {
+                const errors = {};
+                if (!values.searchWord) {
+                  errors.searchWord = "Required";
+                }
+                return errors;
+              }}
+              onSubmit={async (values) => {
+                await this.props.searchChannels(values.searchWord);
+              }}
+            >
+              {({ isSubmitting }) => (
+                <div className="searchChannelsSearchArea">
+                  <Form>
+                    <center>
+                      <div
+                        className="field"
+                        style={{ display: "inline-block" }}
+                      >
+                        <Field type="searchWord" name="searchWord" />
+                        <ErrorMessage name="searchWord" component="div" />
+                      </div>
+                      <button type="submit" className="submit btn btn-primary">
+                        search
+                      </button>
+                    </center>
+                  </Form>
+                </div>
+              )}
+            </Formik>
             <button
-              className="btn btn-primary"
+              className="btn btn-primary addSearchChannels"
               onClick={async () => {
                 let arr = document.querySelectorAll(".searchChannelsCard");
                 arr = [...arr];
@@ -122,6 +133,10 @@ class Header extends React.Component {
               Add
             </button>
           </div>
+          <div className="renderSearchChannels">{this.renderChannels()}</div>
+          {/* <center>
+          
+        </center> */}
         </center>
       </div>
     );

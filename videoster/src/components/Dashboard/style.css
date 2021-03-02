@@ -152,10 +152,10 @@
 
 .searchChannelsCard {
   display: inline-block;
-  border: 2px solid black;
+  border-radius: 10px;
   margin: 10px;
-  padding: 5px;
-  width: 15%;
+  width: 18%;
+  height: 100%;
 }
 
 .searchCchannelsCardSelection {
@@ -164,12 +164,43 @@
 
 .searchChannelsCardAvatar {
   vertical-align: middle;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  border: 2px solid black;
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
   display: inline-block;
+}
+
+.searchChannelsCardAvatar:hover {
+  /* transform: rotate(360deg); */
+  opacity: 0.25;
+  transition: 0.5s;
 }
 
 .searchChannelCardTitle {
   display: inline-block;
+}
+
+.searchChannelsBody {
+  background-color: black;
+  min-height: 100vh;
+}
+
+.renderSearchChannels {
+  margin-left: 6%;
+}
+
+.searchChannelsSearchArea {
+  margin-bottom: 100px;
+}
+
+.addSearchChannels {
+  margin-top: 100px;
+}
+
+.searchChannelData {
+  position: absolute;
+  transform: translateY(-250px);
+  color: white;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }

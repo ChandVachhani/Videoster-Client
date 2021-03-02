@@ -78,11 +78,14 @@
 
 .feed {
   padding-top: 80px;
+  padding-right: 1%;
 }
 
 .feedCard {
   margin-bottom: 30px;
   background-color: black;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .feedChannelImage {

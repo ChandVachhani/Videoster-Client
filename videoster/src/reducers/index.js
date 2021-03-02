@@ -71,7 +71,7 @@ const searchChannels = (state = [], action) => {
   }
 };
 
-const toggleSidebar = (state = true, action) => {
+const toggleSidebar = (state = false, action) => {
   switch (action.type) {
     case "TOGGLE_SIDEBAR":
       return action.payload;

@@ -20,15 +20,22 @@ class DashBoard extends React.Component {
   }
 
   render() {
+    this.Side = {
+      display: !this.props.hideSidebar ? "block" : "none",
+      grid: !this.props.hideSidebar ? 2 : 0,
+    };
     return (
       <div className="dashboard">
         <Header />
         <div className="front">
           <Row>
-            <Col md={2}>
+            <Col
+              md={this.Side.grid}
+              style={{ paddingRight: "0px", display: this.Side.display }}
+            >
               <Sidebar />
             </Col>
-            <Col>
+            <Col style={{ paddingLeft: "0px" }}>
               <div className="feed">
                 <Channels />
                 <Feed />
@@ -41,4 +48,8 @@ class DashBoard extends React.Component {
   }
 }
 
-export default connect(null, {})(DashBoard);
+const mapStateToProps = (state) => {
+  return { hideSidebar: state.hideSidebar };
+};
+
+export default connect(mapStateToProps, {})(DashBoard);

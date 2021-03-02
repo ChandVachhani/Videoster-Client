@@ -20,7 +20,13 @@ class Header extends React.Component {
           <Navbar.Collapse>
             <Navbar.Brand>
               <span className="makeGray">
-                <ion-icon name="menu-outline" size="large"></ion-icon>
+                <ion-icon
+                  name="menu-outline"
+                  size="large"
+                  onClick={() => {
+                    this.props.toggleSidebar(!this.props.hideSidebar);
+                  }}
+                ></ion-icon>
               </span>
             </Navbar.Brand>
             <Navbar.Brand>
@@ -68,4 +74,8 @@ class Header extends React.Component {
   }
 }
 
-export default connect(null, { toggleSidebar, logOut })(Header);
+const mapStateToProps = (state) => {
+  return { hideSidebar: state.hideSidebar };
+};
+
+export default connect(mapStateToProps, { toggleSidebar, logOut })(Header);

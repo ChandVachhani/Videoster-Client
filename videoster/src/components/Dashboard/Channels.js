@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Image } from "react-bootstrap";
+import { Image, Row } from "react-bootstrap";
 
 import history from "../../history";
 import { connect } from "react-redux";
 
 import { getChannels } from "../../actions/index";
+import { Col } from "react-bootstrap";
 
 class Channels extends React.Component {
   async componentDidMount() {
@@ -33,19 +34,26 @@ class Channels extends React.Component {
   };
   render() {
     return (
-      <div className="channels fixed-top">
-        <div
-          className="addChannel"
-          onClick={() => {
-            history.push("/SearchChannels");
-          }}
-        >
-          <ion-icon name="add" size="large"></ion-icon>
-        </div>
-        {this.renderChannels()}
+      // <div>
+      <Row
+        className="channels fixed-top"
+        style={{ paddingLeft: `${this.props.hideSidebar ? "0%" : "16%"}` }}
+      >
+        <Col>
+          <div
+            className="addChannel"
+            onClick={() => {
+              history.push("/SearchChannels");
+            }}
+          >
+            <ion-icon name="add" size="large"></ion-icon>
+          </div>
+          {this.renderChannels()}
 
-        <hr className="channelHr" />
-      </div>
+          <hr className="channelHr" />
+        </Col>
+      </Row>
+      // </div>
     );
   }
 }
@@ -54,6 +62,7 @@ const mapStateToProps = (state) => {
   return {
     channels: state.channels,
     selectedCategory: state.selectedCategory,
+    hideSidebar: state.hideSidebar,
   };
 };
 

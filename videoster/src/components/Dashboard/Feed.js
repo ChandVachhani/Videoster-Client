@@ -4,6 +4,13 @@ import { connect } from "react-redux";
 
 class Feed extends React.Component {
   renderCards = () => {
+    if (this.props.channels.length == 0) {
+      return (
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      );
+    }
     return this.props.channels.map((channel) => {
       if (
         !(
@@ -49,7 +56,7 @@ class Feed extends React.Component {
 
   render() {
     return (
-      <div className="feed">
+      <div className="feed d-flex justify-content-center">
         <Row>{this.renderCards()}</Row>
       </div>
     );

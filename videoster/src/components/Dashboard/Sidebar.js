@@ -6,7 +6,7 @@ import {
   selectCategory,
   getCategories,
   clearHideChannels,
-  clearAllChannels
+  clearAllChannels,
 } from "../../actions/index";
 
 class Sidebar extends React.Component {
@@ -93,5 +93,5 @@ export default connect(mapStateToProps, {
   selectCategory,
   getCategories,
   clearHideChannels,
-  clearAllChannels
+  clearAllChannels,
 })(Sidebar);

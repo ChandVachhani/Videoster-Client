@@ -5,7 +5,7 @@ import { Image, Row } from "react-bootstrap";
 import history from "../../history";
 import { connect } from "react-redux";
 
-import { getChannels } from "../../actions/index";
+import { getChannels, selectChannel } from "../../actions/index";
 import { Col } from "react-bootstrap";
 
 class Channels extends React.Component {
@@ -29,6 +29,7 @@ class Channels extends React.Component {
             // roundedCircle
             onClick={(event) => {
               event.currentTarget.classList.toggle("changeBorderRadius");
+              this.props.selectChannel(channel.channelId);
             }}
             onMouseEnter={(event) => {
               event.currentTarget.style.borderRadius = "25%";
@@ -96,4 +97,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getChannels })(Channels);
+export default connect(mapStateToProps, { getChannels, selectChannel })(
+  Channels
+);

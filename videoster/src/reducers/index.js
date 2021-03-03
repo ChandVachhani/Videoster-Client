@@ -99,6 +99,16 @@ const toggleSidebar = (state = false, action) => {
   }
 };
 
+const selectChannel = (state = {}, action) => {
+  switch (action.type) {
+    case "SELECT_CHANNEL":
+      if (state[action.payload]) return { ...state, [action.payload]: false };
+      else return { ...state, [action.payload]: true };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   user: auth,
   selectedCategory,
@@ -106,4 +116,5 @@ export default combineReducers({
   channels,
   searchChannels,
   hideSidebar: toggleSidebar,
+  hideChannel: selectChannel,
 });

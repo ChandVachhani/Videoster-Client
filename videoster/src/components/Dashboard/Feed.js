@@ -5,6 +5,14 @@ import { connect } from "react-redux";
 class Feed extends React.Component {
   renderCards = () => {
     return this.props.channels.map((channel) => {
+      if (
+        !(
+          this.props.hideChannel[channel.channelId] == true ||
+          Object.values(this.props.hideChannel).filter((c) => c == true)
+            .length == 0
+        )
+      )
+        return null;
       return channel.videos.map((video) => {
         return (
           <Col lg={3} md={4} sm={6} className="d-flex justify-content-center">
@@ -51,6 +59,7 @@ class Feed extends React.Component {
 const mapStateToProps = (state) => {
   return {
     channels: state.channels,
+    hideChannel: state.hideChannel,
   };
 };
 

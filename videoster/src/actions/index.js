@@ -186,6 +186,13 @@ export const getChannels = () => {
   };
 };
 
+export const selectChannel = (channelId) => {
+  return {
+    type: "SELECT_CHANNEL",
+    payload: channelId
+  };
+};
+
 export const selectCategory = (category) => {
   localStorage.setItem("VideosterSelectedCategory", category);
   return {

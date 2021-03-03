@@ -189,15 +189,15 @@ export const getChannels = () => {
 export const selectChannel = (channelId) => {
   return {
     type: "SELECT_CHANNEL",
-    payload: channelId
+    payload: channelId,
   };
 };
 
 export const clearHideChannels = () => {
   return {
-    type: "CLEAR_HIDDEN_CHANNELS"
-  }
-}
+    type: "CLEAR_HIDDEN_CHANNELS",
+  };
+};
 
 export const selectCategory = (category) => {
   localStorage.setItem("VideosterSelectedCategory", category);
@@ -220,10 +220,3 @@ export const toggleSidebar = (action) => {
     payload: action,
   };
 };
-
-// export const toggleChannels = (channelInd) => {
-//   return {
-//     type: "TOGGLE_CHANNELS",
-//     payload:
-//   }
-// }

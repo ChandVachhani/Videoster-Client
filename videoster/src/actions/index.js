@@ -205,3 +205,10 @@ export const toggleSidebar = (action) => {
     payload: action,
   };
 };
+
+// export const toggleChannels = (channelInd) => {
+//   return {
+//     type: "TOGGLE_CHANNELS",
+//     payload:
+//   }
+// }

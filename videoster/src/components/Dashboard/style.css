@@ -51,6 +51,11 @@
   padding-right: 1%;
 }
 
+.changeBorderRadius {
+  border-radius: 25%;
+  transform: scale(1.05);
+}
+
 .addChannel {
   display: inline-block;
   transform: translateY(20%) scale(1.3);
@@ -77,6 +82,8 @@
 
 .channelHr {
   border-top: 0.01px solid rgb(110, 110, 110);
+  /* top: 0; */
+  /* position: fixed; */
 }
 
 .feed {

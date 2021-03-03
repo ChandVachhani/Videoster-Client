@@ -28,13 +28,16 @@ class Channels extends React.Component {
             src={channel.avatarDefault}
             // roundedCircle
             onClick={(event) => {
-              // event.currentTarget.style.borderRadius = "25%";
+              event.currentTarget.classList.toggle("changeBorderRadius");
             }}
             onMouseEnter={(event) => {
               event.currentTarget.style.borderRadius = "25%";
+              // event.currentTarget.classList.toggle("underline");
             }}
             onMouseLeave={(event) => {
-              event.currentTarget.style.borderRadius = "50%";
+              if (!event.currentTarget.classList.contains("changeBorderRadius"))
+                event.currentTarget.style.borderRadius = "50%";
+              // event.currentTarget.classList.toggle("underline");
             }}
           />
         </div>

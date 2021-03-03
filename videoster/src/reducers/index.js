@@ -49,7 +49,17 @@ const categories = (state = [], action) => {
 const channels = (state = [], action) => {
   switch (action.type) {
     case "ADD_CHANNELS":
-      return [...state, ...action.payload.addedChannels];
+      const arr = state.map((st) => {
+        return st.channelId;
+      });
+      // return [...state, ...action.payload.addedChannels];
+      const data = [...state];
+      action.payload.addedChannels.forEach((channel) => {
+        if (!arr.includes(channel.channelId)) {
+          data.push(channel);
+        }
+      });
+      return data;
     case "GET_CHANNELS":
       return action.payload;
     case "LOG_OUT":

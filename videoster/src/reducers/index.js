@@ -1,17 +1,26 @@
 import { combineReducers } from "redux";
 
-const INITIAL_USER = {
-  userId: localStorage.getItem("VideosterUserId"),
-  userName: localStorage.getItem("VideosterUserName"),
-};
+// const INITIAL_USER = {
+//   userId: localStorage.getItem("VideosterUserId"),
+//   userName: localStorage.getItem("VideosterUserName"),
+// };
 
-const auth = (state = INITIAL_USER, action) => {
+const auth = (
+  state = {
+    userId: localStorage.getItem("VideosterUserId"),
+    userName: localStorage.getItem("VideosterUserName"),
+  },
+  action
+) => {
   switch (action.type) {
     case "LOGIN":
     case "VERIFY_LOGIN":
       return action.payload;
     case "LOG_OUT":
-      return INITIAL_USER;
+      return {
+        userId: null,
+        userName: null,
+      };
     default:
       return state;
   }

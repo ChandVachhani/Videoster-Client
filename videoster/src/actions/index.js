@@ -19,10 +19,10 @@ export const logOut = () => {
     await localStorage.removeItem("VideosterUserId");
     await localStorage.removeItem("VideosterUserName");
     await localStorage.removeItem("VideosterSelectedCategory");
-    history.push("/");
     dispatch({
       type: "LOG_OUT",
     });
+    history.push("/");
   };
 };
 

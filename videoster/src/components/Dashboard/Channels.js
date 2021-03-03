@@ -20,13 +20,6 @@ class Channels extends React.Component {
   }
 
   renderChannels = () => {
-    if (this.props.channels.length == 0) {
-      return (
-        <div class="spinner-border text-success" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      );
-    }
     return this.props.channels.map((channel, ind) => {
       return (
         <div className="channel">

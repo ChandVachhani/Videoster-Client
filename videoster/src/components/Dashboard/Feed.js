@@ -17,7 +17,7 @@ class Feed extends React.Component {
         return (
           <Col lg={3} md={4} sm={6} className="d-flex justify-content-center">
             <Card className="feedCard" style={{ width: "30rem" }}>
-              <Card.Img variant="top" src={video.avatarHigh} />
+              <Card.Img variant="top" src={video.avatarMedium} />
               <Card.Body style={{ padding: "0px", paddingTop: "15px" }}>
                 <Row>
                   <Col xs={2} className="" style={{ paddingRight: "0px" }}>

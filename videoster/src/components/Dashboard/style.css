@@ -1,7 +1,7 @@
 .dashboard {
   background-color: black;
   color: white;
-  min-height: 99vh;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
@@ -34,6 +34,9 @@
   font-size: 17px;
   cursor: pointer;
 }
+
+/* .categorySelf {
+} */
 
 .collectionOfCategories {
   padding-left: 12%;

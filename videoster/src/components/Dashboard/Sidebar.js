@@ -48,7 +48,7 @@ class Sidebar extends React.Component {
               <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
             </svg>
           </span>
-          <span className="underline makeGray">{category}</span>
+          <span className="categorySelf underline makeGray">{category}</span>
         </div>
       );
     });

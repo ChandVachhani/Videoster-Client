@@ -28,14 +28,41 @@ class Header extends React.Component {
             src={channel.snippet.thumbnails.high.url}
             alt="Avatar"
             className="searchChannelsCardAvatar"
+            onMouseEnter={(event) => {
+              event.currentTarget.classList.add("makeBig");
+              // [...document.querySelectorAll(".searchChannelData")][
+              //   ind
+              // ].classList.remove("makeInvivible");
+            }}
+            onMouseLeave={(event) => {
+              event.currentTarget.classList.remove("makeBig");
+              // [...document.querySelectorAll(".searchChannelData")][
+              //   ind
+              // ].classList.add("makeInvivible");
+            }}
           />
-          {/* <span className="searchChannelData">Chand</span> */}
-          {/* <p>{channel.snippet.description}</p>
-          <p>{channel.statistics.subscriberCount}</p>
-          <p>{channel.statistics.videoCount}</p>
-          <p>{channel.statistics.viewCount}</p> */}
+          <div className="searchChannelData">
+            <div className="data-title">
+              <center>
+                <div>{channel.snippet.title}</div>
+              </center>
+            </div>
+            <div className=" data-1">
+              <div>{channel.statistics.subscriberCount}</div>
+              <div>Subs</div>
+            </div>
+            <div className=" data-2">
+              <div>{channel.statistics.videoCount}</div>
+              <div>Videos</div>
+            </div>
+            <div className=" data-3">
+              <div>{channel.statistics.viewCount}</div>
+              <div>Views</div>
+            </div>
+          </div>
         </div>
       );
+
       // return (
       //   <div
       //     key={ind}

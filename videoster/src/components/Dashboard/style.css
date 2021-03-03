@@ -166,7 +166,7 @@
   width: 18%;
   height: 100%;
   padding: 10px;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .searchCchannelsCardSelection {
@@ -182,15 +182,49 @@
   width: 100%;
   height: 100%;
   display: inline-block;
+  /* display: none; */
   transition: 0.7s;
+
+  /* position: relative; */
+}
+
+.makeInvivible {
+  display: none;
 }
 
 .searchChannelData {
-  display: none;
-  color: red;
+  color: white;
+  /* display: none; */
+  /* transform: translateY(-350px); */
+  font-family: lato;
+  font-size: large;
+  /* position: absolute; */
 }
 
-.searchChannelsCardAvatar:hover {
+.data-title {
+  padding-top: 30px;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.data-1 {
+  position: relative;
+  left: -50px;
+  padding-bottom: 10px;
+}
+
+.data-2 {
+  position: relative;
+  right: -50px;
+  padding-bottom: 10px;
+}
+
+.data-3 {
+  position: relative;
+  left: -50px;
+}
+
+.makeBig {
   /* display: inline-block; */
   opacity: 0.25;
   transition: 0.5s;

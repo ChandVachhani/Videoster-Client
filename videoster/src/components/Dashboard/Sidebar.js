@@ -6,6 +6,7 @@ import {
   selectCategory,
   getCategories,
   clearHideChannels,
+  clearAllChannels
 } from "../../actions/index";
 
 class Sidebar extends React.Component {
@@ -20,6 +21,7 @@ class Sidebar extends React.Component {
           className="category"
           onClick={async (event) => {
             await this.props.clearHideChannels();
+            await this.props.clearAllChannels();
             [...document.querySelectorAll(".channelIcon")].forEach((e) => {
               e.classList.remove("changeBorderRadius");
               e.style.borderRadius = "50%";
@@ -91,4 +93,5 @@ export default connect(mapStateToProps, {
   selectCategory,
   getCategories,
   clearHideChannels,
+  clearAllChannels
 })(Sidebar);

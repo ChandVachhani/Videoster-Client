@@ -72,6 +72,7 @@ const channels = (state = [], action) => {
     case "GET_CHANNELS":
       return action.payload;
     case "LOG_OUT":
+    case "CLEAR_ALL_CHANNELS":
       return [];
     default:
       return state;

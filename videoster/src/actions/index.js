@@ -220,3 +220,9 @@ export const toggleSidebar = (action) => {
     payload: action,
   };
 };
+
+export const clearAllChannels = (action) => {
+  return {
+    type: "CLEAR_ALL_CHANNELS"
+  }
+}

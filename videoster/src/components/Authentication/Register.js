@@ -45,39 +45,41 @@ class Register extends React.Component {
         }}
       >
         {({ isSubmitting }) => (
-          <div className="card text-center ">
-            <div className="card-header">Register</div>
-            <div className="card-body">
-              <Form>
-                <div className="field">
-                  userName
-                  <Field type="userName" name="userName" />
-                  <ErrorMessage name="userName" component="div" />
-                </div>
-                <div className="field">
-                  email
-                  <Field type="email" name="email" />
-                  <ErrorMessage name="email" component="div" />
-                </div>
-                <div className="field">
-                  password
-                  <Field type="password" name="password" />
-                  <ErrorMessage name="password" component="div" />
-                </div>
-                <div className="field">
-                  confirmPassword
-                  <Field type="password" name="confirmPassword" />
-                  <ErrorMessage name="confirmPassword" component="div" />
-                </div>
-                <button type="submit" className="submit btn btn-primary">
-                  Submit
-                </button>
-              </Form>
+          <center>
+            <div className="card text-center ">
+              <div className="card-header">Register</div>
+              <div className="card-body">
+                <Form>
+                  <div className="field">
+                    userName
+                    <Field type="userName" name="userName" />
+                    <ErrorMessage name="userName" component="div" />
+                  </div>
+                  <div className="field">
+                    email
+                    <Field type="email" name="email" />
+                    <ErrorMessage name="email" component="div" />
+                  </div>
+                  <div className="field">
+                    password
+                    <Field type="password" name="password" />
+                    <ErrorMessage name="password" component="div" />
+                  </div>
+                  <div className="field">
+                    confirmPassword
+                    <Field type="password" name="confirmPassword" />
+                    <ErrorMessage name="confirmPassword" component="div" />
+                  </div>
+                  <button type="submit" className="submit btn btn-primary">
+                    Submit
+                  </button>
+                </Form>
+              </div>
+              <div className="card-footer">
+                <Link to="/">Login</Link>
+              </div>
             </div>
-            <div className="card-footer">
-              <Link to="/">Login</Link>
-            </div>
-          </div>
+          </center>
         )}
       </Formik>
     );

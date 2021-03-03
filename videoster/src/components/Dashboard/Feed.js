@@ -24,7 +24,7 @@ class Feed extends React.Component {
                     <Card.Text>
                       <Image
                         className="feedChannelImage"
-                        src={channel.avatarHigh}
+                        src={channel.avatarDefault}
                         roundedCircle
                       />
                     </Card.Text>

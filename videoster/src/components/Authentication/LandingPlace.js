@@ -20,6 +20,7 @@ class LandingPlace extends React.Component {
       return (
         <button
           className="btn btn-primary"
+          style={{ display: "block", marginTop: "10px" }}
           onClick={async () => {
             await this.props.selectCategory(category);
             history.push("/Dashboard");
@@ -32,7 +33,11 @@ class LandingPlace extends React.Component {
   };
 
   render() {
-    return <div>{this.renderCategories()}</div>;
+    return (
+      <center>
+        <div>{this.renderCategories()}</div>
+      </center>
+    );
   }
 }
 

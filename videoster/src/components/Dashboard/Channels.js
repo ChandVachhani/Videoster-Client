@@ -52,13 +52,25 @@ class Channels extends React.Component {
         style={{ paddingLeft: `${this.props.hideSidebar ? "0%" : "16%"}` }}
       >
         <Col>
-          <div
-            className="addChannel"
-            onClick={() => {
-              history.push("/SearchChannels");
-            }}
-          >
-            <ion-icon name="add" size="large"></ion-icon>
+          <div className="addChannel">
+            <ion-icon
+              name="add"
+              size="large"
+              style={{
+                border: "2px solid white",
+                borderRadius: "50%",
+                transform: "scale(1.8) translateY(5%)",
+              }}
+              onClick={() => {
+                history.push("/SearchChannels");
+              }}
+              onMouseEnter={(event) => {
+                event.currentTarget.classList.toggle("makeGray");
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.classList.toggle("makeGray");
+              }}
+            ></ion-icon>
           </div>
           {this.renderChannels()}
 

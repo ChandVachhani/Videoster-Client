@@ -18,8 +18,10 @@ class App extends React.Component {
   async componentDidMount() {
     console.log("app.componentDidMount");
     await this.props.verifyLogin();
-    await this.props.getCategories();
-    await this.props.getChannels();
+    if (this.props.user.userId) {
+      await this.props.getCategories();
+      await this.props.getChannels();
+    }
   }
 
   async componentDidUpdate(preProps) {
@@ -46,13 +48,10 @@ class App extends React.Component {
             );
           }}
         ></Route>
-        <Route
-          path="/Register"
-          exact
-          render={() => {
-            return this.props.user.userId ? <Register /> : <Redirect to="/" />;
-          }}
-        ></Route>
+        <Route path="/Register" exact>
+          <Register />
+        </Route>
+
         <Route
           path="/SearchChannels"
           exact

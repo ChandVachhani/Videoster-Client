@@ -14,13 +14,15 @@ export const verifyLogin = () => {
 };
 
 export const logOut = () => {
-  localStorage.removeItem("VideosterToken");
-  localStorage.removeItem("VideosterUserId");
-  localStorage.removeItem("VideosterUserName");
-  localStorage.removeItem("VideosterSelectedCategory");
-  history.push("/");
-  return {
-    type: "LOG_OUT",
+  return async (dispatch) => {
+    await localStorage.removeItem("VideosterToken");
+    await localStorage.removeItem("VideosterUserId");
+    await localStorage.removeItem("VideosterUserName");
+    await localStorage.removeItem("VideosterSelectedCategory");
+    history.push("/");
+    dispatch({
+      type: "LOG_OUT",
+    });
   };
 };
 
@@ -29,12 +31,12 @@ export const takeMeIn = (values) => {
     try {
       const res = await server.post("/auth/Login", values, {
         headers: {
-          Authorization: `Basic ${localStorage.getItem("token")}`,
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
       });
-      localStorage.setItem("VideosterToken", res.data.token);
-      localStorage.setItem("VideosterUserId", res.data.userId);
-      localStorage.setItem("VideosterUserName", res.data.userName);
+      await localStorage.setItem("VideosterToken", res.data.token);
+      await localStorage.setItem("VideosterUserId", res.data.userId);
+      await localStorage.setItem("VideosterUserName", res.data.userName);
       history.push("/LandingPlace");
       dispatch({
         type: "LOGIN",
@@ -54,7 +56,7 @@ export const registerUser = (values) => {
     try {
       const res = await server.post("/auth/Register", values, {
         headers: {
-          Authorization: `Basic ${localStorage.getItem("token")}`,
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
       });
       dispatch({
@@ -75,7 +77,7 @@ export const addCategory = (category) => {
       };
       await server.post("/users/addCategory", values, {
         headers: {
-          Authorization: `Basic ${localStorage.getItem("token")}`,
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
       });
       dispatch({
@@ -96,7 +98,7 @@ export const searchChannels = (searchWord) => {
       };
       let channels = await server.post(`/users/searchChannels`, values, {
         headers: {
-          Authorization: `Basic ${localStorage.getItem("token")}`,
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
       });
       channels = channels.data.data;
@@ -122,7 +124,7 @@ export const addChannels = (channels) => {
         values,
         {
           headers: {
-            Authorization: `Basic ${localStorage.getItem("token")}`,
+            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
           },
         }
       );
@@ -147,7 +149,7 @@ export const getCategories = () => {
       const values = {};
       let data = await server.get("/users/gerCategories", {
         headers: {
-          Authorization: `Basic ${localStorage.getItem("token")}`,
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
       });
       data = data.data.requiredData;
@@ -169,7 +171,7 @@ export const getChannels = () => {
       const category = getStatus().selectedCategory;
       let data = await server.get(`/users/${category}/getChannels`, {
         headers: {
-          Authorization: `Basic ${localStorage.getItem("token")}`,
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
       });
       data = data.data.requiredData;

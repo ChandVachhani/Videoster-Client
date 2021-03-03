@@ -57,6 +57,12 @@ class Channels extends React.Component {
               name="add"
               size="large"
               style={{
+                marginTop: `${
+                  this.props.channels.length == 0 ? "23px" : "0px"
+                }`,
+                marginBottom: `${
+                  this.props.channels.length == 0 ? "12px" : "0px"
+                }`,
                 border: "2px solid white",
                 borderRadius: "50%",
                 transform: "scale(1.8) translateY(5%)",

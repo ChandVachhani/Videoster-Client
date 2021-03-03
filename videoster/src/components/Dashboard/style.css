@@ -30,10 +30,13 @@
 }
 
 .category {
-  padding-left: 12%;
   padding-top: 18px;
   font-size: 17px;
   cursor: pointer;
+}
+
+.collectionOfCategories {
+  padding-left: 12%;
 }
 
 .addCategory {
@@ -190,6 +193,10 @@
 
 .makeInvivible {
   display: none;
+}
+
+.makeVisible {
+  display: inline-block;
 }
 
 .searchChannelData {

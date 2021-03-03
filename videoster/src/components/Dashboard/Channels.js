@@ -20,13 +20,12 @@ class Channels extends React.Component {
   }
 
   renderChannels = () => {
-    return this.props.channels.map((channel) => {
+    return this.props.channels.map((channel, ind) => {
       return (
         <div className="channel">
           <Image
             className="channelIcon"
             src={channel.avatarDefault}
-            // roundedCircle
             onClick={(event) => {
               event.currentTarget.classList.toggle("changeBorderRadius");
               this.props.selectChannel(channel.channelId);
@@ -94,6 +93,7 @@ const mapStateToProps = (state) => {
     channels: state.channels,
     selectedCategory: state.selectedCategory,
     hideSidebar: state.hideSidebar,
+    hideChannel: state.hideChannel,
   };
 };
 

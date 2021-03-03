@@ -104,6 +104,9 @@ const selectChannel = (state = {}, action) => {
     case "SELECT_CHANNEL":
       if (state[action.payload]) return { ...state, [action.payload]: false };
       else return { ...state, [action.payload]: true };
+    case "CLEAR_HIDDEN_CHANNELS":
+    case "LOG_OUT":
+      return {};
     default:
       return state;
   }

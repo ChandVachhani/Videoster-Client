@@ -193,6 +193,12 @@ export const selectChannel = (channelId) => {
   };
 };
 
+export const clearHideChannels = () => {
+  return {
+    type: "CLEAR_HIDDEN_CHANNELS"
+  }
+}
+
 export const selectCategory = (category) => {
   localStorage.setItem("VideosterSelectedCategory", category);
   return {

@@ -5,18 +5,16 @@ import { Image, Row } from "react-bootstrap";
 import history from "../../history";
 import { connect } from "react-redux";
 
-import { getChannels, selectChannel } from "../../actions/index";
+import {
+  getChannels,
+  selectChannel,
+  clearChannelsRelatedStates,
+} from "../../actions/index";
 import { Col } from "react-bootstrap";
 
 class Channels extends React.Component {
   async componentDidMount() {
-    // await this.props.getChannels();
-  }
-
-  async componentDidUpdate(preProps) {
-    if (preProps.selectedCategory != this.props.selectedCategory) {
-      // await this.props.getChannels();
-    }
+    await this.props.clearChannelsRelatedStates();
   }
 
   renderChannels = () => {
@@ -32,12 +30,10 @@ class Channels extends React.Component {
             }}
             onMouseEnter={(event) => {
               event.currentTarget.style.borderRadius = "25%";
-              // event.currentTarget.classList.toggle("underline");
             }}
             onMouseLeave={(event) => {
               if (!event.currentTarget.classList.contains("changeBorderRadius"))
                 event.currentTarget.style.borderRadius = "50%";
-              // event.currentTarget.classList.toggle("underline");
             }}
           />
         </div>
@@ -96,6 +92,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getChannels, selectChannel })(
-  Channels
-);
+export default connect(mapStateToProps, {
+  getChannels,
+  selectChannel,
+  clearChannelsRelatedStates,
+})(Channels);

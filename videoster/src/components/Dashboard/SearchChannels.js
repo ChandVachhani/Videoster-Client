@@ -7,10 +7,9 @@ import {
   searchChannels,
   addChannels,
   clearSearchedChannels,
+  clearChannelsRelatedStates,
 } from "../../actions/index";
 import { connect } from "react-redux";
-
-import history from "../../history";
 
 class Header extends React.Component {
   renderChannels = () => {
@@ -30,42 +29,13 @@ class Header extends React.Component {
             className="searchChannelsCardAvatar"
             onMouseEnter={(event) => {
               event.currentTarget.classList.add("makeBig");
-              // [...document.querySelectorAll(".searchChannelData")][
-              //   ind
-              // ].classList.remove("makeInvivible");
             }}
             onMouseLeave={(event) => {
               event.currentTarget.classList.remove("makeBig");
-              // [...document.querySelectorAll(".searchChannelData")][
-              //   ind
-              // ].classList.add("makeInvivible");
             }}
           />
         </div>
       );
-
-      // return (
-      //   <div
-      //     key={ind}
-      //     className="searchChannelsCard"
-      //     onClick={(event) => {
-      //       event.currentTarget.classList.toggle(
-      //         "searchCchannelsCardSelection"
-      //       );
-      //     }}
-      //   >
-      //     <img
-      //       src={channel.snippet.thumbnails.high.url}
-      //       alt="Avatar"
-      //       className="searchChannelsCardAvatar"
-      //     />
-      //     <p className="searchChannelCardTitle">{channel.snippet.title}</p>
-      //     <p>{channel.snippet.description}</p>
-      //     <p>{channel.statistics.subscriberCount}</p>
-      //     <p>{channel.statistics.videoCount}</p>
-      //     <p>{channel.statistics.viewCount}</p>
-      //   </div>
-      // );
     });
   };
 
@@ -169,6 +139,7 @@ class Header extends React.Component {
                 });
                 arr = arr.filter((a) => a != 0);
                 console.log("arr =>", arr);
+
                 await this.props.addChannels(arr);
                 await this.props.clearSearchedChannels();
               }}
@@ -195,4 +166,5 @@ export default connect(mapStateToProps, {
   searchChannels,
   addChannels,
   clearSearchedChannels,
+  clearChannelsRelatedStates,
 })(Header);

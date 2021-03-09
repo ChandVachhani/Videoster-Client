@@ -17,7 +17,7 @@ class Header extends React.Component {
     return this.props.searchedChannels.map((channel, ind) => {
       return (
         <div
-          className="searchChannelsCard"
+          className="searchChannelsCard version-photo"
           onClick={(event) => {
             event.currentTarget.classList.toggle(
               "searchCchannelsCardSelection"
@@ -41,25 +41,6 @@ class Header extends React.Component {
               // ].classList.add("makeInvivible");
             }}
           />
-          <div className="searchChannelData">
-            <div className="data-title">
-              <center>
-                <div>{channel.snippet.title}</div>
-              </center>
-            </div>
-            <div className=" data-1">
-              <div>{channel.statistics.subscriberCount}</div>
-              <div>Subs</div>
-            </div>
-            <div className=" data-2">
-              <div>{channel.statistics.videoCount}</div>
-              <div>Videos</div>
-            </div>
-            <div className=" data-3">
-              <div>{channel.statistics.viewCount}</div>
-              <div>Views</div>
-            </div>
-          </div>
         </div>
       );
 
@@ -85,6 +66,40 @@ class Header extends React.Component {
       //     <p>{channel.statistics.viewCount}</p>
       //   </div>
       // );
+    });
+  };
+
+  renderData = () => {
+    return this.props.searchedChannels.map((channel, ind) => {
+      return (
+        <div
+          className="searchChannelsCard version-data"
+          style={{ color: "white" }}
+          onClick={(event) => {
+            event.currentTarget.classList.toggle(
+              "searchCchannelsCardSelection"
+            );
+          }}
+        >
+          <div className="data-title">
+            <center>
+              <div>{channel.snippet.title}</div>
+            </center>
+          </div>
+          <div className=" data-1">
+            <div>{channel.statistics.subscriberCount}</div>
+            <div>Subs</div>
+          </div>
+          <div className=" data-2">
+            <div>{channel.statistics.videoCount}</div>
+            <div>Videos</div>
+          </div>
+          <div className=" data-3">
+            <div>{channel.statistics.viewCount}</div>
+            <div>Views</div>
+          </div>
+        </div>
+      );
     });
   };
 
@@ -161,6 +176,7 @@ class Header extends React.Component {
               Add
             </button>
           </div>
+          <div className="renderSearchChannels">{this.renderData()}</div>
           <div className="renderSearchChannels">{this.renderChannels()}</div>
           {/* <center>
           

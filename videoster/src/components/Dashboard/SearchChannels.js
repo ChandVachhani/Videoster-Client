@@ -145,7 +145,7 @@ class Header extends React.Component {
             <button
               className="btn btn-primary addSearchChannels"
               onClick={async () => {
-                let arr = document.querySelectorAll(".searchChannelsCard");
+                let arr = document.querySelectorAll(".version-photo");
                 arr = [...arr];
                 arr = arr.map((a, ind) => {
                   if (a.classList.contains("searchCchannelsCardSelection"))

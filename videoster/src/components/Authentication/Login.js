@@ -25,6 +25,7 @@ class Login extends React.Component {
 
   render() {
     return (
+        <div className="login-body">
       <center>
         <Formik
           initialValues={{
@@ -72,6 +73,7 @@ class Login extends React.Component {
           )}
         </Formik>
       </center>
+      </div>
     );
   }
 }

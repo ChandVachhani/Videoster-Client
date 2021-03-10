@@ -47,7 +47,7 @@ class Login extends React.Component {
           }}
         >
           {({ isSubmitting }) => (
-            <div className="card text-center ">
+            <div className="auth-card text-center ">
               <div className="card-header">Login</div>
               <div className="card-body">
                 <Form>

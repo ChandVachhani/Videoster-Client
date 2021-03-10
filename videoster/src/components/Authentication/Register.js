@@ -47,7 +47,7 @@ class Register extends React.Component {
         >
           {({ isSubmitting }) => (
             <center>
-              <div className="card text-center ">
+              <div className="auth-card text-center ">
                 <div className="card-header">Register</div>
                 <div className="card-body">
                   <Form>

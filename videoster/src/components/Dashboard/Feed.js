@@ -22,7 +22,13 @@ class Feed extends React.Component {
         return null;
       return channel.videos.map((video) => {
         return (
-          <Col lg={3} md={4} sm={6} className="d-flex justify-content-center">
+          <Col
+            lg={3}
+            md={4}
+            sm={6}
+            xs={12}
+            className="d-flex justify-content-center"
+          >
             <Card className="feedCard" style={{ width: "30rem" }}>
               <Card.Img variant="top" src={video.avatarMedium} />
               <Card.Body style={{ padding: "0px", paddingTop: "15px" }}>

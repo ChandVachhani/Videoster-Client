@@ -13,7 +13,6 @@ class Header extends React.Component {
         <Navbar
           variant="dark"
           bg="dark"
-          expand="lg"
           style={{ height: "60px" }}
           className="fixed-top"
         >

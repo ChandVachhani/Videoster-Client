@@ -35,7 +35,7 @@ class DashBoard extends React.Component {
             >
               <Sidebar />
             </Col>
-            <Col style={{ paddingLeft: "0px" }}>
+            <Col style={{ paddingLeft: "40px" }}>
               <div className="feed">
                 <Channels />
                 <Feed />

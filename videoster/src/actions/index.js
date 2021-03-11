@@ -226,3 +226,9 @@ export const clearAllChannels = (action) => {
     type: "CLEAR_ALL_CHANNELS",
   };
 };
+
+export const clearChannelsRelatedStates = () => {
+  return {
+    type: "CLEAR_CHANNEL_RELATED_STATES"
+  }
+}

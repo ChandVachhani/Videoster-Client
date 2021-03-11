@@ -1,5 +1,19 @@
-.card {
+.login-body {
+  background-color: black;
+  min-height: 100vh;
+}
+
+.register-body {
+  background-color: black;
+  min-height: 100vh;
+}
+
+.auth-card {
   max-width: 20rem;
+  transform: translateY(50%);
+  box-shadow: 0px 0px 10px 10px gray;
+  border-radius: 5%;
+  background-color: white;
 }
 
 .field {

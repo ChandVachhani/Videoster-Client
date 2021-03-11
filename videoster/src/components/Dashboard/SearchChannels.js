@@ -138,7 +138,6 @@ class Header extends React.Component {
                   return 0;
                 });
                 arr = arr.filter((a) => a != 0);
-                console.log("arr =>", arr);
 
                 await this.props.addChannels(arr);
                 await this.props.clearSearchedChannels();

@@ -70,16 +70,20 @@ export const registerUser = (values) => {
 };
 
 export const addCategory = (category) => {
-  return async (dispatch) => {
+  return async (dispatch, getStatus) => {
     try {
       const values = {
         category,
       };
-      await server.post("/users/addCategory", values, {
-        headers: {
-          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
-        },
-      });
+      await server.post(
+        `/users/${getStatus().user.userId}/categories`,
+        values,
+        {
+          headers: {
+            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+          },
+        }
+      );
       dispatch({
         type: "ADD_CATEGORY",
         payload: category,
@@ -96,12 +100,21 @@ export const searchChannels = (searchWord) => {
       const values = {
         searchWord,
       };
-      let channels = await server.post(`/users/searchChannels`, values, {
+      const result = await server.get(`/YT/channels/${searchWord}`, {
         headers: {
           Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
       });
-      channels = channels.data.data;
+      const channelIds = result.data.channels;
+      let channels = [];
+      for (let ind in channelIds) {
+        const channel = await server.get(`/YT/channel/${channelIds[ind]}`, {
+          headers: {
+            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+          },
+        });
+        channels.push(channel.data.channel);
+      }
       dispatch({
         type: "SEARCHED_CHANNELS",
         payload: channels,
@@ -116,24 +129,58 @@ export const addChannels = (channels) => {
   return async (dispatch, getStatus) => {
     try {
       const category = getStatus().selectedCategory;
-      const values = {
-        channels,
-      };
-      const addedChannels = await server.post(
-        `/users/${category}/addChannels`,
-        values,
-        {
-          headers: {
-            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
-          },
+      for (let i in channels) {
+        const channel = channels[i];
+        await server.post(
+          `/categories/${category}/channels`,
+          { channel },
+          {
+            headers: {
+              Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+            },
+          }
+        );
+
+        let videos = await server.get(
+          `/YT/channels/${channel.channelId}/videos`,
+          {
+            headers: {
+              Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+            },
+          }
+        );
+        videos = videos.data.videos.map((video) => {
+          return {
+            videoId: video.id.videoId,
+            description: video.snippet.description,
+            avatarDefault: video.snippet.thumbnails.default.url,
+            avatarHigh: video.snippet.thumbnails.high.url,
+            avatarMedium: video.snippet.thumbnails.medium.url,
+            title: video.snippet.title,
+          };
+        });
+        channels[i].videos = videos;
+
+        for (let j in videos) {
+          await server.post(
+            `/channels/${channel.channelId}/videos`,
+            { video: videos[j] },
+            {
+              headers: {
+                Authorization: `Basic ${localStorage.getItem(
+                  "VideosterToken"
+                )}`,
+              },
+            }
+          );
         }
-      );
-      console.log("kk => ", addedChannels.data.channels);
+      }
+
       dispatch({
         type: "ADD_CHANNELS",
         payload: {
           category,
-          addedChannels: addedChannels.data.channels,
+          addedChannels: channels,
         },
       });
       history.push("/Dashboard");
@@ -144,16 +191,17 @@ export const addChannels = (channels) => {
 };
 
 export const getCategories = () => {
-  return async (dispatch) => {
+  return async (dispatch, getStatus) => {
     try {
-      const values = {};
-      let data = await server.get("/users/gerCategories", {
-        headers: {
-          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
-        },
-      });
-      data = data.data.requiredData;
-      console.log(data);
+      let data = await server.get(
+        `/users/${getStatus().user.userId}/categories`,
+        {
+          headers: {
+            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+          },
+        }
+      );
+      data = data.data.categories;
       dispatch({
         type: "GET_CATEGORIES",
         payload: data,
@@ -167,14 +215,25 @@ export const getCategories = () => {
 export const getChannels = () => {
   return async (dispatch, getStatus) => {
     try {
-      const values = {};
       const category = getStatus().selectedCategory;
-      let data = await server.get(`/users/${category}/getChannels`, {
+      if (!category) return;
+      let data = await server.get(`/categories/${category}/channels`, {
         headers: {
           Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
       });
-      data = data.data.requiredData;
+      data = data.data.channels;
+      console.log(data);
+
+      for (let i in data) {
+        const channelId = data[i].channelId;
+        let result = await server.get(`/channels/${channelId}/videos`, {
+          headers: {
+            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+          },
+        });
+        data[i].videos = result.data.videos;
+      }
       console.log(data);
       dispatch({
         type: "GET_CHANNELS",
@@ -229,6 +288,6 @@ export const clearAllChannels = (action) => {
 
 export const clearChannelsRelatedStates = () => {
   return {
-    type: "CLEAR_CHANNEL_RELATED_STATES"
-  }
-}
+    type: "CLEAR_CHANNEL_RELATED_STATES",
+  };
+};

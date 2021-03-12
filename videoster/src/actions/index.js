@@ -245,6 +245,44 @@ export const getChannels = () => {
   };
 };
 
+export const removeCategory = (category) => {
+  return async (dispatch, getStatus) => {
+    try {
+      await server.delete(`/categories/${category}`, {
+        data: { foo: "bar" },
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+        },
+      });
+      dispatch({
+        type: "REMOVE_CATEGORY",
+        payload: category,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};
+
+export const removeChannel = (channelId) => {
+  return async (dispatch, getStatus) => {
+    try {
+      await server.delete(`/channels/${channelId}`, {
+        data: { foo: "bar" },
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+        },
+      });
+      dispatch({
+        type: "REMOVE_CHANNEL",
+        payload: channelId,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};
+
 export const selectChannel = (channelId) => {
   return {
     type: "SELECT_CHANNEL",

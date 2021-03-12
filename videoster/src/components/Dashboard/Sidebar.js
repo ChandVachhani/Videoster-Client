@@ -31,13 +31,15 @@ class Sidebar extends React.Component {
                 }
               }
             } else {
-              await this.props.clearHideChannels();
-              await this.props.clearAllChannels();
-              [...document.querySelectorAll(".channelIcon")].forEach((e) => {
-                e.classList.remove("changeBorderRadius");
-                e.style.borderRadius = "50%";
-              });
-              await this.props.selectCategory(category);
+              if (this.props.selectedCategory != category) {
+                await this.props.clearHideChannels();
+                await this.props.clearAllChannels();
+                [...document.querySelectorAll(".channelIcon")].forEach((e) => {
+                  e.classList.remove("changeBorderRadius");
+                  e.style.borderRadius = "50%";
+                });
+                await this.props.selectCategory(category);
+              }
             }
           }}
         >

@@ -28,7 +28,7 @@ class Channels extends React.Component {
             onClick={(event) => {
               if (event.ctrlKey) {
                 const responce = window.prompt("Say Yes!");
-                if (responce.toLocaleLowerCase() == "yes") {
+                if (responce?.toLowerCase() == "yes") {
                   this.props.removeChannel(channel.channelId);
                 }
               } else {

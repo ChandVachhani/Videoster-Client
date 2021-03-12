@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
           onClick={async (event) => {
             if (event.ctrlKey) {
               const responce = window.prompt("say yes!");
-              if (responce.toLowerCase() == "yes") {
+              if (responce?.toLowerCase() == "yes") {
                 console.log(category);
                 await this.props.removeCategory(category);
                 if (this.props.selectedCategory == category) {

@@ -267,15 +267,12 @@ export const removeCategory = (category) => {
 export const removeChannel = (channelId) => {
   return async (dispatch, getStatus) => {
     try {
-      await server.delete(
-        `/channels/${channelId}`,
-        { category: getStatus().selectedCategory },
-        {
-          headers: {
-            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
-          },
-        }
-      );
+      await server.delete(`/channels/${channelId}`, {
+        data: { category: getStatus().selectedCategory },
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+        },
+      });
       dispatch({
         type: "REMOVE_CHANNEL",
         payload: channelId,

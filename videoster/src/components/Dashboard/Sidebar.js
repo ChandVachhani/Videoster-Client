@@ -11,10 +11,6 @@ import {
 } from "../../actions/index";
 
 class Sidebar extends React.Component {
-  async componentDidMount() {
-    // await this.props.getCategories();
-  }
-
   renderCategory = () => {
     return this.props.categories.map((category, ind) => {
       return (

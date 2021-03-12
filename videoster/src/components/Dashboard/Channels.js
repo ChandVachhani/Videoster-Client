@@ -9,6 +9,7 @@ import {
   getChannels,
   selectChannel,
   clearChannelsRelatedStates,
+  removeChannel,
 } from "../../actions/index";
 import { Col } from "react-bootstrap";
 
@@ -26,11 +27,9 @@ class Channels extends React.Component {
             src={channel.avatarDefault}
             onClick={(event) => {
               if (event.ctrlKey) {
-                const responce = window.prompt(
-                  "are you sure, you want to remove this channel?"
-                );
+                const responce = window.prompt("Say Yes!");
                 if (responce.toLocaleLowerCase() == "yes") {
-                  console.log(channel);
+                  this.props.removeChannel(channel.channelId);
                 }
               } else {
                 event.currentTarget.classList.toggle("changeBorderRadius");
@@ -105,4 +104,5 @@ export default connect(mapStateToProps, {
   getChannels,
   selectChannel,
   clearChannelsRelatedStates,
+  removeChannel,
 })(Channels);

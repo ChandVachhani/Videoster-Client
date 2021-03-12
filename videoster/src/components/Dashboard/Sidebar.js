@@ -7,6 +7,7 @@ import {
   getCategories,
   clearHideChannels,
   clearAllChannels,
+  removeCategory,
 } from "../../actions/index";
 
 class Sidebar extends React.Component {
@@ -20,13 +21,24 @@ class Sidebar extends React.Component {
         <div
           className="category"
           onClick={async (event) => {
-            await this.props.clearHideChannels();
-            await this.props.clearAllChannels();
-            [...document.querySelectorAll(".channelIcon")].forEach((e) => {
-              e.classList.remove("changeBorderRadius");
-              e.style.borderRadius = "50%";
-            });
-            await this.props.selectCategory(category);
+            if (event.ctrlKey) {
+              const responce = window.prompt("say yes!");
+              if (responce.toLowerCase() == "yes") {
+                console.log(category);
+                await this.props.removeCategory(category);
+                if (this.props.selectedCategory == category) {
+                  await this.props.selectCategory("General");
+                }
+              }
+            } else {
+              await this.props.clearHideChannels();
+              await this.props.clearAllChannels();
+              [...document.querySelectorAll(".channelIcon")].forEach((e) => {
+                e.classList.remove("changeBorderRadius");
+                e.style.borderRadius = "50%";
+              });
+              await this.props.selectCategory(category);
+            }
           }}
         >
           <span
@@ -94,4 +106,5 @@ export default connect(mapStateToProps, {
   getCategories,
   clearHideChannels,
   clearAllChannels,
+  removeCategory,
 })(Sidebar);

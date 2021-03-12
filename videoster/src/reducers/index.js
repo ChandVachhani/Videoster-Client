@@ -48,6 +48,10 @@ const categories = (state = [], action) => {
       return ["General"];
     case "GET_CATEGORIES":
       return [...action.payload];
+    case "REMOVE_CATEGORY":
+      return state.filter((curr) => {
+        return curr != action.payload;
+      });
     case "LOG_OUT":
       return [];
     default:
@@ -71,6 +75,10 @@ const channels = (state = [], action) => {
       return data;
     case "GET_CHANNELS":
       return action.payload;
+    case "REMOVE_CHANNEL":
+      return state.filter((curr) => {
+        return curr.channelId != action.payload;
+      });
     case "LOG_OUT":
     case "CLEAR_ALL_CHANNELS":
       return [];

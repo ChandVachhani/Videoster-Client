@@ -25,8 +25,17 @@ class Channels extends React.Component {
             className="channelIcon"
             src={channel.avatarDefault}
             onClick={(event) => {
-              event.currentTarget.classList.toggle("changeBorderRadius");
-              this.props.selectChannel(channel.channelId);
+              if (event.ctrlKey) {
+                const responce = window.prompt(
+                  "are you sure, you want to remove this channel?"
+                );
+                if (responce.toLocaleLowerCase() == "yes") {
+                  console.log(channel);
+                }
+              } else {
+                event.currentTarget.classList.toggle("changeBorderRadius");
+                this.props.selectChannel(channel.channelId);
+              }
             }}
             onMouseEnter={(event) => {
               event.currentTarget.style.borderRadius = "25%";

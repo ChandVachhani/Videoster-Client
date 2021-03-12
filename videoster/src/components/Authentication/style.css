@@ -1,21 +1,95 @@
 .login-body {
   background-color: black;
   min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .register-body {
-  background-color: black;
   min-height: 100vh;
 }
 
 .auth-card {
-  max-width: 20rem;
-  transform: translateY(50%);
-  box-shadow: 0px 0px 10px 10px gray;
-  border-radius: 5%;
-  background-color: white;
+  box-shadow: 0px 0px 2px 2px gray;
+  border-radius: 10px;
+  padding: 30px 0 0 0;
+  margin: auto 3%;
+  width: 100%;
+}
+
+.card--main {
+  padding-top: 10%;
+  color: white;
+}
+
+.card--header {
+}
+
+.card--body {
+}
+
+.card--footer {
 }
 
 .field {
-  padding: 10px;
+  padding: 10px 0;
 }
+
+.field--input {
+  border-color: #3498db;
+  border-radius: 24px;
+  text-align: center;
+  height: 48px;
+  width: 250px;
+  background-color: black;
+  color: white;
+}
+
+.field--input:focus {
+  outline: 0px;
+  border-radius: 24px;
+  border-color: #2ecc71;
+  width: 300px;
+}
+
+.login-image {
+  transform: scale(0.7);
+}
+
+.login-image img {
+}
+
+.card--forgot {
+  padding: 10px 0;
+}
+
+.submit {
+  outline: 0px;
+  height: 48px;
+  width: 130px;
+  border-color: #2ecc71;
+  border-radius: 24px;
+  text-align: center;
+  background-color: white;
+  transition: 0.25s;
+  cursor: pointer;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  color: white;
+}
+
+.submit:hover {
+  transition: 0.25s;
+  outline: 0px;
+  background-color: #2ecc71;
+  color: white;
+}
+
+/* 
+https://bbbootstrap.com/snippets/animated-login-form-95290954
+https://bbbootstrap.com/snippets/login-form-information-text-67856111
+*/

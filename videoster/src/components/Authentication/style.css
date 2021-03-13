@@ -122,4 +122,11 @@
 https://bbbootstrap.com/snippets/animated-login-form-95290954
 https://bbbootstrap.com/snippets/login-form-information-text-67856111
 https://storyset.com/illustration/no-data/rafiki
+
+git commit -a -m "small change"
+git push
+git checkout deploy
+git merge manage
+
+
 */

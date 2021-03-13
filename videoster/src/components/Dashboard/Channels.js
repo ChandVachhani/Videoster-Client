@@ -50,13 +50,12 @@ class Channels extends React.Component {
   };
   render() {
     return (
-      // <div>
       <Row
         className="channels fixed-top"
         style={{ paddingLeft: `${this.props.hideSidebar ? "0%" : "16%"}` }}
       >
         <Col>
-          <div className="addChannel" style={{ maxWidth: "15vw" }}>
+          <div className="addChannel" style={{ maxWidth: "55vw" }}>
             <ion-icon
               name="add"
               size="large"
@@ -81,6 +80,8 @@ class Channels extends React.Component {
                 borderColor: "#a0a0a0",
                 color: "#a0a0a0",
                 cursor: "pointer",
+                maxWidth: "8vw",
+                maxHeight: "8vw",
               }}
               onClick={() => {
                 history.push("/SearchChannels");
@@ -97,7 +98,6 @@ class Channels extends React.Component {
           <hr className="channelHr" />
         </Col>
       </Row>
-      // </div>
     );
   }
 }

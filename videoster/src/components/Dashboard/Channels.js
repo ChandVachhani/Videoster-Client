@@ -70,6 +70,9 @@ class Channels extends React.Component {
                 border: "2px solid white",
                 borderRadius: "50%",
                 transform: "scale(1.8) translateY(5%)",
+                borderColor: "#a0a0a0",
+                color: "#a0a0a0",
+                cursor: "pointer",
               }}
               onClick={() => {
                 history.push("/SearchChannels");

@@ -19,13 +19,14 @@ class LandingPlace extends React.Component {
     return this.props.categories.map((category) => {
       return (
         <button
-          className="submit"          
+          className="submit"
+          style={{ width: "200px" }}
           onClick={async () => {
             await this.props.selectCategory(category);
             history.push("/Dashboard");
           }}
         >
-          {category}
+          {category.toUpperCase()}
         </button>
       );
     });
@@ -34,9 +35,9 @@ class LandingPlace extends React.Component {
   render() {
     return (
       <div className="landingplace--body">
-      <center>
-        <div className="category--collection">{this.renderCategories()}</div>
-      </center>
+        <center>
+          <div className="category--collection">{this.renderCategories()}</div>
+        </center>
       </div>
     );
   }

@@ -41,30 +41,36 @@ class Header extends React.Component {
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Brand>
-              <Button
-                className="headerbtn"
-                onClick={() => {
-                  history.push("/");
-                }}
-              >
-                Token
-              </Button>
-              <Button
-                className="headerbtn"
-                onClick={() => {
-                  history.push("/");
-                }}
-              >
-                Import
-              </Button>
-              <Button
-                className="headerbtn"
-                onClick={async () => {
-                  await this.props.logOut();
-                }}
-              >
-                SignOut
-              </Button>
+              {/* <small>
+                <button
+                  className="headerbtn"
+                  onClick={() => {
+                    history.push("/");
+                  }}
+                >
+                  Token
+                </button>
+              </small>
+              <small>
+                <button
+                  className="headerbtn"
+                  onClick={() => {
+                    history.push("/");
+                  }}
+                >
+                  Import
+                </button>
+              </small> */}
+              <small>
+                <button
+                  className="headerbtn"
+                  onClick={async () => {
+                    await this.props.logOut();
+                  }}
+                >
+                  SignOut
+                </button>
+              </small>
             </Navbar.Brand>
           </Navbar.Collapse>
         </Navbar>

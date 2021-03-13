@@ -98,8 +98,12 @@ class Register extends React.Component {
                             component="div"
                           /> */}
                         </div>
-                        <button type="submit" className="submit">
-                          Submit
+                        <button
+                          type="submit"
+                          className="submit"
+                          style={{ width: "200px" }}
+                        >
+                          REGISTER
                         </button>
                       </Form>
                     </div>

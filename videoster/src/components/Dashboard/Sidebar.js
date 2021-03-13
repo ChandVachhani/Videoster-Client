@@ -39,28 +39,13 @@ class Sidebar extends React.Component {
             }
           }}
         >
-          <span
-            style={{
-              display: `${
-                this.props.selectedCategory == category
-                  ? "inline-block"
-                  : "none"
-              }`,
-            }}
-            className="activateDot"
+          <button
+            className={`btn--category ${
+              this.props.selectedCategory == category ? "made--transition" : ""
+            }`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-dot"
-              viewBox="0 0 16 16"
-            >
-              <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-            </svg>
-          </span>
-          <span className="categorySelf underline makeGray">{category}</span>
+            {category.toUpperCase()}
+          </button>
         </div>
       );
     });
@@ -73,18 +58,29 @@ class Sidebar extends React.Component {
           style={{ marginLeft: "5%", marginRight: "5%" }}
           className="sidebarHr"
         />
-        <div className="collectionOfCategories">{this.renderCategory()}</div>
-        <div className="addCategory">
-          <span
-            className="makeGray"
-            onClick={async () => {
-              const category = window.prompt();
-              await this.props.addCategory(category);
-              await this.props.selectCategory(category);
-            }}
-          >
-            <ion-icon name="add"></ion-icon>
-          </span>
+        <div className="category-collection">
+          <center>
+            <div className="collectionOfCategories">
+              {this.renderCategory()}
+            </div>
+            <div className="addCategory">
+              <button
+                className="btn--category"
+                onClick={async () => {
+                  const category = window.prompt();
+                  if (category) {
+                    await this.props.addCategory(category);
+                    await this.props.selectCategory(category);
+                  }
+                }}
+              >
+                {/* <ion-icon name="add"></ion-icon> */}
+                <big>
+                  <strong>+</strong>
+                </big>
+              </button>
+            </div>
+          </center>
         </div>
       </div>
     );

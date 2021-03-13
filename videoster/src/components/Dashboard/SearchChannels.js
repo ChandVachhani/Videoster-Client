@@ -91,6 +91,10 @@ class Header extends React.Component {
               }}
               onSubmit={async (values) => {
                 await this.props.searchChannels(values.searchWord);
+                const inputFIeld = document.querySelector(
+                  ".special--field--input"
+                );
+                inputFIeld.blur();
               }}
             >
               {({ isSubmitting }) => (
@@ -101,11 +105,17 @@ class Header extends React.Component {
                         className="field"
                         style={{ display: "inline-block" }}
                       >
-                        <Field type="searchWord" name="searchWord" />
-                        <ErrorMessage name="searchWord" component="div" />
+                        <Field
+                          className="field--input special--field--input"
+                          type="searchWord"
+                          name="searchWord"
+                          placeholder="Search..."
+                          autoComplete="off"
+                        />
+                        {/* <ErrorMessage name="searchWord" component="div" /> */}
                       </div>
-                      <button type="submit" className="submit btn btn-primary">
-                        search
+                      <button type="submit" className="submit">
+                        Search
                       </button>
                     </center>
                   </Form>
@@ -113,7 +123,7 @@ class Header extends React.Component {
               )}
             </Formik>
             <button
-              className="btn btn-primary addSearchChannels"
+              className="submit"
               onClick={async () => {
                 let arr = document.querySelectorAll(".version-photo");
                 arr = [...arr];

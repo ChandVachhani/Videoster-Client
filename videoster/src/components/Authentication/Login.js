@@ -63,6 +63,7 @@ class Login extends React.Component {
                             type="userName"
                             name="userName"
                             placeholder="Username / email"
+                            autoComplete="off"
                           />
                           {/* <ErrorMessage name="userName" component="div" /> */}
                         </div>
@@ -72,6 +73,7 @@ class Login extends React.Component {
                             type="password"
                             name="password"
                             placeholder="Password"
+                            autoComplete="off"
                           />
                           {/* <ErrorMessage name="password" component="div" /> */}
                         </div>
@@ -79,7 +81,7 @@ class Login extends React.Component {
                           <a href="#">Forgot my password</a>
                         </div>
                         <button type="submit" className="submit">
-                          Submit
+                          LOGIN
                         </button>
                       </Form>
                     </div>

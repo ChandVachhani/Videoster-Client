@@ -62,10 +62,18 @@ class Channels extends React.Component {
               size="large"
               style={{
                 marginTop: `${
-                  this.props.channels.length == 0 ? "23px" : "0px"
+                  this.props.channels.length == 0 ||
+                  (this.props.channels.length == 1 &&
+                    this.props.channels[0] == -1)
+                    ? "23px"
+                    : "0px"
                 }`,
                 marginBottom: `${
-                  this.props.channels.length == 0 ? "12px" : "0px"
+                  this.props.channels.length == 0 ||
+                  (this.props.channels.length == 1 &&
+                    this.props.channels[0] == -1)
+                    ? "12px"
+                    : "0px"
                 }`,
                 border: "2px solid white",
                 borderRadius: "50%",

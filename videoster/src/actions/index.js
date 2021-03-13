@@ -234,7 +234,9 @@ export const getChannels = () => {
         });
         data[i].videos = result.data.videos;
       }
-      console.log(data);
+      if (data.length == 0) {
+        data.push(-1);
+      }
       dispatch({
         type: "GET_CHANNELS",
         payload: data,

@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row, Card, Image } from "react-bootstrap";
 import { connect } from "react-redux";
+import NoDataAvailable from "./assets/images/Nodata2.svg";
 
 class Feed extends React.Component {
   renderCards = () => {
@@ -8,6 +9,17 @@ class Feed extends React.Component {
       return (
         <div class="spinner-border text-success" role="status">
           <span class="sr-only">Loading...</span>
+        </div>
+      );
+    }
+    if (this.props.channels.length == 1 && this.props.channels[0] == -1) {
+      return (
+        <div>
+          <img
+            style={{ width: "35vw" }}
+            src={NoDataAvailable}
+            alt="No data available"
+          />
         </div>
       );
     }

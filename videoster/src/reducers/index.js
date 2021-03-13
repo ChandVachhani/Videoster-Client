@@ -62,6 +62,8 @@ const categories = (state = [], action) => {
 const channels = (state = [], action) => {
   switch (action.type) {
     case "ADD_CHANNELS":
+      if (state.length == 1 && state[0] == -1)
+        return action.payload.addedChannels;
       const arr = state.map((st) => {
         return st.channelId;
       });
@@ -76,9 +78,11 @@ const channels = (state = [], action) => {
     case "GET_CHANNELS":
       return action.payload;
     case "REMOVE_CHANNEL":
-      return state.filter((curr) => {
+      const tmp = state.filter((curr) => {
         return curr.channelId != action.payload;
       });
+      if (tmp.length == 0) tmp.push(-1);
+      return tmp;
     case "LOG_OUT":
     case "CLEAR_ALL_CHANNELS":
       return [];

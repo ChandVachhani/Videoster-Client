@@ -14,11 +14,7 @@ import { takeMeIn, verifyLogin } from "../../actions/index";
 import history from "../../history";
 
 class Login extends React.Component {
-  async componentDidMount() {
-    if (this.props.user.userId) {
-      history.push("/LandingPlace");
-    }
-  }
+  async componentDidMount() {}
 
   componentDidUpdate() {
     if (this.props.user.userId) {
@@ -30,13 +26,8 @@ class Login extends React.Component {
     return (
       <div className="login-body">
         <center>
-          <Row className="auth-card">
-            <Col md={6}>
-              <div className="login-image">
-                <img src={LoginImage} alt="Login" />
-              </div>
-            </Col>
-            <Col md={6}>
+          <Row className="login--main">
+            <Col xl={6} lg={12} md={12} sm={12} className="special-login">
               <Formik
                 initialValues={{
                   userName: "",
@@ -96,6 +87,11 @@ class Login extends React.Component {
                   </div>
                 )}
               </Formik>
+            </Col>
+            <Col xl={6} lg={12} md={12} sm={12} className="login--image--main">
+              <div className="login-image">
+                <img src={LoginImage} alt="Login" />
+              </div>
             </Col>
           </Row>
         </center>

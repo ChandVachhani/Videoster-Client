@@ -5,6 +5,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
+import welcomeImg from "./assets/images/welcome.png";
 
 import { getCategories, selectCategory } from "../../actions/index";
 
@@ -36,7 +37,32 @@ class LandingPlace extends React.Component {
     return (
       <div className="landingplace--body">
         <center>
-          <div className="category--collection">{this.renderCategories()}</div>
+          {/* <div>
+            
+          </div> */}
+          <div className="category--collection">
+            <img
+              style={{
+                width: "45px",
+                display: "inline-block",
+              }}
+              src={welcomeImg}
+              alt="Welcome img!"
+            ></img>
+            <h4
+              className="appName"
+              style={{ display: "inline-block", color: "white" }}
+            >
+              &nbsp;&nbsp;Welcome{" "}
+              <span style={{ color: "#2ecc71" }}>
+                {this.props.user.userName.toUpperCase()}
+              </span>
+              !, Where do you want to Land?
+            </h4>
+            <br />
+            <br />
+            {this.renderCategories()}
+          </div>
         </center>
       </div>
     );
@@ -44,7 +70,7 @@ class LandingPlace extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { categories: state.categories };
+  return { categories: state.categories, user: state.user };
 };
 
 export default connect(mapStateToProps, { getCategories, selectCategory })(

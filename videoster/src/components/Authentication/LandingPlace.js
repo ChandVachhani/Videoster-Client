@@ -57,7 +57,7 @@ class LandingPlace extends React.Component {
               <span style={{ color: "#2ecc71" }}>
                 {this.props.user.userName.toUpperCase()}
               </span>
-              !, Where do you want to Land?
+              !, <span> Where do you want to Land?</span>
             </h4>
             <br />
             <br />

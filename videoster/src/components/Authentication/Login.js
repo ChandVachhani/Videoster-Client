@@ -62,6 +62,7 @@ class Login extends React.Component {
                             className="field--input"
                             type="userName"
                             name="userName"
+                            placeholder="Username / email"
                           />
                           {/* <ErrorMessage name="userName" component="div" /> */}
                         </div>
@@ -70,11 +71,12 @@ class Login extends React.Component {
                             className="field--input"
                             type="password"
                             name="password"
+                            placeholder="Password"
                           />
                           {/* <ErrorMessage name="password" component="div" /> */}
                         </div>
                         <div className="card--forgot">
-                          <a href="#">Forgot password?</a>
+                          <a href="#">Forgot my password</a>
                         </div>
                         <button type="submit" className="submit">
                           Submit
@@ -82,7 +84,10 @@ class Login extends React.Component {
                       </Form>
                     </div>
                     <div className="card--footer">
-                      <Link to="/Register">Register</Link>
+                      <p style={{ display: "inline-block" }}>
+                        First time here? &nbsp;
+                      </p>
+                      <Link to="/Register">Create an Account</Link>
                     </div>
                   </div>
                 )}

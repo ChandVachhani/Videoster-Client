@@ -20,10 +20,13 @@ class Sidebar extends React.Component {
             if (event.ctrlKey) {
               const responce = window.prompt("say yes!");
               if (responce?.toLowerCase() == "yes") {
-                console.log(category);
-                await this.props.removeCategory(category);
-                if (this.props.selectedCategory == category) {
-                  await this.props.selectCategory("General");
+                if (category == "General") {
+                  window.alert("You can not delete default category!");
+                } else {
+                  await this.props.removeCategory(category);
+                  if (this.props.selectedCategory == category) {
+                    await this.props.selectCategory("General");
+                  }
                 }
               }
             } else {

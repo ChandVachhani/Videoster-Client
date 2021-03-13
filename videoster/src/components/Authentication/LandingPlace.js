@@ -49,17 +49,22 @@ class LandingPlace extends React.Component {
               src={welcomeImg}
               alt="Welcome img!"
             ></img>
-            <h4
-              className="appName"
-              style={{ display: "inline-block", color: "white" }}
-            >
-              &nbsp;&nbsp;Welcome{" "}
-              <span style={{ color: "#2ecc71" }}>
-                {this.props.user.userName.toUpperCase()}
-              </span>
-              !, <span> Where do you want to Land?</span>
-            </h4>
-            <br />
+            <div style={{ display: "inline-block" }}>
+              <h4
+                className="appName"
+                style={{ display: "inline-block", color: "white" }}
+              >
+                &nbsp;&nbsp;Welcome{" "}
+                <span style={{ color: "#2ecc71", display: "inline-block" }}>
+                  {this.props.user.userName.toUpperCase()}
+                </span>
+                !,{" "}
+                <div style={{ display: "inline-block" }}>
+                  {" "}
+                  Where do you want to Land?
+                </div>
+              </h4>
+            </div>
             <br />
             {this.renderCategories()}
           </div>

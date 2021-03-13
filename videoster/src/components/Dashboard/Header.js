@@ -3,6 +3,7 @@ import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 import { toggleSidebar, logOut } from "../../actions/index";
 import { connect } from "react-redux";
+import welcomeImg from "./assets/images/welcome.png";
 
 import history from "../../history";
 
@@ -30,12 +31,13 @@ class Header extends React.Component {
             </Navbar.Brand>
             <Navbar.Brand>
               <h4
-                className="appName makeGray"
+                className="appName"
+                style={{ display: "inline-block" }}
                 onClick={() => {
                   history.push("/Dashboard");
                 }}
               >
-                Videoster
+                &nbsp;Welcome {this.props.user.userName}!
               </h4>
             </Navbar.Brand>
           </Navbar.Collapse>
@@ -80,7 +82,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { hideSidebar: state.hideSidebar };
+  return { hideSidebar: state.hideSidebar, user: state.user };
 };
 
 export default connect(mapStateToProps, { toggleSidebar, logOut })(Header);

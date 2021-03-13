@@ -52,9 +52,9 @@ class Login extends React.Component {
                     <div className="card--header">
                       <h1>LOGIN</h1>
                     </div>
-                    <div className="card--subheading">
+                    {/* <div className="card--subheading">
                       <p>Please Enter your Login and Password</p>
-                    </div>
+                    </div> */}
                     <div className="card--body">
                       <Form>
                         <div className="field">

@@ -56,7 +56,7 @@ class Channels extends React.Component {
         style={{ paddingLeft: `${this.props.hideSidebar ? "0%" : "16%"}` }}
       >
         <Col>
-          <div className="addChannel">
+          <div className="addChannel" style={{ maxWidth: "15vw" }}>
             <ion-icon
               name="add"
               size="large"

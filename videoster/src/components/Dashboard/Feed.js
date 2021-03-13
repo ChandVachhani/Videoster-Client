@@ -35,13 +35,18 @@ class Feed extends React.Component {
       return channel.videos.map((video) => {
         return (
           <Col
-            lg={3}
-            md={4}
+            xl={3}
+            lg={4}
+            md={6}
             sm={6}
             xs={12}
             className="d-flex justify-content-center"
           >
-            <Card className="feedCard" style={{ width: "30rem" }}>
+            {/* <Card className="feedCard" style={{ width: "30rem" }}> */}
+            <Card
+              className="feedCard"
+              style={{ maxWidth: "90vw", width: "30rem" }}
+            >
               <Card.Img variant="top" src={video.avatarMedium} />
               <Card.Body style={{ padding: "0px", paddingTop: "15px" }}>
                 <Row>

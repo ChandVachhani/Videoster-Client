@@ -16,6 +16,7 @@
 
 .login--main {
   width: 80vw;
+  min-width: 400px;
 }
 
 .card--main {
@@ -48,6 +49,9 @@
 
 .special-login {
   /* border: 2px solid white; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .login--image--main {

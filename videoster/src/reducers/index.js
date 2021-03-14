@@ -34,6 +34,7 @@ const selectedCategory = (
     case "SELECT_CATEGORY":
       return action.payload;
     case "LOG_OUT":
+    case "CLEAR_SELECTED_CATEGORY":
       return "";
     default:
       return state;

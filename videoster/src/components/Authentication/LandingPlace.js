@@ -7,13 +7,20 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
 import welcomeImg from "./assets/images/welcome.png";
 
-import { getCategories, selectCategory } from "../../actions/index";
+import {
+  getCategories,
+  selectCategory,
+  clearAllChannels,
+  clearSelectedCategory,
+} from "../../actions/index";
 
 import history from "../../history";
 
 class LandingPlace extends React.Component {
   async componentDidMount() {
     await this.props.getCategories();
+    await this.props.clearAllChannels();
+    await this, props.clearSelectedCategory();
   }
 
   renderCategories = () => {
@@ -78,6 +85,9 @@ const mapStateToProps = (state) => {
   return { categories: state.categories, user: state.user };
 };
 
-export default connect(mapStateToProps, { getCategories, selectCategory })(
-  LandingPlace
-);
+export default connect(mapStateToProps, {
+  getCategories,
+  selectCategory,
+  clearAllChannels,
+  clearSelectedCategory,
+})(LandingPlace);

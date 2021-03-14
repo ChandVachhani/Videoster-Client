@@ -19,7 +19,7 @@ class LandingPlace extends React.Component {
   async componentDidMount() {
     await this.props.getCategories();
     await this.props.clearAllChannels();
-    await this, props.clearSelectedCategory();
+    await this.props.clearSelectedCategory();
   }
 
   renderCategories = () => {

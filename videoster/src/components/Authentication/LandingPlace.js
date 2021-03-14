@@ -1,5 +1,4 @@
 import "./style.css";
-import FingerprintJS from "@fingerprintjs/fingerprintjs";
 
 import React from "react";
 import { connect } from "react-redux";

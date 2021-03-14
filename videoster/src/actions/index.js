@@ -331,3 +331,9 @@ export const clearChannelsRelatedStates = () => {
     type: "CLEAR_CHANNEL_RELATED_STATES",
   };
 };
+
+export const clearSelectedCategory = () => {
+  return {
+    type: "CLEAR_SELECTED_CATEGORY",
+  };
+};

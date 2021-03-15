@@ -56,7 +56,14 @@ class Sidebar extends React.Component {
 
   render() {
     return (
-      <div className="sidebar fixed-top">
+      <div
+        className="sidebar fixed-top"
+        style={{
+          width: `${
+            window.innerWidth < 1200 && !this.props.hideSidebar ? "50vw" : ""
+          }`,
+        }}
+      >
         <hr
           style={{ marginLeft: "5%", marginRight: "5%" }}
           className="sidebarHr"
@@ -94,6 +101,7 @@ const mapStateToProps = (state) => {
   return {
     categories: state.categories,
     selectedCategory: state.selectedCategory,
+    hideSidebar: state.hideSidebar,
   };
 };
 

@@ -31,6 +31,7 @@ class DashBoard extends React.Component {
           <Row>
             <Col
               md={this.Side.grid}
+              sm={12}
               style={{
                 paddingRight: "0px",
                 display: this.Side.display,

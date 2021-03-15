@@ -10,6 +10,7 @@ import Register from "./Authentication/Register";
 import DashBoard from "./Dashboard/Dashboard";
 import LandingPlace from "./Authentication/LandingPlace";
 import SearchChannels from "./Dashboard/SearchChannels";
+import TokenPage from "./Dashboard/TokenPage";
 
 import { verifyLogin, getChannels, getCategories } from "../actions/index";
 import { connect } from "react-redux";
@@ -70,6 +71,21 @@ class App extends React.Component {
             return this.props.user.userId ? (
               this.props.selectedCategory ? (
                 <DashBoard />
+              ) : (
+                <Redirect to="/LandingPlace" />
+              )
+            ) : (
+              <Redirect to="/" />
+            );
+          }}
+        ></Route>
+        <Route
+          path="/Token"
+          exact
+          render={() => {
+            return this.props.user.userId ? (
+              this.props.selectedCategory ? (
+                <TokenPage />
               ) : (
                 <Redirect to="/LandingPlace" />
               )

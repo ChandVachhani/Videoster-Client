@@ -43,11 +43,11 @@ class Header extends React.Component {
           </Navbar.Collapse>
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Brand>
-              {/* <small>
+              <small>
                 <button
                   className="headerbtn"
                   onClick={() => {
-                    history.push("/");
+                    history.push("/Token");
                   }}
                 >
                   Token
@@ -57,12 +57,13 @@ class Header extends React.Component {
                 <button
                   className="headerbtn"
                   onClick={() => {
-                    history.push("/");
+                    const token = window.prompt("Enter Token : ");
+                    console.log(token);
                   }}
                 >
                   Import
                 </button>
-              </small> */}
+              </small>
               <small>
                 <button
                   className="headerbtn"

@@ -127,6 +127,27 @@ const selectChannel = (state = {}, action) => {
   }
 };
 
+const tokens = (state = {}, action) => {
+  switch (action.type) {
+    case "GET_TOKENS":
+      return action.payload;
+    case "LOGOUT":
+    case "CLEAR_TOKENS":
+      return {};
+    default:
+      return state;
+  }
+};
+
+const tokenData = (state = {}, action) => {
+  switch (action.type) {
+    case "GET_TOKEN_DATA":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   user: auth,
   selectedCategory,
@@ -135,4 +156,6 @@ export default combineReducers({
   searchChannels,
   hideSidebar: toggleSidebar,
   hideChannel: selectChannel,
+  tokens,
+  tokenData,
 });

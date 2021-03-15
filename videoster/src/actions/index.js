@@ -332,6 +332,33 @@ export const removeChannel = (channelId) => {
   };
 };
 
+export const getTokens = () => {
+  return async (dispatch, getStatus) => {
+    try {
+      const data = (
+        await server.get(`/users/${getStatus().user.userId}/token`, {
+          headers: {
+            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+          },
+        })
+      ).data.tokens;
+
+      dispatch({
+        type: "GET_TOKENS",
+        payload: data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const clearTokens = () => {
+  return {
+    type: "CLEAR_TOKENS",
+  };
+};
+
 export const selectChannel = (channelId) => {
   return {
     type: "SELECT_CHANNEL",

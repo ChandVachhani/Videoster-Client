@@ -11,6 +11,7 @@ import {
   selectCategory,
   clearAllChannels,
   clearSelectedCategory,
+  logOut,
 } from "../../actions/index";
 
 import history from "../../history";
@@ -42,6 +43,17 @@ class LandingPlace extends React.Component {
   render() {
     return (
       <div className="landingplace--body">
+        <button
+          className="submit"
+          style={{ width: "200px", position: "absolute", right: "2%" }}
+          onClick={async (event) => {
+            await this.props.logOut();
+          }}
+        >
+          SignOut
+        </button>
+        <br />
+        <br />
         <center>
           {/* <div>
             
@@ -89,4 +101,5 @@ export default connect(mapStateToProps, {
   selectCategory,
   clearAllChannels,
   clearSelectedCategory,
+  logOut,
 })(LandingPlace);

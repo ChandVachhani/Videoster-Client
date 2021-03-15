@@ -29,13 +29,13 @@ class App extends React.Component {
       await this.props.getChannels();
     }
 
-    if (window.innerWidth < 1200) {
+    if (window.innerWidth < 992) {
       this.props.toggleSidebar(true);
     } else {
       this.props.toggleSidebar(false);
     }
     window.addEventListener("resize", () => {
-      this.props.toggleSidebar(window.innerWidth <= 1200);
+      this.props.toggleSidebar(window.innerWidth <= 992);
     });
   }
 

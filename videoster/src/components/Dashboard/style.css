@@ -355,3 +355,13 @@
 
 .category-collection {
 }
+
+.token--body {
+  min-height: 100vh;
+  min-width: 100vh;
+  color: white;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

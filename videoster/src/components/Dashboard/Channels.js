@@ -94,7 +94,7 @@ class Channels extends React.Component {
         className="channels fixed-top"
         style={{
           paddingLeft: `${
-            this.props.hideSidebar || window.innerWidth < 998 ? "0%" : "16%"
+            this.props.hideSidebar || window.innerWidth <= 990 ? "0%" : "16%"
           }`,
         }}
       >

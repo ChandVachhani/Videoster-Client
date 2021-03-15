@@ -1,13 +1,13 @@
 import React from "react";
 import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
-import { toggleSidebar, logOut } from "../../actions/index";
+import { toggleSidebar, logOut, getTokenData } from "../../actions/index";
 import { connect } from "react-redux";
 import welcomeImg from "./assets/images/welcome.png";
 
 import history from "../../history";
 
-class Header extends React.Component {  
+class Header extends React.Component {
   render() {
     return (
       <div className="header">
@@ -56,9 +56,9 @@ class Header extends React.Component {
               <small>
                 <button
                   className="headerbtn"
-                  onClick={() => {
+                  onClick={async () => {
                     const token = window.prompt("Enter Token : ");
-                    console.log(token);
+                    if (token) await this.props.getTokenData(token);
                   }}
                 >
                   Import
@@ -86,4 +86,8 @@ const mapStateToProps = (state) => {
   return { hideSidebar: state.hideSidebar, user: state.user };
 };
 
-export default connect(mapStateToProps, { toggleSidebar, logOut })(Header);
+export default connect(mapStateToProps, {
+  toggleSidebar,
+  logOut,
+  getTokenData,
+})(Header);

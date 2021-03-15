@@ -215,24 +215,71 @@ export const getCategories = () => {
 export const getChannels = () => {
   return async (dispatch, getStatus) => {
     try {
-      const category = getStatus().selectedCategory;
+      let category = getStatus().selectedCategory;
       if (!category) return;
-      let data = await server.get(`/categories/${category}/channels`, {
-        headers: {
-          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
-        },
-      });
-      data = data.data.channels;
-      console.log(data);
+      let data = [];
+      if (category == "General") {
+        const categories = getStatus().categories;
+        for (let ind in categories) {
+          const currentCategory = categories[ind];
+          if (currentCategory != category) {
+            let result = await server.get(
+              `/categories/${currentCategory}/channels`,
+              {
+                headers: {
+                  Authorization: `Basic ${localStorage.getItem(
+                    "VideosterToken"
+                  )}`,
+                },
+              }
+            );
+            result = result.data.channels;
 
-      for (let i in data) {
-        const channelId = data[i].channelId;
-        let result = await server.get(`/channels/${channelId}/videos`, {
+            for (let i in result) {
+              const channelId = result[i].channelId;
+              let resultVideos = await server.get(
+                `/channels/${channelId}/videos`,
+                {
+                  headers: {
+                    Authorization: `Basic ${localStorage.getItem(
+                      "VideosterToken"
+                    )}`,
+                  },
+                }
+              );
+              result[i].videos = resultVideos.data.videos;
+            }
+
+            data.push(...result);
+          }
+        }
+        let map = [];
+
+        data = data.filter((curr) => {
+          if (!map.includes(curr.channelId)) {
+            map.push(curr.channelId);
+            return true;
+          } else {
+            return false;
+          }
+        });
+      } else {
+        data = await server.get(`/categories/${category}/channels`, {
           headers: {
             Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
           },
         });
-        data[i].videos = result.data.videos;
+        data = data.data.channels;
+
+        for (let i in data) {
+          const channelId = data[i].channelId;
+          let result = await server.get(`/channels/${channelId}/videos`, {
+            headers: {
+              Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+            },
+          });
+          data[i].videos = result.data.videos;
+        }
       }
       if (data.length == 0) {
         data.push(-1);

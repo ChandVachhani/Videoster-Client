@@ -7,7 +7,7 @@ import welcomeImg from "./assets/images/welcome.png";
 
 import history from "../../history";
 
-class Header extends React.Component {
+class Header extends React.Component {  
   render() {
     return (
       <div className="header">

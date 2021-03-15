@@ -12,7 +12,12 @@ import LandingPlace from "./Authentication/LandingPlace";
 import SearchChannels from "./Dashboard/SearchChannels";
 import TokenPage from "./Dashboard/TokenPage";
 
-import { verifyLogin, getChannels, getCategories } from "../actions/index";
+import {
+  verifyLogin,
+  getChannels,
+  getCategories,
+  toggleSidebar,
+} from "../actions/index";
 import { connect } from "react-redux";
 
 class App extends React.Component {
@@ -23,6 +28,15 @@ class App extends React.Component {
       await this.props.getCategories();
       await this.props.getChannels();
     }
+
+    if (window.innerWidth < 1200) {
+      this.props.toggleSidebar(true);
+    } else {
+      this.props.toggleSidebar(false);
+    }
+    window.addEventListener("resize", () => {
+      this.props.toggleSidebar(window.innerWidth <= 1200);
+    });
   }
 
   async componentDidUpdate(preProps) {
@@ -107,4 +121,5 @@ export default connect(mapStateToProps, {
   verifyLogin,
   getChannels,
   getCategories,
+  toggleSidebar,
 })(App);

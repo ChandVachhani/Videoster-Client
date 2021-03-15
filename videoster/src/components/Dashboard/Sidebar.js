@@ -60,7 +60,7 @@ class Sidebar extends React.Component {
         className="sidebar fixed-top"
         style={{
           width: `${
-            window.innerWidth < 1200 && !this.props.hideSidebar ? "50vw" : ""
+            window.innerWidth < 992 && !this.props.hideSidebar ? "300px" : ""
           }`,
         }}
       >

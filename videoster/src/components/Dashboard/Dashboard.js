@@ -30,8 +30,8 @@ class DashBoard extends React.Component {
         <div className="front">
           <Row>
             <Col
-              md={this.Side.grid}
-              sm={12}
+              lg={this.Side.grid}
+              md={12}
               style={{
                 paddingRight: "0px",
                 display: this.Side.display,
@@ -39,7 +39,11 @@ class DashBoard extends React.Component {
             >
               <Sidebar />
             </Col>
-            <Col style={{ paddingLeft: "40px" }}>
+            <Col
+              md={12}
+              lg={12 - this.Side.grid}
+              style={{ paddingLeft: "40px" }}
+            >
               <div className="feed">
                 <Channels />
                 <Feed />

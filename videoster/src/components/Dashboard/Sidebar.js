@@ -8,6 +8,7 @@ import {
   clearHideChannels,
   clearAllChannels,
   removeCategory,
+  getChannels,
 } from "../../actions/index";
 
 class Sidebar extends React.Component {
@@ -26,6 +27,9 @@ class Sidebar extends React.Component {
                   await this.props.removeCategory(category);
                   if (this.props.selectedCategory == category) {
                     await this.props.selectCategory("General");
+                  }
+                  if (this.props.selectedCategory == "General") {
+                    await this.props.getChannels();
                   }
                 }
               }
@@ -112,4 +116,5 @@ export default connect(mapStateToProps, {
   clearHideChannels,
   clearAllChannels,
   removeCategory,
+  getChannels,
 })(Sidebar);

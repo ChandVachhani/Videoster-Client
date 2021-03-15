@@ -3,6 +3,8 @@ import { Button, Container, Nav, Navbar } from "react-bootstrap";
 
 import { ErrorMessage, Field, Form, Formik } from "formik";
 
+import history from "../../history";
+
 import {
   searchChannels,
   addChannels,
@@ -76,6 +78,20 @@ class Header extends React.Component {
   render() {
     return (
       <div className="searchChannelsBody">
+        <button
+          className="submit"
+          style={{ width: "200px", position: "absolute", right: "2%" }}
+          onClick={async (event) => {
+            history.push("/Dashboard");
+            await this.props.clearSearchedChannels();
+          }}
+        >
+          Back
+        </button>
+        <br />
+        <br />
+        <br />
+        <br />
         <center>
           <div>
             <Formik

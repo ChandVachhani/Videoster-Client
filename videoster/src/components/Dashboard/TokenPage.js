@@ -3,10 +3,11 @@ import React from "react";
 
 import history from "../../history";
 
-import { getTokens } from "../../actions/index";
+import { getTokens, clearTokens } from "../../actions/index";
 
 class TokenPage extends React.Component {
   async componentDidMount() {
+    await this.props.clearTokens();
     await this.props.getTokens();
   }
   renderCategories = () => {
@@ -40,10 +41,11 @@ class TokenPage extends React.Component {
           className="submit"
           style={{ width: "200px", position: "absolute", right: "2%" }}
           onClick={async () => {
+            await this.props.clearTokens();
             history.push("/Dashboard");
           }}
         >
-          back
+          Back
         </button>
         <br />
         <br />
@@ -78,4 +80,4 @@ const mapStateToProps = (state) => {
   return { tokens: state.tokens, user: state.user };
 };
 
-export default connect(mapStateToProps, { getTokens })(TokenPage);
+export default connect(mapStateToProps, { getTokens, clearTokens })(TokenPage);

@@ -48,6 +48,46 @@ class Channels extends React.Component {
       );
     });
   };
+  renderAddChannels = () => {
+    if (this.props.selectedCategory == "General") return null;
+    return (
+      <ion-icon
+        name="add"
+        size="large"
+        style={{
+          marginTop: `${
+            this.props.channels.length == 0 ||
+            (this.props.channels.length == 1 && this.props.channels[0] == -1)
+              ? "23px"
+              : "0px"
+          }`,
+          marginBottom: `${
+            this.props.channels.length == 0 ||
+            (this.props.channels.length == 1 && this.props.channels[0] == -1)
+              ? "12px"
+              : "0px"
+          }`,
+          border: "2px solid white",
+          borderRadius: "50%",
+          transform: "scale(1.8) translateY(5%)",
+          borderColor: "#a0a0a0",
+          color: "#a0a0a0",
+          cursor: "pointer",
+          maxWidth: "8vw",
+          maxHeight: "8vw",
+        }}
+        onClick={() => {
+          history.push("/SearchChannels");
+        }}
+        onMouseEnter={(event) => {
+          event.currentTarget.classList.toggle("makeGray");
+        }}
+        onMouseLeave={(event) => {
+          event.currentTarget.classList.toggle("makeGray");
+        }}
+      ></ion-icon>
+    );
+  };
   render() {
     return (
       <Row
@@ -56,43 +96,7 @@ class Channels extends React.Component {
       >
         <Col>
           <div className="addChannel" style={{ maxWidth: "55vw" }}>
-            <ion-icon
-              name="add"
-              size="large"
-              style={{
-                marginTop: `${
-                  this.props.channels.length == 0 ||
-                  (this.props.channels.length == 1 &&
-                    this.props.channels[0] == -1)
-                    ? "23px"
-                    : "0px"
-                }`,
-                marginBottom: `${
-                  this.props.channels.length == 0 ||
-                  (this.props.channels.length == 1 &&
-                    this.props.channels[0] == -1)
-                    ? "12px"
-                    : "0px"
-                }`,
-                border: "2px solid white",
-                borderRadius: "50%",
-                transform: "scale(1.8) translateY(5%)",
-                borderColor: "#a0a0a0",
-                color: "#a0a0a0",
-                cursor: "pointer",
-                maxWidth: "8vw",
-                maxHeight: "8vw",
-              }}
-              onClick={() => {
-                history.push("/SearchChannels");
-              }}
-              onMouseEnter={(event) => {
-                event.currentTarget.classList.toggle("makeGray");
-              }}
-              onMouseLeave={(event) => {
-                event.currentTarget.classList.toggle("makeGray");
-              }}
-            ></ion-icon>
+            {this.renderAddChannels()}
           </div>
           {this.renderChannels()}
           <hr className="channelHr" />

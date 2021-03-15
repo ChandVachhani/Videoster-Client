@@ -57,7 +57,8 @@ class Header extends React.Component {
                 <button
                   className="headerbtn"
                   onClick={() => {
-                    history.push("/");
+                    const token = window.prompt("Enter Token : ");
+                    console.log(token);
                   }}
                 >
                   Import

@@ -139,6 +139,15 @@ const tokens = (state = {}, action) => {
   }
 };
 
+const tokenData = (state = {}, action) => {
+  switch (action.type) {
+    case "GET_TOKEN_DATA":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   user: auth,
   selectedCategory,
@@ -148,4 +157,5 @@ export default combineReducers({
   hideSidebar: toggleSidebar,
   hideChannel: selectChannel,
   tokens,
+  tokenData,
 });

@@ -249,12 +249,11 @@ export const getChannels = () => {
               );
               result[i].videos = resultVideos.data.videos;
             }
-
             data.push(...result);
           }
         }
-        let map = [];
 
+        let map = [];
         data = data.filter((curr) => {
           if (!map.includes(curr.channelId)) {
             map.push(curr.channelId);
@@ -345,6 +344,27 @@ export const getTokens = () => {
 
       dispatch({
         type: "GET_TOKENS",
+        payload: data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const getTokenData = (token) => {
+  return async (dispatch) => {
+    try {
+      const data = (
+        await server.get(`/tokens/${token}`, {
+          headers: {
+            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+          },
+        })
+      ).data.tokenData;
+
+      dispatch({
+        type: "GET_TOKEN_DATA",
         payload: data,
       });
     } catch (err) {

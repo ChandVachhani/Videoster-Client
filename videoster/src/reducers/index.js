@@ -143,6 +143,8 @@ const tokenData = (state = {}, action) => {
   switch (action.type) {
     case "GET_TOKEN_DATA":
       return action.payload;
+    case "CLEAR_TOKEN_DATA":
+      return {};
     default:
       return state;
   }

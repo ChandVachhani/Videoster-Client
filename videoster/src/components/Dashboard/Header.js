@@ -58,7 +58,10 @@ class Header extends React.Component {
                   className="headerbtn"
                   onClick={async () => {
                     const token = window.prompt("Enter Token : ");
-                    if (token) await this.props.getTokenData(token);
+                    if (token) {
+                      await this.props.getTokenData(token);
+                      history.push("/Import");
+                    }
                   }}
                 >
                   Import

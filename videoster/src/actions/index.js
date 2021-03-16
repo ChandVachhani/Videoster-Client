@@ -379,6 +379,12 @@ export const clearTokens = () => {
   };
 };
 
+export const clearTokenData = () => {
+  return {
+    type: "CLEAR_TOKEN_DATA"
+  }
+}
+
 export const selectChannel = (channelId) => {
   return {
     type: "SELECT_CHANNEL",

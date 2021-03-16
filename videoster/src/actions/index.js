@@ -88,8 +88,10 @@ export const addCategory = (category) => {
         type: "ADD_CATEGORY",
         payload: category,
       });
+      return true;
     } catch (err) {
       console.error(err);
+      return false;
     }
   };
 };
@@ -131,6 +133,7 @@ export const addChannels = (channels) => {
       const category = getStatus().selectedCategory;
       for (let i in channels) {
         const channel = channels[i];
+        console.log("++++", channel);
         await server.post(
           `/categories/${category}/channels`,
           { channel },
@@ -218,7 +221,7 @@ export const getChannels = () => {
       let category = getStatus().selectedCategory;
       if (!category) return;
       let data = [];
-      if (category == "General") {
+      if (category == "GENERAL") {
         const categories = getStatus().categories;
         for (let ind in categories) {
           const currentCategory = categories[ind];
@@ -376,6 +379,12 @@ export const getTokenData = (token) => {
 export const clearTokens = () => {
   return {
     type: "CLEAR_TOKENS",
+  };
+};
+
+export const clearTokenData = () => {
+  return {
+    type: "CLEAR_TOKEN_DATA",
   };
 };
 

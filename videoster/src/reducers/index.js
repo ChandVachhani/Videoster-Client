@@ -46,7 +46,7 @@ const categories = (state = [], action) => {
     case "ADD_CATEGORY":
       return [...state, action.payload];
     case "REGISTER":
-      return ["General"];
+      return ["GENERAL"];
     case "GET_CATEGORIES":
       return [...action.payload];
     case "REMOVE_CATEGORY":
@@ -143,6 +143,8 @@ const tokenData = (state = {}, action) => {
   switch (action.type) {
     case "GET_TOKEN_DATA":
       return action.payload;
+    case "CLEAR_TOKEN_DATA":
+      return {};
     default:
       return state;
   }

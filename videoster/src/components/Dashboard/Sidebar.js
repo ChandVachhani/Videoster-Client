@@ -21,14 +21,14 @@ class Sidebar extends React.Component {
             if (event.ctrlKey) {
               const responce = window.prompt("say yes!");
               if (responce?.toLowerCase() == "yes") {
-                if (category == "General") {
+                if (category == "GENERAL") {
                   window.alert("You can not delete default category!");
                 } else {
                   await this.props.removeCategory(category);
                   if (this.props.selectedCategory == category) {
-                    await this.props.selectCategory("General");
+                    await this.props.selectCategory("GENERAL");
                   }
-                  if (this.props.selectedCategory == "General") {
+                  if (this.props.selectedCategory == "GENERAL") {
                     await this.props.getChannels();
                   }
                 }
@@ -81,10 +81,11 @@ class Sidebar extends React.Component {
               <button
                 className="btn--category"
                 onClick={async () => {
-                  const category = window.prompt();
+                  const category = window.prompt().toUpperCase();
                   if (category) {
-                    await this.props.addCategory(category);
-                    await this.props.selectCategory(category);
+                    const responce = await this.props.addCategory(category);
+                    console.log(responce);
+                    if (responce) await this.props.selectCategory(category);
                   }
                 }}
               >

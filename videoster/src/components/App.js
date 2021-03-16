@@ -11,6 +11,7 @@ import DashBoard from "./Dashboard/Dashboard";
 import LandingPlace from "./Authentication/LandingPlace";
 import SearchChannels from "./Dashboard/SearchChannels";
 import TokenPage from "./Dashboard/TokenPage";
+import ImportData from "./Dashboard/ImportData";
 
 import {
   verifyLogin,
@@ -100,6 +101,21 @@ class App extends React.Component {
             return this.props.user.userId ? (
               this.props.selectedCategory ? (
                 <TokenPage />
+              ) : (
+                <Redirect to="/LandingPlace" />
+              )
+            ) : (
+              <Redirect to="/" />
+            );
+          }}
+        ></Route>
+        <Route
+          path="/Import"
+          exact
+          render={() => {
+            return this.props.user.userId ? (
+              this.props.selectedCategory ? (
+                <ImportData />
               ) : (
                 <Redirect to="/LandingPlace" />
               )

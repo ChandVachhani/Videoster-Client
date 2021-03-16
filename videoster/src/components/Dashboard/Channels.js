@@ -91,15 +91,25 @@ class Channels extends React.Component {
   render() {
     return (
       <Row
-        className="channels fixed-top"
-        style={{
-          paddingLeft: `${
-            this.props.hideSidebar || window.innerWidth <= 990 ? "0%" : "16%"
-          }`,
-        }}
+        className="channels"
+        style={
+          {
+            // paddingLeft: `${
+            //   this.props.hideSidebar || window.innerWidth <= 990 ? "0%" : "16%"
+            // }`,
+          }
+        }
       >
         <Col>
-          <div className="addChannel" style={{ maxWidth: "55vw" }}>
+          <div
+            className="addChannel"
+            style={{
+              maxWidth: "55vw",
+              display: `${
+                this.props.selectedCategory == "GENERAL" ? "none" : ""
+              }`,
+            }}
+          >
             {this.renderAddChannels()}
           </div>
           {this.renderChannels()}

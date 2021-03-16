@@ -10,77 +10,52 @@ import history from "../../history";
 class Header extends React.Component {
   render() {
     return (
-      <div className="header">
-        <Navbar
-          variant="dark"
-          bg="dark"
-          style={{ height: "60px" }}
-          className="fixed-top"
-        >
-          <Navbar.Collapse>
-            <Navbar.Brand>
-              <span className="makeGray">
-                <ion-icon
-                  name="menu-outline"
-                  size="large"
-                  onClick={() => {
-                    this.props.toggleSidebar(!this.props.hideSidebar);
-                  }}
-                ></ion-icon>
-              </span>
-            </Navbar.Brand>
-            <Navbar.Brand>
-              <h4
-                className="appName"
-                style={{ display: "inline-block" }}
-                onClick={() => {
-                  history.push("/Dashboard");
-                }}
-              >
-                &nbsp;Welcome {this.props.user.userName}!
-              </h4>
-            </Navbar.Brand>
-          </Navbar.Collapse>
-          <Navbar.Collapse className="justify-content-end">
-            <Navbar.Brand>
-              <small>
-                <button
-                  className="headerbtn"
-                  onClick={() => {
-                    history.push("/Token");
-                  }}
-                >
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0 fixed-top">
+        <div class="container">
+          <ion-icon
+            name="menu-outline"
+            class="pl-3"
+            size="large"
+            onClick={() => {
+              this.props.toggleSidebar(!this.props.hideSidebar);
+            }}
+          ></ion-icon>
+          <a href="index.html" class="navbar-brand pl-3">
+            Videoster
+          </a>
+          <button
+            class="navbar-toggler"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav ml-auto pr-4">
+              <li class="nav-item">
+                <span class="nav-link" onClick={() => history.push("/Token")}>
                   Token
-                </button>
-              </small>
-              <small>
-                <button
-                  className="headerbtn"
-                  onClick={async () => {
-                    const token = window.prompt("Enter Token : ");
-                    if (token) {
-                      await this.props.getTokenData(token);
-                      history.push("/Import");
-                    }
-                  }}
-                >
+                </span>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link" onClick={() => history.push("/Import")}>
                   Import
-                </button>
-              </small>
-              <small>
-                <button
-                  className="headerbtn"
+                </span>
+              </li>
+              <li class="nav-item">
+                <span
+                  class="nav-link"
                   onClick={async () => {
                     await this.props.logOut();
                   }}
                 >
-                  SignOut
-                </button>
-              </small>
-            </Navbar.Brand>
-          </Navbar.Collapse>
-        </Navbar>
-      </div>
+                  Logout
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     );
   }
 }

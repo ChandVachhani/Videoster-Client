@@ -133,6 +133,7 @@ export const addChannels = (channels) => {
       const category = getStatus().selectedCategory;
       for (let i in channels) {
         const channel = channels[i];
+        console.log("++++", channel);
         await server.post(
           `/categories/${category}/channels`,
           { channel },

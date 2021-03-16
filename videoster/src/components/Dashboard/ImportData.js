@@ -3,7 +3,12 @@ import React from "react";
 
 import history from "../../history";
 
-import { clearTokenData } from "../../actions/index";
+import {
+  clearTokenData,
+  addCategory,
+  addChannels,
+  selectCategory,
+} from "../../actions/index";
 import { Col, Row, Image } from "react-bootstrap";
 
 import NoDataAvailable from "./assets/images/Nodata2.svg";
@@ -85,8 +90,9 @@ class ImportData extends React.Component {
             for (let ind in arr) {
               const a = arr[ind];
               if (a.classList.contains("fillbtn")) {
-                const ok = true; //await this.props.addCategory(a.textContent);
+                const ok = await this.props.addCategory(a.textContent);
                 if (ok) {
+                  await this.props.selectCategory(a.textContent);
                   let channels = [
                     ...document.querySelectorAll(
                       `.${a.textContent}--tokenChannels`
@@ -95,15 +101,19 @@ class ImportData extends React.Component {
                   for (let i in channels) {
                     const b = channels[i];
                     if (b.classList.contains("changeBorderRadius")) {
-                      console.log(b);
+                      await this.props.addChannels([
+                        this.props.tokenData[a.textContent][i],
+                      ]);
+                      console.log(
+                        new Array(this.props.tokenData[a.textContent][i])
+                      );
                     }
                   }
-                  // await this.props.addChannels(channels);
                 }
               }
             }
-            // await this.props.clearTokenData();
-            // history.push("/Dashboard");
+            await this.props.clearTokenData();
+            history.push("/Dashboard");
           }}
         >
           Add
@@ -153,4 +163,9 @@ const mapStateToProps = (state) => {
   return { tokens: state.tokens, user: state.user, tokenData: state.tokenData };
 };
 
-export default connect(mapStateToProps, { clearTokenData })(ImportData);
+export default connect(mapStateToProps, {
+  clearTokenData,
+  addCategory,
+  addChannels,
+  selectCategory,
+})(ImportData);

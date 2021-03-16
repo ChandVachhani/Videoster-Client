@@ -46,7 +46,7 @@ const categories = (state = [], action) => {
     case "ADD_CATEGORY":
       return [...state, action.payload];
     case "REGISTER":
-      return ["General"];
+      return ["GENERAL"];
     case "GET_CATEGORIES":
       return [...action.payload];
     case "REMOVE_CATEGORY":

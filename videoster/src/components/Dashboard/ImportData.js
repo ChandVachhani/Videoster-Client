@@ -12,20 +12,12 @@ class ImportData extends React.Component {
   renderChannels = (category) => {
     return this.props.tokenData[category].map((channel, ind) => {
       return (
-        <div className="channel">
+        <div className={`channel`}>
           <Image
-            className="channelIcon"
+            className={`channelIcon ${category.toUpperCase()}--tokenChannels`}
             src={channel.avatarDefault}
             onClick={(event) => {
-              if (event.ctrlKey) {
-                const responce = window.prompt("Say Yes!");
-                if (responce?.toLowerCase() == "yes") {
-                  // this.props.removeChannel(channel.channelId);
-                }
-              } else {
-                event.currentTarget.classList.toggle("changeBorderRadius");
-                // this.props.selectChannel(channel.channelId);
-              }
+              event.currentTarget.classList.toggle("changeBorderRadius");
             }}
             onMouseEnter={(event) => {
               event.currentTarget.style.borderRadius = "25%";
@@ -45,21 +37,19 @@ class ImportData extends React.Component {
         <Row>
           <Col lg={3}>
             <button
-              className="submit"
+              className="submit tokenCategories"
               style={{
                 width: "200px",
                 display: "inline-block",
               }}
-              onClick={async () => {
-                //
+              onClick={async (event) => {
+                event.currentTarget.classList.toggle("fillbtn");
               }}
             >
               {data.toUpperCase()}
             </button>
           </Col>
           <Col>
-            {/* <div style={{ display: "inline-block", color: "white" }}>Chand</div> */}
-
             {this.renderChannels(data)}
             <hr
               style={{
@@ -91,8 +81,29 @@ class ImportData extends React.Component {
           className="submit"
           style={{ width: "200px", position: "absolute", left: "2%" }}
           onClick={async () => {
-            await this.props.clearTokenData();
-            history.push("/Dashboard");
+            let arr = [...document.querySelectorAll(".tokenCategories")];
+            for (let ind in arr) {
+              const a = arr[ind];
+              if (a.classList.contains("fillbtn")) {
+                const ok = true; //await this.props.addCategory(a.textContent);
+                if (ok) {
+                  let channels = [
+                    ...document.querySelectorAll(
+                      `.${a.textContent}--tokenChannels`
+                    ),
+                  ];
+                  for (let i in channels) {
+                    const b = channels[i];
+                    if (b.classList.contains("changeBorderRadius")) {
+                      console.log(b);
+                    }
+                  }
+                  // await this.props.addChannels(channels);
+                }
+              }
+            }
+            // await this.props.clearTokenData();
+            // history.push("/Dashboard");
           }}
         >
           Add

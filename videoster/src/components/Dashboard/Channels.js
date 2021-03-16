@@ -49,7 +49,7 @@ class Channels extends React.Component {
     });
   };
   renderAddChannels = () => {
-    if (this.props.selectedCategory == "General") return null;
+    if (this.props.selectedCategory == "GENERAL") return null;
     return (
       <ion-icon
         name="add"

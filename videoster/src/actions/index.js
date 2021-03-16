@@ -88,8 +88,10 @@ export const addCategory = (category) => {
         type: "ADD_CATEGORY",
         payload: category,
       });
+      return true;
     } catch (err) {
       console.error(err);
+      return false;
     }
   };
 };
@@ -218,7 +220,7 @@ export const getChannels = () => {
       let category = getStatus().selectedCategory;
       if (!category) return;
       let data = [];
-      if (category == "General") {
+      if (category == "GENERAL") {
         const categories = getStatus().categories;
         for (let ind in categories) {
           const currentCategory = categories[ind];
@@ -381,9 +383,9 @@ export const clearTokens = () => {
 
 export const clearTokenData = () => {
   return {
-    type: "CLEAR_TOKEN_DATA"
-  }
-}
+    type: "CLEAR_TOKEN_DATA",
+  };
+};
 
 export const selectChannel = (channelId) => {
   return {

@@ -16,6 +16,7 @@ import { connect } from "react-redux";
 class Header extends React.Component {
   renderChannels = () => {
     return this.props.searchedChannels.map((channel, ind) => {
+      console.log(channel.snippet.thumbnails.high.url);
       return (
         <div
           className="searchChannelsCard version-photo"

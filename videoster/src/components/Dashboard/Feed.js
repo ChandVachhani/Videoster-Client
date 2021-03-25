@@ -90,7 +90,21 @@ class Feed extends React.Component {
                       </Card.Text>
                     </Card.Link>
                     <Card.Text className="ffeedChannelLink small">
-                      6.5K views • 5 hours ago
+                      {video.views.length > 3
+                        ? video.views.length > 6
+                          ? video.views.slice(0, -6) +
+                            (video.views.slice(-6, -5) > "0"
+                              ? "." + video.views.slice(-6, -5)
+                              : "") +
+                            "M"
+                          : video.views.slice(0, -3) +
+                            (video.views.slice(-3, -2) > "0"
+                              ? "." + video.views.slice(-3, -2)
+                              : "") +
+                            "K"
+                        : video.views}{" "}
+                      views • 5 hours ago
+                      {/* 6.5K views • 5 hours ago */}
                     </Card.Text>
                   </Col>
                 </Row>

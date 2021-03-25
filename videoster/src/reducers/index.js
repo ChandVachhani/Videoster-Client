@@ -53,6 +53,11 @@ const categories = (state = [], action) => {
       return state.filter((curr) => {
         return curr != action.payload;
       });
+    case "RENAME_CATEGORY":
+      return state.map((s) => {
+        if (s == action.payload.category) return action.payload.newCategory;
+        return s;
+      });
     case "LOG_OUT":
       return [];
     default:

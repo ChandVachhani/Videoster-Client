@@ -47,7 +47,18 @@ class Feed extends React.Component {
               className="feedCard"
               style={{ maxWidth: "90vw", width: "30rem" }}
             >
-              <Card.Img variant="top" src={video.avatarMedium} />
+              <Card.Link
+                style={{ textDecoration: "none", color: "white" }}
+                href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                target="_blank"
+              >
+                <Card.Img
+                  variant="top"
+                  src={video.avatarMedium}
+                  onMouseEnter={() => {}}
+                  onMouseLeave={() => {}}
+                />
+              </Card.Link>
               <Card.Body style={{ padding: "0px", paddingTop: "15px" }}>
                 <Row>
                   <Col xs={2} className="" style={{ paddingRight: "0px" }}>
@@ -60,10 +71,24 @@ class Feed extends React.Component {
                     </Card.Text>
                   </Col>
                   <Col xs={10} className="feedBody">
-                    <Card.Text className="feedTitle">{video.title}</Card.Text>
-                    <Card.Text className="feedChannelLink small">
-                      {channel.name}
-                    </Card.Text>
+                    <Card.Link
+                      style={{
+                        textDecoration: "none",
+                        color: "white",
+                      }}
+                      href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                      target="_blank"
+                    >
+                      {video.title}
+                    </Card.Link>
+                    <Card.Link
+                      href={`https://www.youtube.com/channel/${channel.channelId}`}
+                      target="_blank"
+                    >
+                      <Card.Text className="feedChannelLink small">
+                        {channel.name}
+                      </Card.Text>
+                    </Card.Link>
                     <Card.Text className="ffeedChannelLink small">
                       6.5K views • 5 hours ago
                     </Card.Text>

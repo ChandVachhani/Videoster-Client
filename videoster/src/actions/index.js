@@ -376,6 +376,32 @@ export const getTokenData = (token) => {
   };
 };
 
+export const renameCategory = (newCategory) => {
+  return async (dispatch, getStatus) => {
+    try {
+      const category = getStatus().selectedCategory;
+      await server.patch(
+        `/categories/${category}/rename`,
+        { category: newCategory },
+        {
+          headers: {
+            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+          },
+        }
+      );
+      dispatch({
+        type: "RENAME_CATEGORY",
+        payload: {
+          category,
+          newCategory,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
 export const clearTokens = () => {
   return {
     type: "CLEAR_TOKENS",

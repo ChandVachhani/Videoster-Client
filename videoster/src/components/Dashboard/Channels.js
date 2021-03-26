@@ -23,6 +23,9 @@ class Channels extends React.Component {
       return (
         <div className="channel">
           <Image
+            data-toggle="tooltip"
+            data-placement="top"
+            title={`${channel.name}`}
             className="channelIcon"
             src={channel.avatarDefault}
             onClick={(event) => {
@@ -52,6 +55,9 @@ class Channels extends React.Component {
     if (this.props.selectedCategory == "GENERAL") return null;
     return (
       <ion-icon
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Add Channel"
         name="add"
         size="large"
         style={{

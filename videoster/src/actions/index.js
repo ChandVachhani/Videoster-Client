@@ -46,7 +46,7 @@ export const takeMeIn = (values) => {
         },
       });
     } catch (err) {
-      window.alert("Wrong");
+      window.alert(err.response.data.message);
     }
   };
 };
@@ -59,12 +59,13 @@ export const registerUser = (values) => {
           Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
       });
+      console.log(res.message);
       dispatch({
         type: "REGISTER",
       });
       history.push("/");
     } catch (err) {
-      window.alert("Wrong");
+      window.alert(err.response.data.message);
     }
   };
 };
@@ -90,7 +91,7 @@ export const addCategory = (category) => {
       });
       return true;
     } catch (err) {
-      console.error(err);
+      window.alert(err.response.data.message);
       return false;
     }
   };

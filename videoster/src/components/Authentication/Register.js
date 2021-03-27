@@ -52,6 +52,9 @@ class Register extends React.Component {
                     "inline-block";
                   delete values.confirmPassword;
                   await this.props.registerUser(values);
+                  if (document.querySelector(".register-spinner"))
+                    document.querySelector(".register-spinner").style.display =
+                      "none";
                 }}
               >
                 {({ isSubmitting }) => (

@@ -47,6 +47,9 @@ class Login extends React.Component {
                   document.querySelector(".login-spinner").style.display =
                     "inline-block";
                   await this.props.takeMeIn(values);
+                  if (document.querySelector(".login-spinner"))
+                    document.querySelector(".login-spinner").style.display =
+                      "none";
                 }}
               >
                 {({ isSubmitting }) => (

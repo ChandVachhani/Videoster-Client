@@ -107,11 +107,15 @@ class Header extends React.Component {
                 return errors;
               }}
               onSubmit={async (values) => {
+                document.querySelector(".searchChannel-spinner").style.display =
+                  "inline-block";
                 await this.props.searchChannels(values.searchWord);
                 const inputFIeld = document.querySelector(
                   ".special--field--input"
                 );
                 inputFIeld.blur();
+                document.querySelector(".searchChannel-spinner").style.display =
+                  "none";
               }}
             >
               {({ isSubmitting }) => (
@@ -132,7 +136,16 @@ class Header extends React.Component {
                         {/* <ErrorMessage name="searchWord" component="div" /> */}
                       </div>
                       <button type="submit" className="submit">
-                        Search
+                        <div
+                          class="spinner-grow text-success searchChannel-spinner"
+                          style={{
+                            width: "1rem",
+                            height: "1rem",
+                            display: "none",
+                          }}
+                          role="status"
+                        ></div>
+                        &nbsp; Search
                       </button>
                     </center>
                   </Form>
@@ -142,6 +155,8 @@ class Header extends React.Component {
             <button
               className="submit"
               onClick={async () => {
+                document.querySelector(".addChannel-spinner").style.display =
+                  "inline-block";
                 let arr = document.querySelectorAll(".version-photo");
                 arr = [...arr];
                 arr = arr.map((a, ind) => {
@@ -165,12 +180,20 @@ class Header extends React.Component {
                   return 0;
                 });
                 arr = arr.filter((a) => a != 0);
-
                 await this.props.addChannels(arr);
                 await this.props.clearSearchedChannels();
               }}
             >
-              Add
+              <div
+                class="spinner-grow text-success addChannel-spinner"
+                style={{
+                  width: "1rem",
+                  height: "1rem",
+                  display: "none",
+                }}
+                role="status"
+              ></div>
+              &nbsp; Add
             </button>
           </div>
           <div className="renderSearchChannels">{this.renderData()}</div>

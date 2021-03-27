@@ -44,6 +44,8 @@ class Login extends React.Component {
                   return errors;
                 }}
                 onSubmit={async (values) => {
+                  document.querySelector(".login-spinner").style.display =
+                    "inline-block";
                   await this.props.takeMeIn(values);
                 }}
               >
@@ -81,7 +83,16 @@ class Login extends React.Component {
                           <a href="#">Forgot my password</a>
                         </div>
                         <button type="submit" className="submit">
-                          LOGIN
+                          <div
+                            class="spinner-grow text-success login-spinner"
+                            style={{
+                              width: "1rem",
+                              height: "1rem",
+                              display: "none",
+                            }}
+                            role="status"
+                          ></div>
+                          &nbsp; LOGIN
                         </button>
                       </Form>
                     </div>

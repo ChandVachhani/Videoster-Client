@@ -46,7 +46,7 @@ export const takeMeIn = (values) => {
         },
       });
     } catch (err) {
-      window.alert("Wrong");
+      window.alert(err.response.data.message);
     }
   };
 };
@@ -59,12 +59,13 @@ export const registerUser = (values) => {
           Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
       });
+      console.log(res.message);
       dispatch({
         type: "REGISTER",
       });
       history.push("/");
     } catch (err) {
-      window.alert("Wrong");
+      window.alert(err.response.data.message);
     }
   };
 };
@@ -90,7 +91,7 @@ export const addCategory = (category) => {
       });
       return true;
     } catch (err) {
-      console.error(err);
+      window.alert(err.response.data.message);
       return false;
     }
   };
@@ -144,24 +145,36 @@ export const addChannels = (channels) => {
           }
         );
 
-        let videos = await server.get(
-          `/YT/channels/${channel.channelId}/videos`,
-          {
+        let videoIds = (
+          await server.get(`/YT/channels/${channel.channelId}/videos`, {
             headers: {
               Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
             },
-          }
-        );
-        videos = videos.data.videos.map((video) => {
-          return {
-            videoId: video.id.videoId,
+          })
+        ).data.videoIds;
+        let videos = [];
+        for (let j in videoIds) {
+          let videoId = videoIds[j];
+          let video = (
+            await server.get(`/YT/videos/${videoId}`, {
+              headers: {
+                Authorization: `Basic ${localStorage.getItem(
+                  "VideosterToken"
+                )}`,
+              },
+            })
+          ).data.video;
+          videos.push({
+            videoId: video.id,
             description: video.snippet.description,
             avatarDefault: video.snippet.thumbnails.default.url,
             avatarHigh: video.snippet.thumbnails.high.url,
             avatarMedium: video.snippet.thumbnails.medium.url,
             title: video.snippet.title,
-          };
-        });
+            views: video.statistics.viewCount,
+            publishedAt: video.snippet.publishedAt,
+          });
+        }
         channels[i].videos = videos;
 
         for (let j in videos) {
@@ -369,6 +382,32 @@ export const getTokenData = (token) => {
       dispatch({
         type: "GET_TOKEN_DATA",
         payload: data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
+
+export const renameCategory = (newCategory) => {
+  return async (dispatch, getStatus) => {
+    try {
+      const category = getStatus().selectedCategory;
+      await server.patch(
+        `/categories/${category}/rename`,
+        { category: newCategory },
+        {
+          headers: {
+            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+          },
+        }
+      );
+      dispatch({
+        type: "RENAME_CATEGORY",
+        payload: {
+          category,
+          newCategory,
+        },
       });
     } catch (err) {
       console.log(err);

@@ -86,6 +86,8 @@ class ImportData extends React.Component {
           className="submit"
           style={{ width: "200px", position: "absolute", left: "2%" }}
           onClick={async () => {
+            document.querySelector(".importData-spinner").style.display =
+              "inline-block";
             let arr = [...document.querySelectorAll(".tokenCategories")];
             for (let ind in arr) {
               const a = arr[ind];
@@ -116,7 +118,16 @@ class ImportData extends React.Component {
             history.push("/Dashboard");
           }}
         >
-          Add
+          <div
+            class="spinner-grow text-success importData-spinner"
+            style={{
+              width: "1rem",
+              height: "1rem",
+              display: "none",
+            }}
+            role="status"
+          ></div>
+          &nbsp; Add
         </button>
         <br />
         <br />

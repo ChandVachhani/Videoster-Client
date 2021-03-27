@@ -7,7 +7,14 @@ class Feed extends React.Component {
   renderCards = () => {
     if (this.props.channels.length == 0) {
       return (
-        <div class="spinner-border text-success" role="status">
+        // <div class="spinner-border text-success" role="status">
+        //   <span class="sr-only">Loading...</span>
+        // </div>
+        <div
+          class="spinner-grow text-success"
+          style={{ width: "3rem", height: "3rem" }}
+          role="status"
+        >
           <span class="sr-only">Loading...</span>
         </div>
       );
@@ -47,7 +54,18 @@ class Feed extends React.Component {
               className="feedCard"
               style={{ maxWidth: "90vw", width: "30rem" }}
             >
-              <Card.Img variant="top" src={video.avatarMedium} />
+              <Card.Link
+                style={{ textDecoration: "none", color: "white" }}
+                href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                target="_blank"
+              >
+                <Card.Img
+                  variant="top"
+                  src={video.avatarMedium}
+                  onMouseEnter={() => {}}
+                  onMouseLeave={() => {}}
+                />
+              </Card.Link>
               <Card.Body style={{ padding: "0px", paddingTop: "15px" }}>
                 <Row>
                   <Col xs={2} className="" style={{ paddingRight: "0px" }}>
@@ -60,12 +78,40 @@ class Feed extends React.Component {
                     </Card.Text>
                   </Col>
                   <Col xs={10} className="feedBody">
-                    <Card.Text className="feedTitle">{video.title}</Card.Text>
-                    <Card.Text className="feedChannelLink small">
-                      {channel.name}
-                    </Card.Text>
+                    <Card.Link
+                      style={{
+                        textDecoration: "none",
+                        color: "white",
+                      }}
+                      href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                      target="_blank"
+                    >
+                      {video.title}
+                    </Card.Link>
+                    <Card.Link
+                      href={`https://www.youtube.com/channel/${channel.channelId}`}
+                      target="_blank"
+                    >
+                      <Card.Text className="feedChannelLink small">
+                        {channel.name}
+                      </Card.Text>
+                    </Card.Link>
                     <Card.Text className="ffeedChannelLink small">
-                      6.5K views • 5 hours ago
+                      {video.views.length > 3
+                        ? video.views.length > 6
+                          ? video.views.slice(0, -6) +
+                            (video.views.slice(-6, -5) > "0"
+                              ? "." + video.views.slice(-6, -5)
+                              : "") +
+                            "M"
+                          : video.views.slice(0, -3) +
+                            (video.views.slice(-3, -2) > "0"
+                              ? "." + video.views.slice(-3, -2)
+                              : "") +
+                            "K"
+                        : video.views}{" "}
+                      views • 5 hours ago
+                      {/* 6.5K views • 5 hours ago */}
                     </Card.Text>
                   </Col>
                 </Row>

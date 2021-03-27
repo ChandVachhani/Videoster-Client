@@ -40,11 +40,10 @@
 } */
 
 .collectionOfCategories {
-  padding-left: 12%;
 }
 
 .addCategory {
-  padding-left: 12%;
+  /* padding-left: 12%; */
   padding-top: 18px;
   font-size: 17px;
   cursor: pointer;
@@ -117,7 +116,7 @@
 }
 
 .feedTitle {
-  margin-bottom: 4px;
+  /* margin-bottom: 0px; */
   line-height: 22px;
 }
 
@@ -306,7 +305,8 @@
 .btn--category {
   outline: 0px;
   height: 44px;
-  width: 75%;
+  width: 70%;
+  min-width: 125px;
   border-color: #a0a0a0;
   border-radius: 22px;
   border-width: 2px;
@@ -327,7 +327,7 @@
 
 .made--transition {
   outline: 0px;
-  width: 85%;
+  width: 80%;
   background-color: #7e7e7e;
 }
 

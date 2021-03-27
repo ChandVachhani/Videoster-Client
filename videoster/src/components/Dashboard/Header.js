@@ -16,13 +16,15 @@ class Header extends React.Component {
           bg="dark"
           style={{ height: "60px" }}
           className="fixed-top"
+          expand="sm"
         >
-          <Navbar.Collapse>
+          <Navbar.Text>
             <Navbar.Brand>
               <span className="makeGray">
                 <ion-icon
                   name="menu-outline"
                   size="large"
+                  style={{ transform: "translateY(7px)" }}
                   onClick={() => {
                     this.props.toggleSidebar(!this.props.hideSidebar);
                   }}
@@ -37,10 +39,12 @@ class Header extends React.Component {
                   history.push("/Dashboard");
                 }}
               >
-                &nbsp;Welcome {this.props.user.userName}!
+                {/* &nbsp;Hey {this.props.user.userName}! */}
+                Videoster
               </h4>
             </Navbar.Brand>
-          </Navbar.Collapse>
+          </Navbar.Text>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Brand>
               <small>

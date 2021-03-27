@@ -9,6 +9,7 @@ import {
   clearAllChannels,
   removeCategory,
   getChannels,
+  renameCategory,
 } from "../../actions/index";
 
 class Sidebar extends React.Component {
@@ -32,6 +33,15 @@ class Sidebar extends React.Component {
                     await this.props.getChannels();
                   }
                 }
+              }
+            } else if (
+              event.shiftKey &&
+              this.props.selectedCategory == category
+            ) {
+              const newCategory = window.prompt("Enter new name!");
+              if (newCategory) {
+                await this.props.renameCategory(newCategory.toUpperCase());
+                await this.props.selectCategory(newCategory.toUpperCase());
               }
             } else {
               if (this.props.selectedCategory != category) {
@@ -118,4 +128,5 @@ export default connect(mapStateToProps, {
   clearAllChannels,
   removeCategory,
   getChannels,
+  renameCategory,
 })(Sidebar);

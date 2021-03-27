@@ -48,8 +48,13 @@ class Register extends React.Component {
                   return errors;
                 }}
                 onSubmit={async (values) => {
+                  document.querySelector(".register-spinner").style.display =
+                    "inline-block";
                   delete values.confirmPassword;
                   await this.props.registerUser(values);
+                  if (document.querySelector(".register-spinner"))
+                    document.querySelector(".register-spinner").style.display =
+                      "none";
                 }}
               >
                 {({ isSubmitting }) => (
@@ -103,7 +108,16 @@ class Register extends React.Component {
                           className="submit"
                           style={{ width: "200px" }}
                         >
-                          REGISTER
+                          <div
+                            class="spinner-grow text-success register-spinner"
+                            style={{
+                              width: "1rem",
+                              height: "1rem",
+                              display: "none",
+                            }}
+                            role="status"
+                          ></div>
+                          &nbsp; REGISTER
                         </button>
                       </Form>
                     </div>

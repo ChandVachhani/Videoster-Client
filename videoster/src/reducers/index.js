@@ -68,24 +68,35 @@ const categories = (state = [], action) => {
 const channels = (state = [], action) => {
   switch (action.type) {
     case "ADD_CHANNELS":
-      if (state.length == 1 && state[0] == -1)
-        return action.payload.addedChannels;
-      const arr = state.map((st) => {
-        return st.channelId;
-      });
-      // return [...state, ...action.payload.addedChannels];
-      const data = [...state];
-      action.payload.addedChannels.forEach((channel) => {
-        if (!arr.includes(channel.channelId)) {
-          data.push(channel);
-        }
-      });
-      return data;
+      if (state.length == 1 && state[0] == -1) return [...action.payload];
+      return [...state, ...action.payload];
     case "GET_CHANNELS":
       return action.payload;
     case "REMOVE_CHANNEL":
-      const tmp = state.filter((curr) => {
+      console.log("{{{{", action.payload);
+      const tmp = [...state].filter((curr) => {
         return curr.channelId != action.payload;
+      });
+      if (tmp.length == 0) tmp.push(-1);
+      return tmp;
+    case "LOG_OUT":
+    case "CLEAR_ALL_CHANNELS":
+      return [];
+    default:
+      return state;
+  }
+};
+
+const videos = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_VIDEOS":
+      return [...state, ...action.payload];
+    case "GET_VIDEOS":
+      return [...state, ...action.payload];
+    case "REMOVE_CHANNEL":
+      console.log("{{{{", action.payload);
+      const tmp = [...state].filter((curr) => {
+        return curr.fk_channelId != action.payload;
       });
       if (tmp.length == 0) tmp.push(-1);
       return tmp;
@@ -158,7 +169,15 @@ const tokenData = (state = {}, action) => {
 const channelsPagination = (state = [0, 5, 3], action) => {
   switch (action.type) {
     case "CHANNEL_PAGINATION":
-      console.log("reached!!!");
+      return [action.payload, state[1], state[2]];
+    default:
+      return state;
+  }
+};
+
+const videoPagination = (state = [0, 1, 1], action) => {
+  switch (action.type) {
+    case "VIDEO_PAGINATION":
       return [action.payload, state[1], state[2]];
     default:
       return state;
@@ -170,10 +189,12 @@ export default combineReducers({
   selectedCategory,
   categories,
   channels,
+  videos,
   searchChannels,
   hideSidebar: toggleSidebar,
   hideChannel: selectChannel,
   tokens,
   tokenData,
   channelsPagination,
+  videoPagination,
 });

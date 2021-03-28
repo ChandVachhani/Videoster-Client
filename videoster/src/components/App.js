@@ -18,6 +18,9 @@ import {
   getChannels,
   getCategories,
   toggleSidebar,
+  getVideos,
+  videoPagination,
+  clearAllChannels,
 } from "../actions/index";
 import { connect } from "react-redux";
 
@@ -28,6 +31,8 @@ class App extends React.Component {
     if (this.props.user.userId) {
       await this.props.getCategories();
       await this.props.getChannels();
+      await this.props.getVideos();
+      await this.props.videoPagination(0);
     }
 
     if (window.innerWidth < 992) {
@@ -43,7 +48,10 @@ class App extends React.Component {
   async componentDidUpdate(preProps) {
     console.log("app.componentDidUpdate");
     if (preProps.selectedCategory != this.props.selectedCategory) {
+      await this.props.clearAllChannels();
+      await this.props.videoPagination(0);
       await this.props.getChannels();
+      await this.props.getVideos();
     }
   }
 
@@ -138,4 +146,7 @@ export default connect(mapStateToProps, {
   getChannels,
   getCategories,
   toggleSidebar,
+  getVideos,
+  videoPagination,
+  clearAllChannels,
 })(App);

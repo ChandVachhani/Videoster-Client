@@ -10,6 +10,8 @@ import {
   removeCategory,
   getChannels,
   renameCategory,
+  getVideos,
+  videoPagination,
 } from "../../actions/index";
 
 class Sidebar extends React.Component {
@@ -29,9 +31,10 @@ class Sidebar extends React.Component {
                   if (this.props.selectedCategory == category) {
                     await this.props.selectCategory("GENERAL");
                   }
-                  if (this.props.selectedCategory == "GENERAL") {
-                    await this.props.getChannels();
-                  }
+                  // if (this.props.selectedCategory == "GENERAL") {
+                  //   await this.props.getChannels();
+                  //   await this.props.getVideos();
+                  // }
                 }
               }
             } else if (
@@ -129,4 +132,6 @@ export default connect(mapStateToProps, {
   removeCategory,
   getChannels,
   renameCategory,
+  getVideos,
+  videoPagination,
 })(Sidebar);

@@ -48,10 +48,7 @@ class App extends React.Component {
   async componentDidUpdate(preProps) {
     console.log("app.componentDidUpdate");
     if (preProps.selectedCategory != this.props.selectedCategory) {
-      await this.props.clearAllChannels();
-      await this.props.videoPagination(0);
-      await this.props.getChannels();
-      await this.props.getVideos();
+      
     }
   }
 

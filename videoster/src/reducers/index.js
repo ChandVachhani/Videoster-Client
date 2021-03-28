@@ -81,7 +81,7 @@ const channels = (state = [], action) => {
       return tmp;
     case "LOG_OUT":
     case "CLEAR_ALL_CHANNELS":
-      return [];
+      return [-1];
     default:
       return state;
   }
@@ -98,7 +98,6 @@ const videos = (state = [], action) => {
       const tmp = [...state].filter((curr) => {
         return curr.fk_channelId != action.payload;
       });
-      if (tmp.length == 0) tmp.push(-1);
       return tmp;
     case "LOG_OUT":
     case "CLEAR_ALL_CHANNELS":

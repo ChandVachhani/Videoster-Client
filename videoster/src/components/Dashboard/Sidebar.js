@@ -28,13 +28,24 @@ class Sidebar extends React.Component {
                   window.alert("You can not delete default category!");
                 } else {
                   await this.props.removeCategory(category);
-                  if (this.props.selectedCategory == category) {
-                    await this.props.selectCategory("GENERAL");
-                  }
                   // if (this.props.selectedCategory == "GENERAL") {
+                  //   await this.props.clearAllChannels();
+                  //   await this.props.videoPagination(0);
                   //   await this.props.getChannels();
                   //   await this.props.getVideos();
                   // }
+                  if (this.props.selectedCategory == category) {
+                    await this.props.selectCategory("GENERAL");
+                    await this.props.clearAllChannels();
+                    await this.props.videoPagination(0);
+                    await this.props.getChannels();
+                    await this.props.getVideos();
+                  } else if (this.props.selectedCategory == "GENERAL") {
+                    await this.props.clearAllChannels();
+                    await this.props.videoPagination(0);
+                    await this.props.getChannels();
+                    await this.props.getVideos();
+                  }
                 }
               }
             } else if (
@@ -55,6 +66,10 @@ class Sidebar extends React.Component {
                   e.style.borderRadius = "50%";
                 });
                 await this.props.selectCategory(category);
+                await this.props.clearAllChannels();
+                await this.props.videoPagination(0);
+                await this.props.getChannels();
+                await this.props.getVideos();
               }
             }
           }}

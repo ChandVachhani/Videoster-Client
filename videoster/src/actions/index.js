@@ -128,14 +128,14 @@ export const searchChannels = (searchWord) => {
   };
 };
 
-export const addChannels = (channels) => {
+export const addChannels = (channels, redirect = true) => {
   return async (dispatch, getStatus) => {
     try {
       let requiredChannels = [];
+
       const category = getStatus().selectedCategory;
       for (let i in channels) {
         const channel = channels[i];
-        console.log("++++", channel);
         await server.post(
           `/categories/${category}/channels`,
           { channel },
@@ -220,7 +220,7 @@ export const addChannels = (channels) => {
         type: "ADD_VIDEOS",
         payload: requiredChannels,
       });
-      history.push("/Dashboard");
+      if (redirect) history.push("/Dashboard");
     } catch (err) {
       console.error(err);
     }

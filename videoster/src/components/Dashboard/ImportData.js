@@ -97,8 +97,8 @@ class ImportData extends React.Component {
                 const ok = await this.props.addCategory(a.textContent);
                 if (ok) {
                   await this.props.selectCategory(a.textContent);
-                  await this.props.videoPagination(0);
-                  await this.props.clearAllChannels();
+                  // await this.props.videoPagination(0);
+                  // await this.props.clearAllChannels();
                   let channels = [
                     ...document.querySelectorAll(
                       `.${a.textContent}--tokenChannels`
@@ -109,9 +109,10 @@ class ImportData extends React.Component {
                   for (let i in channels) {
                     const b = channels[i];
                     if (b.classList.contains("changeBorderRadius")) {
-                      await this.props.addChannels([
-                        this.props.tokenData[a.textContent][i],
-                      ], false);
+                      await this.props.addChannels(
+                        [this.props.tokenData[a.textContent][i]],
+                        false
+                      );
                       console.log(
                         new Array(this.props.tokenData[a.textContent][i])
                       );

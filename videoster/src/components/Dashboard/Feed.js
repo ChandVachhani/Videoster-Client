@@ -10,7 +10,7 @@ class Feed extends React.Component {
     if (this.props.channels.length == 0) {
       return (
         <div
-          class="spinner-grow text-success"
+          class="spinner-grow text-success d-flex justify-content-center"
           style={{ width: "3rem", height: "3rem" }}
           role="status"
         >
@@ -128,7 +128,11 @@ class Feed extends React.Component {
           <span
             style={{
               display: `${
-                this.props.pagination[0] >= 4 ? "none" : "inline-block"
+                this.props.pagination[0] >= 4 ||
+                this.props.channels.length == 0 ||
+                this.props.channels[0] == -1
+                  ? "none"
+                  : "inline-block"
               }`,
             }}
             onClick={async () => {

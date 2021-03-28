@@ -81,7 +81,7 @@ const channels = (state = [], action) => {
       return tmp;
     case "LOG_OUT":
     case "CLEAR_ALL_CHANNELS":
-      return [-1];
+      return [];
     default:
       return state;
   }

@@ -12,6 +12,9 @@ import {
   clearAllChannels,
   clearSelectedCategory,
   logOut,
+  videoPagination,
+  getChannels,
+  getVideos,
 } from "../../actions/index";
 
 import history from "../../history";
@@ -31,6 +34,9 @@ class LandingPlace extends React.Component {
           style={{ width: "200px" }}
           onClick={async () => {
             await this.props.selectCategory(category);
+            // await this.props.videoPagination(0);
+            // await this.props.getChannels();
+            // await this.props.getVideos();
             history.push("/Dashboard");
           }}
         >
@@ -102,4 +108,7 @@ export default connect(mapStateToProps, {
   clearAllChannels,
   clearSelectedCategory,
   logOut,
+  videoPagination,
+  getChannels,
+  getVideos,
 })(LandingPlace);

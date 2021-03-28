@@ -211,16 +211,16 @@ export const addChannels = (channels, redirect = true) => {
         return !arr.includes(video.fk_channelId);
       });
 
-      if (redirect) {
-        dispatch({
-          type: "ADD_CHANNELS",
-          payload: channels,
-        });
+      dispatch({
+        type: "ADD_CHANNELS",
+        payload: channels,
+      });
 
-        dispatch({
-          type: "ADD_VIDEOS",
-          payload: requiredChannels,
-        });
+      dispatch({
+        type: "ADD_VIDEOS",
+        payload: requiredChannels,
+      });
+      if (redirect) {
         history.push("/Dashboard");
       }
     } catch (err) {

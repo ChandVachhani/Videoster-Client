@@ -91,7 +91,7 @@ class Sidebar extends React.Component {
               <button
                 className="btn--category"
                 onClick={async () => {
-                  const category = window.prompt().toUpperCase();
+                  const category = window.prompt()?.toUpperCase();
                   if (category) {
                     const responce = await this.props.addCategory(category);
                     console.log(responce);

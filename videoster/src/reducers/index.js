@@ -155,6 +155,16 @@ const tokenData = (state = {}, action) => {
   }
 };
 
+const channelsPagination = (state = [0, 5, 3], action) => {
+  switch (action.type) {
+    case "CHANNEL_PAGINATION":
+      console.log("reached!!!");
+      return [action.payload, state[1], state[2]];
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   user: auth,
   selectedCategory,
@@ -165,4 +175,5 @@ export default combineReducers({
   hideChannel: selectChannel,
   tokens,
   tokenData,
+  channelsPagination,
 });

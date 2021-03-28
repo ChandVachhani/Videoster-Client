@@ -415,6 +415,14 @@ export const renameCategory = (newCategory) => {
   };
 };
 
+export const channelPagination = (offset) => {
+  console.log("reached!!");
+  return {
+    type: "CHANNEL_PAGINATION",
+    payload: offset,
+  };
+};
+
 export const clearTokens = () => {
   return {
     type: "CLEAR_TOKENS",

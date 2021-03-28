@@ -15,19 +15,21 @@ class Header extends React.Component {
           variant="dark"
           bg="dark"
           // style={{ height: "60px" }}
-          style={{ padding: "3px 1%" }}
+          style={{ padding: "3px 20px" }}
           fixed="top"
           expand="sm"
         >
           <Navbar.Text>
             <Navbar.Brand>
-              <span className="makeGray">
+              <span
+                className="makeGray"
+                onClick={() => {
+                  this.props.toggleSidebar(!this.props.hideSidebar);
+                }}
+              >
                 <ion-icon
                   name="menu-outline"
                   style={{ transform: "translateY(4px) scale(1.7)" }}
-                  onClick={() => {
-                    this.props.toggleSidebar(!this.props.hideSidebar);
-                  }}
                 ></ion-icon>
               </span>
             </Navbar.Brand>

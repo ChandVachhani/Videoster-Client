@@ -55,6 +55,7 @@
   background-color: black;
   z-index: 8;
   padding-right: 1%;
+  /* transition: 2s; */
 }
 
 .changeBorderRadius {
@@ -75,13 +76,14 @@
   display: inline-block;
   transform: scale(0.75);
   margin-bottom: -10px;
+  /* transition: 2s; */
 }
 
 .channelIcon {
   /* display: block; */
   border-radius: 50%;
   transition: 0.2s;
-  max-width: 20vw;
+  /* max-width: 20vw; */
 }
 
 .sidebarHr {
@@ -368,4 +370,8 @@
 
 .fillbtn {
   background-color: #2ecc71;
+}
+
+ion-icon {
+  pointer-events: none;
 }

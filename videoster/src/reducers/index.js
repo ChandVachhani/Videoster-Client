@@ -73,11 +73,14 @@ const channels = (state = [], action) => {
       const arr = state.map((st) => {
         return st.channelId;
       });
-      // return [...state, ...action.payload.addedChannels];
       const data = [...state];
       action.payload.addedChannels.forEach((channel) => {
         if (!arr.includes(channel.channelId)) {
-          data.push(channel);
+          data.push({
+            channelId: channel.channelId,
+            name: channel.name,
+            avatarDefault: channel.avatarDefault,
+          });
         }
       });
       return data;
@@ -88,6 +91,47 @@ const channels = (state = [], action) => {
         return curr.channelId != action.payload;
       });
       if (tmp.length == 0) tmp.push(-1);
+      return tmp;
+    case "LOG_OUT":
+    case "CLEAR_ALL_CHANNELS":
+      return [];
+    default:
+      return state;
+  }
+};
+
+const videos = (state = [], action) => {
+  switch (action.type) {
+    case "ADD_CHANNELS":
+      const arr = state.map((st) => {
+        return st.channelId;
+      });
+      const data = [...state];
+      let videos = [];
+      action.payload.addedChannels.forEach((channel) => {
+        if (!arr.includes(channel.channelId)) {
+          channel.videos.forEach((video) => {
+            videos.push({
+              channelId: channel.channelId,
+              channelAvatarDefault: channel.avatarDefault,
+              channelName: channel.name,
+              name: video.name,
+              avatarMedium: video.avatarMedium,
+              videoId: video.videoId,
+              title: video.title,
+              views: video.views,
+            });
+          });
+        }
+      });
+
+      return videos;
+    case "GET_VIDEOS":
+      return [...state, ...action.payload];
+    case "REMOVE_CHANNEL":
+      const tmp = state.filter((curr) => {
+        return curr.channelId != action.payload;
+      });
       return tmp;
     case "LOG_OUT":
     case "CLEAR_ALL_CHANNELS":
@@ -170,6 +214,7 @@ export default combineReducers({
   selectedCategory,
   categories,
   channels,
+  videos,
   searchChannels,
   hideSidebar: toggleSidebar,
   hideChannel: selectChannel,

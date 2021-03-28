@@ -250,22 +250,6 @@ export const getChannels = () => {
               }
             );
             result = result.data.channels;
-
-            for (let i in result) {
-              const channelId = result[i].channelId;
-              let resultVideos = await server.get(
-                `/channels/${channelId}/videos`,
-                {
-                  headers: {
-                    Authorization: `Basic ${localStorage.getItem(
-                      "VideosterToken"
-                    )}`,
-                  },
-                }
-              );
-              result[i].videos = resultVideos.data.videos;
-            }
-            data.push(...result);
           }
         }
 
@@ -286,22 +270,26 @@ export const getChannels = () => {
         });
         data = data.data.channels;
 
-        for (let i in data) {
-          const channelId = data[i].channelId;
-          let result = await server.get(`/channels/${channelId}/videos`, {
-            headers: {
-              Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
-            },
-          });
-          data[i].videos = result.data.videos;
+        if (data.length == 0) {
+          data.push(-1);
         }
+        dispatch({
+          type: "GET_CHANNELS",
+          payload: data,
+        });
       }
-      if (data.length == 0) {
-        data.push(-1);
-      }
+
+      let channelIdsStr = "";
+      let videos = (
+        await server.get(`/channels/${channelIdsStr}/videos`, {
+          headers: {
+            Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+          },
+        })
+      ).data.videos;
       dispatch({
-        type: "GET_CHANNELS",
-        payload: data,
+        type: "GET_VIDEOS",
+        payload: videos,
       });
     } catch (err) {
       console.error(err);

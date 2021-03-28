@@ -30,96 +30,94 @@ class Feed extends React.Component {
         </div>
       );
     }
-    return this.props.channels.map((channel) => {
+    return this.props.videos.map((video) => {
       if (
         !(
-          this.props.hideChannel[channel.channelId] == true ||
+          this.props.hideChannel[video.channelId] == true ||
           Object.values(this.props.hideChannel).filter((c) => c == true)
             .length == 0
         )
       )
         return null;
-      return channel.videos.map((video) => {
-        return (
-          <Col
-            xl={3}
-            lg={4}
-            md={6}
-            sm={6}
-            xs={12}
-            className="d-flex justify-content-center"
+      return (
+        <Col
+          xl={3}
+          lg={4}
+          md={6}
+          sm={6}
+          xs={12}
+          className="d-flex justify-content-center"
+        >
+          {/* <Card className="feedCard" style={{ width: "30rem" }}> */}
+          <Card
+            className="feedCard"
+            style={{ maxWidth: "90vw", width: "30rem" }}
           >
-            {/* <Card className="feedCard" style={{ width: "30rem" }}> */}
-            <Card
-              className="feedCard"
-              style={{ maxWidth: "90vw", width: "30rem" }}
+            <Card.Link
+              style={{ textDecoration: "none", color: "white" }}
+              href={`https://www.youtube.com/watch?v=${video.videoId}`}
+              target="_blank"
             >
-              <Card.Link
-                style={{ textDecoration: "none", color: "white" }}
-                href={`https://www.youtube.com/watch?v=${video.videoId}`}
-                target="_blank"
-              >
-                <Card.Img
-                  variant="top"
-                  src={video.avatarMedium}
-                  onMouseEnter={() => {}}
-                  onMouseLeave={() => {}}
-                />
-              </Card.Link>
-              <Card.Body style={{ padding: "0px", paddingTop: "15px" }}>
-                <Row>
-                  <Col xs={2} className="" style={{ paddingRight: "0px" }}>
-                    <Card.Text>
-                      <Image
-                        className="feedChannelImage"
-                        src={channel.avatarDefault}
-                        roundedCircle
-                      />
+              <Card.Img
+                variant="top"
+                src={video.avatarMedium}
+                onMouseEnter={() => {}}
+                onMouseLeave={() => {}}
+              />
+            </Card.Link>
+            <Card.Body style={{ padding: "0px", paddingTop: "15px" }}>
+              <Row>
+                <Col xs={2} className="" style={{ paddingRight: "0px" }}>
+                  <Card.Text>
+                    <Image
+                      className="feedChannelImage"
+                      src={video.channelAvatarDefault}
+                      roundedCircle
+                    />
+                  </Card.Text>
+                </Col>
+                <Col xs={10} className="feedBody">
+                  <Card.Link
+                    style={{
+                      textDecoration: "none",
+                      color: "white",
+                    }}
+                    href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                    target="_blank"
+                  >
+                    {video.title}
+                  </Card.Link>
+                  <Card.Link
+                    href={`https://www.youtube.com/channel/${video.channelId}`}
+                    target="_blank"
+                  >
+                    <Card.Text className="feedChannelLink small">
+                      {video.channelName}
                     </Card.Text>
-                  </Col>
-                  <Col xs={10} className="feedBody">
-                    <Card.Link
-                      style={{
-                        textDecoration: "none",
-                        color: "white",
-                      }}
-                      href={`https://www.youtube.com/watch?v=${video.videoId}`}
-                      target="_blank"
-                    >
-                      {video.title}
-                    </Card.Link>
-                    <Card.Link
-                      href={`https://www.youtube.com/channel/${channel.channelId}`}
-                      target="_blank"
-                    >
-                      <Card.Text className="feedChannelLink small">
-                        {channel.name}
-                      </Card.Text>
-                    </Card.Link>
-                    <Card.Text className="ffeedChannelLink small">
-                      {video.views.length > 3
-                        ? video.views.length > 6
-                          ? video.views.slice(0, -6) +
-                            (video.views.slice(-6, -5) > "0"
-                              ? "." + video.views.slice(-6, -5)
-                              : "") +
-                            "M"
-                          : video.views.slice(0, -3) +
-                            (video.views.slice(-3, -2) > "0"
-                              ? "." + video.views.slice(-3, -2)
-                              : "") +
-                            "K"
-                        : video.views}{" "}
-                      views • 5 hours ago
-                      {/* 6.5K views • 5 hours ago */}
-                    </Card.Text>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
-          </Col>
-        );
-      });
+                  </Card.Link>
+                  <Card.Text className="ffeedChannelLink small">
+                    {video.views.length > 3
+                      ? video.views.length > 6
+                        ? video.views.slice(0, -6) +
+                          (video.views.slice(-6, -5) > "0"
+                            ? "." + video.views.slice(-6, -5)
+                            : "") +
+                          "M"
+                        : video.views.slice(0, -3) +
+                          (video.views.slice(-3, -2) > "0"
+                            ? "." + video.views.slice(-3, -2)
+                            : "") +
+                          "K"
+                      : video.views}{" "}
+                    views • 5 hours ago
+                    {/* 6.5K views • 5 hours ago */}
+                  </Card.Text>
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+      );
     });
   };
 
@@ -136,6 +134,7 @@ const mapStateToProps = (state) => {
   return {
     channels: state.channels,
     hideChannel: state.hideChannel,
+    videos: state.videos,
   };
 };
 

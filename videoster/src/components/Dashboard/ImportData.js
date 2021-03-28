@@ -8,6 +8,8 @@ import {
   addCategory,
   addChannels,
   selectCategory,
+  videoPagination,
+  clearAllChannels,
 } from "../../actions/index";
 import { Col, Row, Image } from "react-bootstrap";
 
@@ -95,17 +97,22 @@ class ImportData extends React.Component {
                 const ok = await this.props.addCategory(a.textContent);
                 if (ok) {
                   await this.props.selectCategory(a.textContent);
+                  // await this.props.videoPagination(0);
+                  // await this.props.clearAllChannels();
                   let channels = [
                     ...document.querySelectorAll(
                       `.${a.textContent}--tokenChannels`
                     ),
                   ];
+                  console.log(a.textContent);
+                  console.log(channels);
                   for (let i in channels) {
                     const b = channels[i];
                     if (b.classList.contains("changeBorderRadius")) {
-                      await this.props.addChannels([
-                        this.props.tokenData[a.textContent][i],
-                      ]);
+                      await this.props.addChannels(
+                        [this.props.tokenData[a.textContent][i]],
+                        false
+                      );
                       console.log(
                         new Array(this.props.tokenData[a.textContent][i])
                       );
@@ -179,4 +186,6 @@ export default connect(mapStateToProps, {
   addCategory,
   addChannels,
   selectCategory,
+  videoPagination,
+  clearAllChannels,
 })(ImportData);

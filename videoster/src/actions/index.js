@@ -128,13 +128,14 @@ export const searchChannels = (searchWord) => {
   };
 };
 
-export const addChannels = (channels) => {
+export const addChannels = (channels, redirect = true) => {
   return async (dispatch, getStatus) => {
     try {
+      let requiredChannels = [];
+
       const category = getStatus().selectedCategory;
       for (let i in channels) {
         const channel = channels[i];
-        console.log("++++", channel);
         await server.post(
           `/categories/${category}/channels`,
           { channel },
@@ -175,7 +176,11 @@ export const addChannels = (channels) => {
             publishedAt: video.snippet.publishedAt,
           });
         }
-        channels[i].videos = videos;
+        for (let j in videos) {
+          videos[j].fk_channelId = channel.channelId;
+          videos[j].channelName = channel.name;
+          videos[j].channelAvatarDefault = channel.avatarDefault;
+        }
 
         for (let j in videos) {
           await server.post(
@@ -190,16 +195,32 @@ export const addChannels = (channels) => {
             }
           );
         }
+        videos = videos.splice(0, getStatus().videoPagination[0] + 1);
+        requiredChannels.push(...videos);
       }
+
+      const arr = [getStatus().channels].map((st) => {
+        return st.channelId;
+      });
+
+      channels = channels.filter((channel) => {
+        return !arr.includes(channel.channelId);
+      });
+
+      requiredChannels = requiredChannels.filter((video) => {
+        return !arr.includes(video.fk_channelId);
+      });
 
       dispatch({
         type: "ADD_CHANNELS",
-        payload: {
-          category,
-          addedChannels: channels,
-        },
+        payload: channels,
       });
-      history.push("/Dashboard");
+
+      dispatch({
+        type: "ADD_VIDEOS",
+        payload: requiredChannels,
+      });
+      if (redirect) history.push("/Dashboard");
     } catch (err) {
       console.error(err);
     }
@@ -250,21 +271,6 @@ export const getChannels = () => {
               }
             );
             result = result.data.channels;
-
-            for (let i in result) {
-              const channelId = result[i].channelId;
-              let resultVideos = await server.get(
-                `/channels/${channelId}/videos`,
-                {
-                  headers: {
-                    Authorization: `Basic ${localStorage.getItem(
-                      "VideosterToken"
-                    )}`,
-                  },
-                }
-              );
-              result[i].videos = resultVideos.data.videos;
-            }
             data.push(...result);
           }
         }
@@ -285,22 +291,42 @@ export const getChannels = () => {
           },
         });
         data = data.data.channels;
-
-        for (let i in data) {
-          const channelId = data[i].channelId;
-          let result = await server.get(`/channels/${channelId}/videos`, {
-            headers: {
-              Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
-            },
-          });
-          data[i].videos = result.data.videos;
-        }
       }
       if (data.length == 0) {
         data.push(-1);
       }
       dispatch({
         type: "GET_CHANNELS",
+        payload: data,
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+};
+
+export const getVideos = () => {
+  return async (dispatch, getStatus) => {
+    try {
+      let channelIds = getStatus().channels.map((channel) => channel.channelId);
+
+      let data = [];
+      for (let i in channelIds) {
+        const channelId = channelIds[i];
+        let resultVideos = await server.get(
+          `/channels/${channelId}/videos/${getStatus().videoPagination[0]}/${
+            getStatus().videoPagination[1]
+          }`,
+          {
+            headers: {
+              Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+            },
+          }
+        );
+        data.push(...resultVideos.data.videos);
+      }
+      dispatch({
+        type: "GET_VIDEOS",
         payload: data,
       });
     } catch (err) {
@@ -415,6 +441,20 @@ export const renameCategory = (newCategory) => {
   };
 };
 
+export const channelPagination = (offset) => {
+  return {
+    type: "CHANNEL_PAGINATION",
+    payload: offset,
+  };
+};
+
+export const videoPagination = (offset) => {
+  return {
+    type: "VIDEO_PAGINATION",
+    payload: offset,
+  };
+};
+
 export const clearTokens = () => {
   return {
     type: "CLEAR_TOKENS",
@@ -467,6 +507,12 @@ export const clearAllChannels = (action) => {
     type: "CLEAR_ALL_CHANNELS",
   };
 };
+
+// export const clearAllVideos = (action) => {
+//   return {
+//     type: "CLEAR_ALL_",
+//   };
+// };
 
 export const clearChannelsRelatedStates = () => {
   return {

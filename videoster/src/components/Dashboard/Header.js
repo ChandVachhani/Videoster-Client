@@ -14,34 +14,34 @@ class Header extends React.Component {
         <Navbar
           variant="dark"
           bg="dark"
-          style={{ height: "60px" }}
-          className="fixed-top"
+          // style={{ height: "60px" }}
+          style={{ padding: "3px 20px" }}
+          fixed="top"
           expand="sm"
         >
           <Navbar.Text>
             <Navbar.Brand>
-              <span className="makeGray">
+              <span
+                className="makeGray"
+                onClick={() => {
+                  this.props.toggleSidebar(!this.props.hideSidebar);
+                }}
+              >
                 <ion-icon
                   name="menu-outline"
-                  size="large"
-                  style={{ transform: "translateY(7px)" }}
-                  onClick={() => {
-                    this.props.toggleSidebar(!this.props.hideSidebar);
-                  }}
+                  style={{ transform: "translateY(4px) scale(1.7)" }}
                 ></ion-icon>
               </span>
             </Navbar.Brand>
-            <Navbar.Brand>
-              <h4
-                className="appName"
-                style={{ display: "inline-block" }}
-                onClick={() => {
-                  history.push("/Dashboard");
-                }}
-              >
-                {/* &nbsp;Hey {this.props.user.userName}! */}
-                Videoster
-              </h4>
+            <Navbar.Brand
+              className="appName"
+              style={{ display: "inline-block" }}
+              onClick={() => {
+                history.push("/Dashboard");
+              }}
+            >
+              {/* &nbsp;Hey {this.props.user.userName}! */}
+              Videoster
             </Navbar.Brand>
           </Navbar.Text>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

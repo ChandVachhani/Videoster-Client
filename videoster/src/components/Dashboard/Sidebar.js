@@ -52,10 +52,14 @@ class Sidebar extends React.Component {
               event.shiftKey &&
               this.props.selectedCategory == category
             ) {
-              const newCategory = window.prompt("Enter new name!");
-              if (newCategory) {
-                await this.props.renameCategory(newCategory.toUpperCase());
-                await this.props.selectCategory(newCategory.toUpperCase());
+              if (category == "GENERAL") {
+                window.alert("You can not rename default category!");
+              } else {
+                const newCategory = window.prompt("Enter new name!");
+                if (newCategory) {
+                  await this.props.renameCategory(newCategory.toUpperCase());
+                  await this.props.selectCategory(newCategory.toUpperCase());
+                }
               }
             } else {
               if (this.props.selectedCategory != category) {

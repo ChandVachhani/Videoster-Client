@@ -177,6 +177,7 @@ export const addChannels = (channels, redirect = true) => {
           });
         }
         for (let j in videos) {
+          console.log(videos[j].title);
           videos[j].fk_channelId = channel.channelId;
           videos[j].channelName = channel.name;
           videos[j].channelAvatarDefault = channel.avatarDefault;
@@ -195,7 +196,8 @@ export const addChannels = (channels, redirect = true) => {
             }
           );
         }
-        videos = videos.splice(0, getStatus().videoPagination[0] + 1);
+
+        videos = videos.slice(0, getStatus().videoPagination[0] + 1);
         requiredChannels.push(...videos);
       }
 

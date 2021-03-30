@@ -7,7 +7,7 @@ import { videoPagination, getVideos } from "../../actions";
 
 class Feed extends React.Component {
   renderCards = () => {
-    if (this.props.channels.length == 0) {
+    if (this.props.channels.length == 0 || this.props.videos.length == 0) {
       return (
         <div
           class="spinner-grow text-success d-flex justify-content-center"
@@ -125,7 +125,8 @@ class Feed extends React.Component {
       <div
         className={`feed ${
           (this.props.channels.length == 1 && this.props.channels[0] == -1) ||
-          this.props.channels.length == 0
+          this.props.channels.length == 0 ||
+          this.props.videos.length == 0
             ? "d-flex justify-content-center"
             : ""
         }`}

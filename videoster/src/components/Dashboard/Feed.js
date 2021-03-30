@@ -6,27 +6,27 @@ import NoDataAvailable from "./assets/images/Nodata2.svg";
 import { videoPagination, getVideos } from "../../actions";
 
 class Feed extends React.Component {
-  componentDidMount() {
-    window.addEventListener("scroll", this.scrollCapture);
-  }
-  scrollCapture = async () => {
-    if (
-      window.innerHeight + window.pageYOffset == document.body.clientHeight &&
-      !(
-        this.props.pagination[0] >= 4 ||
-        this.props.channels.length == 0 ||
-        this.props.channels[0] == -1
-      )
-    ) {
-      document.querySelector(".pagination--loader").style.display =
-        "inline-block";
-      await this.props.videoPagination(
-        Math.min(this.props.pagination[0] + 1, 4)
-      );
-      await this.props.getVideos();
-      document.querySelector(".pagination--loader").style.display = "none";
-    }
-  };
+  // componentDidMount() {
+  //   window.addEventListener("scroll", this.scrollCapture);
+  // }
+  // scrollCapture = async () => {
+  //   if (
+  //     window.innerHeight + window.pageYOffset == document.body.clientHeight &&
+  //     !(
+  //       this.props.pagination[0] >= 4 ||
+  //       this.props.channels.length == 0 ||
+  //       this.props.channels[0] == -1
+  //     )
+  //   ) {
+  //     document.querySelector(".pagination--loader").style.display =
+  //       "inline-block";
+  //     await this.props.videoPagination(
+  //       Math.min(this.props.pagination[0] + 1, 4)
+  //     );
+  //     await this.props.getVideos();
+  //     document.querySelector(".pagination--loader").style.display = "none";
+  //   }
+  // };
   renderCards = () => {
     if (
       this.props.channels.length == 0 ||

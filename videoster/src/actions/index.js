@@ -89,8 +89,22 @@ export const forgotPassword = (values) => {
 export const changePassword = (values) => {
   return async (dispatch) => {
     try {
-      console.log(values);
       const res = await server.post("/auth/changePassword", values, {
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+        },
+      });
+      history.push("/");
+    } catch (err) {
+      window.alert(err.response.data.message);
+    }
+  };
+};
+
+export const varifyEmail = (values) => {
+  return async (dispatch) => {
+    try {
+      const res = await server.post("/auth/varifyEmail", values, {
         headers: {
           Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },

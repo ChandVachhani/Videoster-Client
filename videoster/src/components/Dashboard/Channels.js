@@ -42,9 +42,15 @@ class Channels extends React.Component {
             src={channel.avatarDefault}
             onClick={(event) => {
               if (event.ctrlKey) {
-                const responce = window.prompt("Say Yes!");
-                if (responce?.toLowerCase() == "yes") {
-                  this.props.removeChannel(channel.channelId);
+                if (this.props.selectedCategory == "GENERAL") {
+                  window.alert(
+                    "You can not delete channel from default category!!"
+                  );
+                } else {
+                  const responce = window.prompt("Say Yes!");
+                  if (responce?.toLowerCase() == "yes") {
+                    this.props.removeChannel(channel.channelId);
+                  }
                 }
               } else {
                 event.currentTarget.classList.toggle("changeBorderRadius");

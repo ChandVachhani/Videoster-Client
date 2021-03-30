@@ -7,7 +7,7 @@ import { videoPagination, getVideos } from "../../actions";
 
 class Feed extends React.Component {
   renderCards = () => {
-    if (this.props.channels.length == 0) {
+    if (this.props.channels.length == 0 || this.props.videos.length == 0) {
       return (
         <div
           class="spinner-grow text-success d-flex justify-content-center"
@@ -122,9 +122,26 @@ class Feed extends React.Component {
 
   render() {
     return (
-      <div className="feed">
+      <div
+        className={`feed ${
+          (this.props.channels.length == 1 && this.props.channels[0] == -1) ||
+          this.props.channels.length == 0 ||
+          this.props.videos.length == 0
+            ? "d-flex justify-content-center"
+            : ""
+        }`}
+      >
         <Row>
           {this.renderCards()}
+          <div
+            class="spinner-grow text-success pagination--loader"
+            style={{
+              width: "1rem",
+              height: "1rem",
+              display: "none",
+            }}
+            role="status"
+          ></div>
           <span
             style={{
               display: `${
@@ -136,10 +153,14 @@ class Feed extends React.Component {
               }`,
             }}
             onClick={async () => {
+              document.querySelector(".pagination--loader").style.display =
+                "inline-block";
               await this.props.videoPagination(
                 Math.min(this.props.pagination[0] + 1, 4)
               );
               await this.props.getVideos();
+              document.querySelector(".pagination--loader").style.display =
+                "none";
             }}
           >
             <ion-icon name="chevron-forward-outline" size="large"></ion-icon>

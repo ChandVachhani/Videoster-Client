@@ -36,10 +36,10 @@ class Login extends React.Component {
                 validate={(values) => {
                   const errors = {};
                   if (!values.userName) {
-                    errors.userName = "Required";
+                    errors.userName = "UserName can not be empty!";
                   }
                   if (!values.password) {
-                    errors.password = "Required";
+                    errors.password = "Password can not be empty!";
                   }
                   return errors;
                 }}
@@ -52,7 +52,7 @@ class Login extends React.Component {
                       "none";
                 }}
               >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, errors, touched }) => (
                   <div className="card--main text-center">
                     <div className="card--header">
                       <h1>LOGIN</h1>
@@ -69,6 +69,16 @@ class Login extends React.Component {
                             name="userName"
                             placeholder="Username / email"
                             autoComplete="off"
+                            title={
+                              errors.userName && touched.userName
+                                ? errors.userName
+                                : ""
+                            }
+                            style={{
+                              borderColor: `${
+                                errors.userName && touched.userName ? "red" : ""
+                              }`,
+                            }}
                           />
                           {/* <ErrorMessage name="userName" component="div" /> */}
                         </div>
@@ -79,6 +89,16 @@ class Login extends React.Component {
                             name="password"
                             placeholder="Password"
                             autoComplete="off"
+                            title={
+                              errors.password && touched.password
+                                ? errors.password
+                                : ""
+                            }
+                            style={{
+                              borderColor: `${
+                                errors.password && touched.password ? "red" : ""
+                              }`,
+                            }}
                           />
                           {/* <ErrorMessage name="password" component="div" /> */}
                         </div>

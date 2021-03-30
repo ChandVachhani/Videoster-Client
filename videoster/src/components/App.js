@@ -7,8 +7,10 @@ import history from "../history";
 
 import Login from "./Authentication/Login";
 import Register from "./Authentication/Register";
+import VarifyEmail from "./Authentication/VarifyEmail";
 import DashBoard from "./Dashboard/Dashboard";
 import LandingPlace from "./Authentication/LandingPlace";
+import ChangePassword from "./Authentication/ChangePassword";
 import SearchChannels from "./Dashboard/SearchChannels";
 import TokenPage from "./Dashboard/TokenPage";
 import ImportData from "./Dashboard/ImportData";
@@ -21,6 +23,7 @@ import {
   getVideos,
   videoPagination,
   clearAllChannels,
+  varifyEmail,
 } from "../actions/index";
 import { connect } from "react-redux";
 
@@ -74,6 +77,18 @@ class App extends React.Component {
         ></Route>
         <Route path="/Register" exact>
           <Register />
+        </Route>
+        <Route path="/varifyEmail/:token" exact>
+          <VarifyEmail />
+        </Route>
+        <Route path="/changePassword/:token" exact>
+          <ChangePassword
+            token={
+              window.location.href.split("/")[
+                window.location.href.split("/").length - 1
+              ]
+            }
+          />
         </Route>
 
         <Route
@@ -149,4 +164,5 @@ export default connect(mapStateToProps, {
   getVideos,
   videoPagination,
   clearAllChannels,
+  varifyEmail,
 })(App);

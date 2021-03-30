@@ -10,6 +10,9 @@ import { connect } from "react-redux";
 import { registerUser } from "../../actions/index";
 
 class Register extends React.Component {
+  componentDidMount() {
+    // document.querySelector(".tool_tip").tooltip("show");
+  }
   render() {
     return (
       <div className="login-body">
@@ -26,18 +29,19 @@ class Register extends React.Component {
                 validate={(values) => {
                   const errors = {};
                   if (!values.userName) {
-                    errors.userName = "Required";
+                    errors.userName = "UserName can not be empty!";
                   }
                   if (!values.password) {
-                    errors.password = "Required";
+                    errors.password = "password can not be empty!";
                   }
                   if (!values.confirmPassword) {
-                    errors.confirmPassword = "Required";
+                    errors.confirmPassword =
+                      "confirm Password can not be empty!";
                   } else if (values.password != values.confirmPassword) {
                     errors.confirmPassword = "Password dosen't match";
                   }
                   if (!values.email) {
-                    errors.email = "Required";
+                    errors.email = "email can not be empty!";
                   } else if (
                     !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
                       values.email
@@ -57,7 +61,7 @@ class Register extends React.Component {
                       "none";
                 }}
               >
-                {({ isSubmitting }) => (
+                {({ isSubmitting, errors, touched }) => (
                   <div className="card--main text-center">
                     <div className="card--header">
                       <h1>REGISTER</h1>
@@ -70,6 +74,12 @@ class Register extends React.Component {
                             type="userName"
                             name="userName"
                             placeholder="Username"
+                            title={errors.userName}
+                            style={{
+                              borderColor: `${
+                                errors.userName && touched.userName ? "red" : ""
+                              }`,
+                            }}
                           />
                           {/* <ErrorMessage name="userName" component="div" /> */}
                         </div>
@@ -79,6 +89,14 @@ class Register extends React.Component {
                             type="email"
                             name="email"
                             placeholder="Email"
+                            title={
+                              errors.email && touched.email ? errors.email : ""
+                            }
+                            style={{
+                              borderColor: `${
+                                errors.email && touched.email ? "red" : ""
+                              }`,
+                            }}
                           />
                           {/* <ErrorMessage name="email" component="div" /> */}
                         </div>
@@ -88,6 +106,16 @@ class Register extends React.Component {
                             type="password"
                             name="password"
                             placeholder="Password"
+                            title={
+                              errors.password && touched.password
+                                ? errors.password
+                                : ""
+                            }
+                            style={{
+                              borderColor: `${
+                                errors.password && touched.password ? "red" : ""
+                              }`,
+                            }}
                           />
                           {/* <ErrorMessage name="password" component="div" /> */}
                         </div>
@@ -97,6 +125,19 @@ class Register extends React.Component {
                             type="password"
                             name="confirmPassword"
                             placeholder="Confirm Password"
+                            title={
+                              errors.confirmPassword && touched.confirmPassword
+                                ? errors.confirmPassword
+                                : ""
+                            }
+                            style={{
+                              borderColor: `${
+                                errors.confirmPassword &&
+                                touched.confirmPassword
+                                  ? "red"
+                                  : ""
+                              }`,
+                            }}
                           />
                           {/* <ErrorMessage
                             name="confirmPassword"

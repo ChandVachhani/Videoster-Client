@@ -9,6 +9,7 @@ import Login from "./Authentication/Login";
 import Register from "./Authentication/Register";
 import DashBoard from "./Dashboard/Dashboard";
 import LandingPlace from "./Authentication/LandingPlace";
+import ChangePassword from "./Authentication/ChangePassword";
 import SearchChannels from "./Dashboard/SearchChannels";
 import TokenPage from "./Dashboard/TokenPage";
 import ImportData from "./Dashboard/ImportData";
@@ -74,6 +75,15 @@ class App extends React.Component {
         ></Route>
         <Route path="/Register" exact>
           <Register />
+        </Route>
+        <Route path="/changePassword/:token" exact>
+          <ChangePassword
+            token={
+              window.location.href.split("/")[
+                window.location.href.split("/").length - 1
+              ]
+            }
+          />
         </Route>
 
         <Route

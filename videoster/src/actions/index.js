@@ -70,6 +70,38 @@ export const registerUser = (values) => {
   };
 };
 
+export const forgotPassword = (values) => {
+  return async (dispatch) => {
+    try {
+      const res = await server.post("/auth/forgotPassword", values, {
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+        },
+      });
+      history.push("/");
+      window.alert(res.data.message);
+    } catch (err) {
+      window.alert(err.response.data.message);
+    }
+  };
+};
+
+export const changePassword = (values) => {
+  return async (dispatch) => {
+    try {
+      console.log(values);
+      const res = await server.post("/auth/changePassword", values, {
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+        },
+      });
+      history.push("/");
+    } catch (err) {
+      window.alert(err.response.data.message);
+    }
+  };
+};
+
 export const addCategory = (category) => {
   return async (dispatch, getStatus) => {
     try {

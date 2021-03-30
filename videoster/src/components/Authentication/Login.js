@@ -9,7 +9,7 @@ import { Col, Row } from "react-bootstrap";
 
 import LoginImage from "./assets/images/Login2.svg";
 
-import { takeMeIn, verifyLogin } from "../../actions/index";
+import { takeMeIn, verifyLogin, forgotPassword } from "../../actions/index";
 
 import history from "../../history";
 
@@ -103,7 +103,19 @@ class Login extends React.Component {
                           {/* <ErrorMessage name="password" component="div" /> */}
                         </div>
                         <div className="card--forgot">
-                          <a href="#">Forgot my password</a>
+                          <a
+                            href="#"
+                            onClick={() => {
+                              let userName = window.prompt(
+                                "Enter your userName or email!"
+                              );
+                              console.log(userName);
+                              if (userName)
+                                this.props.forgotPassword({ userName });
+                            }}
+                          >
+                            Forgot my password
+                          </a>
                         </div>
                         <button type="submit" className="submit">
                           <div
@@ -145,4 +157,8 @@ const mapStateToProps = (state) => {
   return { user: state.user };
 };
 
-export default connect(mapStateToProps, { takeMeIn, verifyLogin })(Login);
+export default connect(mapStateToProps, {
+  takeMeIn,
+  verifyLogin,
+  forgotPassword,
+})(Login);

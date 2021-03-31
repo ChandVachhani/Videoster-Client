@@ -15,6 +15,8 @@ import SearchChannels from "./Dashboard/SearchChannels";
 import TokenPage from "./Dashboard/TokenPage";
 import ImportData from "./Dashboard/ImportData";
 
+import { NotificationContainer } from "react-notifications";
+
 import {
   verifyLogin,
   getChannels,
@@ -64,94 +66,97 @@ class App extends React.Component {
 
   render() {
     return (
-      <Router history={history}>
-        <Route path="/" exact>
-          <Login />
-        </Route>
-        <Route
-          path="/LandingPlace"
-          exact
-          render={() => {
-            return this.props.user.userId ? (
-              <LandingPlace />
-            ) : (
-              <Redirect to="/" />
-            );
-          }}
-        ></Route>
-        <Route path="/Register" exact>
-          <Register />
-        </Route>
-        <Route path="/varifyEmail/:token" exact>
-          <VarifyEmail />
-        </Route>
-        <Route path="/changePassword/:token" exact>
-          <ChangePassword
-            token={
-              window.location.href.split("/")[
-                window.location.href.split("/").length - 1
-              ]
-            }
-          />
-        </Route>
+      <div>
+        <NotificationContainer />
+        <Router history={history}>
+          <Route path="/" exact>
+            <Login />
+          </Route>
+          <Route
+            path="/LandingPlace"
+            exact
+            render={() => {
+              return this.props.user.userId ? (
+                <LandingPlace />
+              ) : (
+                <Redirect to="/" />
+              );
+            }}
+          ></Route>
+          <Route path="/Register" exact>
+            <Register />
+          </Route>
+          <Route path="/varifyEmail/:token" exact>
+            <VarifyEmail />
+          </Route>
+          <Route path="/changePassword/:token" exact>
+            <ChangePassword
+              token={
+                window.location.href.split("/")[
+                  window.location.href.split("/").length - 1
+                ]
+              }
+            />
+          </Route>
 
-        <Route
-          path="/SearchChannels"
-          exact
-          render={() => {
-            return this.props.user.userId ? (
-              <SearchChannels />
-            ) : (
-              <Redirect to="/" />
-            );
-          }}
-        ></Route>
-        <Route
-          path="/Dashboard"
-          exact
-          render={() => {
-            return this.props.user.userId ? (
-              this.props.selectedCategory ? (
-                <DashBoard />
+          <Route
+            path="/SearchChannels"
+            exact
+            render={() => {
+              return this.props.user.userId ? (
+                <SearchChannels />
               ) : (
-                <Redirect to="/LandingPlace" />
-              )
-            ) : (
-              <Redirect to="/" />
-            );
-          }}
-        ></Route>
-        <Route
-          path="/Token"
-          exact
-          render={() => {
-            return this.props.user.userId ? (
-              this.props.selectedCategory ? (
-                <TokenPage />
+                <Redirect to="/" />
+              );
+            }}
+          ></Route>
+          <Route
+            path="/Dashboard"
+            exact
+            render={() => {
+              return this.props.user.userId ? (
+                this.props.selectedCategory ? (
+                  <DashBoard />
+                ) : (
+                  <Redirect to="/LandingPlace" />
+                )
               ) : (
-                <Redirect to="/LandingPlace" />
-              )
-            ) : (
-              <Redirect to="/" />
-            );
-          }}
-        ></Route>
-        <Route
-          path="/Import"
-          exact
-          render={() => {
-            return this.props.user.userId ? (
-              this.props.selectedCategory ? (
-                <ImportData />
+                <Redirect to="/" />
+              );
+            }}
+          ></Route>
+          <Route
+            path="/Token"
+            exact
+            render={() => {
+              return this.props.user.userId ? (
+                this.props.selectedCategory ? (
+                  <TokenPage />
+                ) : (
+                  <Redirect to="/LandingPlace" />
+                )
               ) : (
-                <Redirect to="/LandingPlace" />
-              )
-            ) : (
-              <Redirect to="/" />
-            );
-          }}
-        ></Route>
-      </Router>
+                <Redirect to="/" />
+              );
+            }}
+          ></Route>
+          <Route
+            path="/Import"
+            exact
+            render={() => {
+              return this.props.user.userId ? (
+                this.props.selectedCategory ? (
+                  <ImportData />
+                ) : (
+                  <Redirect to="/LandingPlace" />
+                )
+              ) : (
+                <Redirect to="/" />
+              );
+            }}
+          ></Route>
+        </Router>
+      </div>
     );
   }
 }

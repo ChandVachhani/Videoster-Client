@@ -23,6 +23,7 @@ export const logOut = () => {
       type: "LOG_OUT",
     });
     history.push("/");
+    createNotification("success", "Bye! See you soon!")();
   };
 };
 
@@ -46,7 +47,7 @@ export const takeMeIn = (values) => {
         },
       });
     } catch (err) {
-      window.alert(err.response.data.message);
+      createNotification("error", err.response.data.message)();
     }
   };
 };
@@ -65,7 +66,7 @@ export const registerUser = (values) => {
       });
       history.push("/");
     } catch (err) {
-      window.alert(err.response.data.message);
+      createNotification("error", err.response.data.message)();
     }
   };
 };
@@ -79,9 +80,10 @@ export const forgotPassword = (values) => {
         },
       });
       history.push("/");
-      window.alert(res.data.message);
+      // window.alert(res.data.message);
+      createNotification("success", res.data.message)();
     } catch (err) {
-      window.alert(err.response.data.message);
+      createNotification("error", err.response.data.message)();
     }
   };
 };
@@ -96,7 +98,7 @@ export const changePassword = (values) => {
       });
       history.push("/");
     } catch (err) {
-      window.alert(err.response.data.message);
+      createNotification("error", err.response.data.message)();
     }
   };
 };
@@ -111,7 +113,7 @@ export const varifyEmail = (values) => {
       });
       history.push("/");
     } catch (err) {
-      window.alert(err.response.data.message);
+      createNotification("error", err.response.data.message)();
     }
   };
 };
@@ -137,7 +139,7 @@ export const addCategory = (category) => {
       });
       return true;
     } catch (err) {
-      window.alert(err.response.data.message);
+      createNotification("error", err.response.data.message)();
       return false;
     }
   };

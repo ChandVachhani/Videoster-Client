@@ -154,14 +154,14 @@ class ImportData extends React.Component {
                   className="appName"
                   style={{ display: "inline-block", color: "white" }}
                 >
-                  &nbsp;&nbsp;Welcome{" "}
+                  &nbsp;&nbsp;Hey{" "}
                   <span style={{ color: "#2ecc71", display: "inline-block" }}>
                     {this.props.user.userName.toUpperCase()}
                   </span>
                   !,{" "}
                   <div style={{ display: "inline-block" }}>
                     {" "}
-                    Where do you want to Land?
+                    What do you want to import?
                   </div>
                 </h4>
               </div>

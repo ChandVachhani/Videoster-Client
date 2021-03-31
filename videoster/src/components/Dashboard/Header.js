@@ -5,6 +5,8 @@ import { toggleSidebar, logOut, getTokenData } from "../../actions/index";
 import { connect } from "react-redux";
 import welcomeImg from "./assets/images/welcome.png";
 
+import { createNotification } from "../../utils/createNotification";
+
 import history from "../../history";
 
 class Header extends React.Component {
@@ -37,7 +39,7 @@ class Header extends React.Component {
               className="appName"
               style={{ display: "inline-block" }}
               onClick={() => {
-                history.push("/Dashboard");
+                history.push("/Dashboard");                
               }}
             >
               {/* &nbsp;Hey {this.props.user.userName}! */}

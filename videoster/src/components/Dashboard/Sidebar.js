@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import { createNotification } from "../../utils/createNotification";
 import {
   addCategory,
   selectCategory,
@@ -22,11 +22,15 @@ class Sidebar extends React.Component {
           className="category"
           onClick={async (event) => {
             if (event.ctrlKey) {
-              const responce = window.prompt("say yes!");
-              if (responce?.toLowerCase() == "yes") {
-                if (category == "GENERAL") {
-                  window.alert("You can not delete default category!");
-                } else {
+              if (category == "GENERAL") {
+                // window.alert("You can not delete default category!");
+                createNotification(
+                  "info",
+                  "You can not delete default category"
+                )();
+              } else {
+                const responce = window.prompt("say yes!");
+                if (responce?.toLowerCase() == "yes") {
                   await this.props.removeCategory(category);
                   // if (this.props.selectedCategory == "GENERAL") {
                   //   await this.props.clearAllChannels();
@@ -53,7 +57,11 @@ class Sidebar extends React.Component {
               this.props.selectedCategory == category
             ) {
               if (category == "GENERAL") {
-                window.alert("You can not rename default category!");
+                // window.alert("You can not rename default category!");
+                createNotification(
+                  "info",
+                  "You can not rename default category"
+                )();
               } else {
                 const newCategory = window.prompt("Enter new name!");
                 if (newCategory) {

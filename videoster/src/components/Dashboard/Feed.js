@@ -155,41 +155,43 @@ class Feed extends React.Component {
             : ""
         }`}
       >
-        <Row>
-          {this.renderCards()}
-          <div
-            class="spinner-grow text-success pagination--loader"
-            style={{
-              width: "3rem",
-              height: "3rem",
-              display: "none",
-            }}
-            role="status"
-          ></div>
-          <span
-            style={{
-              display: `${
-                this.props.pagination[0] >= 4 ||
-                this.props.channels.length == 0 ||
-                this.props.channels[0] == -1
-                  ? "none"
-                  : "inline-block"
-              }`,
-            }}
-            onClick={async () => {
-              document.querySelector(".pagination--loader").style.display =
-                "inline-block";
-              await this.props.videoPagination(
-                Math.min(this.props.pagination[0] + 1, 4)
-              );
-              await this.props.getVideos();
-              document.querySelector(".pagination--loader").style.display =
-                "none";
-            }}
-          >
-            <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
-          </span>
-        </Row>
+        <Row>{this.renderCards()}</Row>
+        <div
+          class="spinner-grow text-success pagination--loader"
+          style={{
+            width: "3rem",
+            height: "3rem",
+            display: "none",
+          }}
+          role="status"
+        ></div>
+        <button
+          className="videoPagination--btn"
+          style={{
+            width: "100px",
+            display: `${
+              this.props.pagination[0] >= 4 ||
+              this.props.channels.length == 0 ||
+              this.props.channels[0] == -1
+                ? "none"
+                : "inline-block"
+            }`,
+          }}
+          onClick={async () => {
+            document.querySelector(".videoPagination--btn").disabled = true;
+            document.querySelector(".pagination--loader").style.display =
+              "inline-block";
+            await this.props.videoPagination(
+              Math.min(this.props.pagination[0] + 1, 4)
+            );
+            await this.props.getVideos();
+            document.querySelector(".pagination--loader").style.display =
+              "none";
+            document.querySelector(".videoPagination--btn").disabled = false;
+          }}
+        >
+          <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
+        </button>
       </div>
     );
   }

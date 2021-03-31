@@ -55,6 +55,10 @@ class App extends React.Component {
       await this.props.videoPagination(0);
       await this.props.getChannels();
       await this.props.getVideos();
+
+      [...document.querySelectorAll(".btn--category")].forEach((btn) => {
+        btn.disabled = false;
+      });
     }
   }
 

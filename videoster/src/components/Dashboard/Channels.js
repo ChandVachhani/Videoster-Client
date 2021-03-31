@@ -51,6 +51,8 @@ class Channels extends React.Component {
                   if (responce?.toLowerCase() == "yes") {
                     this.props.removeChannel(channel.channelId);
                   }
+                  if (this.props.hideChannel)
+                    this.props.selectChannel(channel.channelId);
                 }
               } else {
                 event.currentTarget.classList.toggle("changeBorderRadius");

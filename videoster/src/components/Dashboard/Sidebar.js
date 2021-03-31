@@ -63,6 +63,12 @@ class Sidebar extends React.Component {
               }
             } else {
               if (this.props.selectedCategory != category) {
+                [...document.querySelectorAll(".btn--category")].forEach(
+                  (btn) => {
+                    console.log(btn);
+                    btn.disabled = true;
+                  }
+                );
                 await this.props.clearHideChannels();
                 await this.props.clearAllChannels();
                 [...document.querySelectorAll(".channelIcon")].forEach((e) => {
@@ -70,6 +76,7 @@ class Sidebar extends React.Component {
                   e.style.borderRadius = "50%";
                 });
                 await this.props.selectCategory(category);
+
                 // await this.props.clearAllChannels();
                 // await this.props.videoPagination(0);
                 // await this.props.getChannels();

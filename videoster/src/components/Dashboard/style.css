@@ -377,3 +377,26 @@
 ion-icon {
   pointer-events: none;
 }
+
+.videoPagination--btn {
+  outline: 0px;
+  height: 44px;
+  width: 70%;
+  min-width: 125px;
+  border-color: #a0a0a0;
+  border-radius: 22px;
+  border-width: 2px;
+  text-align: center;
+  transition: 0.25s;
+  cursor: pointer;
+  background: none;
+  display: block;
+  color: white;
+}
+
+.videoPagination--btn:hover {
+  transition: 0.25s;
+  outline: 0px;
+  background-color: #7e7e7e;
+  color: white;
+}

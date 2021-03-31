@@ -18,6 +18,21 @@ class Register extends React.Component {
       <div className="login-body">
         <center>
           <Row className="login--main">
+            <Col xl={6} lg={12} md={12} sm={12} className="">
+              <div className="" style={{ color: "white" }}>
+                <h1 style={{ color: "#2ecc71" }}>VIDEOSTER</h1>
+                <br />
+                <br />
+                <h2>
+                  Our mission is to reduce the distraction from the YouTube
+                  <br />
+                  <br />
+                  You can add channels and manage them in different Category.
+                  You can also add, rename, delete categories and channels. You
+                  can Import other user's data.
+                </h2>
+              </div>
+            </Col>
             <Col xl={6} lg={12} md={12} sm={12} className="special-login">
               <Formik
                 initialValues={{
@@ -171,11 +186,6 @@ class Register extends React.Component {
                   </div>
                 )}
               </Formik>
-            </Col>
-            <Col xl={6} lg={12} md={12} sm={12} className="login--image--main">
-              <div className="login-image">
-                <img src={LoginImage} alt="Login" />
-              </div>
             </Col>
           </Row>
         </center>

@@ -39,7 +39,7 @@ class Header extends React.Component {
               className="appName"
               style={{ display: "inline-block" }}
               onClick={() => {
-                history.push("/Dashboard");                
+                history.push("/Dashboard");
               }}
             >
               {/* &nbsp;Hey {this.props.user.userName}! */}
@@ -49,6 +49,25 @@ class Header extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Brand>
+              <span
+                onClick={() => {
+                  this.props.toggleSidebar(!this.props.hideSidebar);
+                }}
+                title={`Rename Category : Ctrl + Click
+
+Delete Category : Shift + Click
+
+Delete Channel : Ctrl + Click`}
+                style={{ cursor: "pointer" }}
+              >
+                <ion-icon
+                  name="information-circle-outline"
+                  style={{
+                    transform: "translateY(4px) scale(1.7)",
+                    marginRight: "15px",
+                  }}
+                ></ion-icon>
+              </span>
               <small>
                 <button
                   className="headerbtn"

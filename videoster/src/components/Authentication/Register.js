@@ -30,6 +30,8 @@ class Register extends React.Component {
                   You can add channels and manage them in different Category.
                   You can also add, rename, delete categories and channels. You
                   can Import other user's data.
+                  <br />
+                  <br />- Chand Vachhani
                 </h2>
               </div>
             </Col>

@@ -172,7 +172,8 @@ class Feed extends React.Component {
             display: `${
               this.props.pagination[0] >= 4 ||
               this.props.channels.length == 0 ||
-              this.props.channels[0] == -1
+              this.props.channels[0] == -1 ||
+              this.props.videos.length == 0
                 ? "none"
                 : "inline-block"
             }`,

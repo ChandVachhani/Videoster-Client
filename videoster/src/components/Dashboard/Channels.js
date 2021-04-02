@@ -29,7 +29,8 @@ class Channels extends React.Component {
     return this.props.channels.map((channel, ind) => {
       if (
         ind < this.props.pagination[0] ||
-        ind >= this.props.pagination[0] + this.props.pagination[1]
+        ind >= this.props.pagination[0] + this.props.pagination[1] ||
+        (this.props.channels.length == 1 && this.props.channels[0] == -1)
       ) {
         return null;
       }

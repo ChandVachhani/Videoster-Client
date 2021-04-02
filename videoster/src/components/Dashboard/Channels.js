@@ -4,6 +4,7 @@ import { Image, Row } from "react-bootstrap";
 
 import history from "../../history";
 import { connect } from "react-redux";
+import { createNotification } from "../../utils/createNotification";
 
 import {
   getChannels,
@@ -43,9 +44,13 @@ class Channels extends React.Component {
             onClick={(event) => {
               if (event.ctrlKey) {
                 if (this.props.selectedCategory == "GENERAL") {
-                  window.alert(
-                    "You can not delete channel from default category!!"
-                  );
+                  // window.alert(
+                  //   "You can not delete channel from default category!!"
+                  // );
+                  createNotification(
+                    "info",
+                    "You can not delete channel from default category"
+                  )();
                 } else {
                   const responce = window.prompt("Say Yes!");
                   if (responce?.toLowerCase() == "yes") {

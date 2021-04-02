@@ -5,6 +5,8 @@ import { toggleSidebar, logOut, getTokenData } from "../../actions/index";
 import { connect } from "react-redux";
 import welcomeImg from "./assets/images/welcome.png";
 
+import { createNotification } from "../../utils/createNotification";
+
 import history from "../../history";
 
 class Header extends React.Component {
@@ -47,6 +49,25 @@ class Header extends React.Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Brand>
+              <span
+                onClick={() => {
+                  this.props.toggleSidebar(!this.props.hideSidebar);
+                }}
+                title={`Rename Category : Ctrl + Click
+
+Delete Category : Shift + Click
+
+Delete Channel : Ctrl + Click`}
+                style={{ cursor: "pointer" }}
+              >
+                <ion-icon
+                  name="information-circle-outline"
+                  style={{
+                    transform: "translateY(4px) scale(1.7)",
+                    marginRight: "15px",
+                  }}
+                ></ion-icon>
+              </span>
               <small>
                 <button
                   className="headerbtn"

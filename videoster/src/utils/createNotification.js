@@ -8,7 +8,7 @@ export const createNotification = (type, message) => {
   return () => {
     switch (type) {
       case "info":
-        NotificationManager.info("Info message");
+        NotificationManager.info(message);
         break;
       case "success":
         NotificationManager.success(message);

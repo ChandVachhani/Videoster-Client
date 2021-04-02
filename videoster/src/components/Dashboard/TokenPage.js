@@ -5,6 +5,8 @@ import history from "../../history";
 
 import { getTokens, clearTokens } from "../../actions/index";
 
+import { createNotification } from "../../utils/createNotification";
+
 class TokenPage extends React.Component {
   async componentDidMount() {
     await this.props.clearTokens();
@@ -19,11 +21,11 @@ class TokenPage extends React.Component {
           onClick={async () => {
             navigator.clipboard.writeText(this.props.tokens[token]).then(
               function () {
-                window.alert("Successfull");
+                createNotification("success", "copied")();
               },
               function (err) {
                 console.log(err);
-                window.alert("failed");
+                createNotification("error", "failed")();
               }
             );
           }}
@@ -56,14 +58,14 @@ class TokenPage extends React.Component {
                 className="appName"
                 style={{ display: "inline-block", color: "white" }}
               >
-                &nbsp;&nbsp;Welcome{" "}
+                &nbsp;&nbsp;Hey{" "}
                 <span style={{ color: "#2ecc71", display: "inline-block" }}>
                   {this.props.user.userName.toUpperCase()}
                 </span>
                 !,{" "}
                 <div style={{ display: "inline-block" }}>
                   {" "}
-                  Where do you want to Land?
+                  What do you want to share?
                 </div>
               </h4>
             </div>

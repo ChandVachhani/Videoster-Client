@@ -179,7 +179,7 @@ class Header extends React.Component {
                     };
                   return 0;
                 });
-                arr = arr.filter((a) => a != 0);
+                arr = arr.filter((a) => a != 0);                
                 await this.props.addChannels(arr);
                 await this.props.clearSearchedChannels();
               }}

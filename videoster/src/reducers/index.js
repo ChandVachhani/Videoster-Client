@@ -69,6 +69,18 @@ const channels = (state = [], action) => {
   switch (action.type) {
     case "ADD_CHANNELS":
       if (state.length == 1 && state[0] == -1) return [...action.payload];
+      // let channelIds = [];
+      // state.forEach((channel) => channelIds.push(channel.channelId));
+      // return [
+      //   ...state,
+      //   ...action.payload.filter((channel) => {
+      //     if (!channelIds.includes(channel.channelId)) {
+      //       channelIds.push(channel.channelId);
+      //       return true;
+      //     }
+      //     return false;
+      //   }),
+      // ];
       return [...state, ...action.payload];
     case "GET_CHANNELS":
       return action.payload;
@@ -93,11 +105,13 @@ const videos = (state = [], action) => {
       return [...state, ...action.payload];
     case "GET_VIDEOS":
       return [...state, ...action.payload];
-    case "REMOVE_CHANNEL":
+    case "REMOVE_VIDEOS":
       console.log("{{{{", action.payload);
+      console.log("{{{{", state);
       const tmp = [...state].filter((curr) => {
         return curr.fk_channelId != action.payload;
       });
+      console.log(tmp);
       return tmp;
     case "LOG_OUT":
     case "CLEAR_ALL_CHANNELS":

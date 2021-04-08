@@ -177,8 +177,10 @@ export const searchChannels = (searchWord) => {
 };
 
 export const addChannels = (channels, redirect = true) => {
+  console.log("+++++++++++++++++++++++++++++++++++--------");
   return async (dispatch, getStatus) => {
     try {
+      console.log("+++++++++++++++++++++++++++++++++++");
       let requiredChannels = [];
 
       const category = getStatus().selectedCategory;
@@ -248,18 +250,23 @@ export const addChannels = (channels, redirect = true) => {
         videos = videos.slice(0, getStatus().videoPagination[0] + 1);
         requiredChannels.push(...videos);
       }
+      console.log("======================================");
 
-      const arr = [getStatus().channels].map((st) => {
+      const arr = [...getStatus().channels].map((st) => {
         return st.channelId;
       });
 
+      console.log(getStatus().channels);
+      console.log(arr);
       channels = channels.filter((channel) => {
         return !arr.includes(channel.channelId);
       });
+      console.log(channels);
 
       requiredChannels = requiredChannels.filter((video) => {
         return !arr.includes(video.fk_channelId);
       });
+      console.log(requiredChannels);
 
       dispatch({
         type: "ADD_CHANNELS",
@@ -417,6 +424,10 @@ export const removeChannel = (channelId) => {
       });
       dispatch({
         type: "REMOVE_CHANNEL",
+        payload: channelId,
+      });
+      dispatch({
+        type: "REMOVE_VIDEOS",
         payload: channelId,
       });
     } catch (err) {

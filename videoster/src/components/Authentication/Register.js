@@ -23,15 +23,24 @@ class Register extends React.Component {
                 <h1 style={{ color: "#2ecc71" }}>VIDEOSTER</h1>
                 <br />
                 <br />
-                <h2>
-                  Our mission is to reduce the distraction from the YouTube
+                <h2
+                  style={{
+                    fontSize: "30px",
+                    lineHeight: "40px",
+                  }}
+                >
+                  Our mission is to reduce the distraction of the students from
+                  the YouTube.
                   <br />
                   <br />
-                  You can add channels and manage them in different Category.
-                  You can also add, rename, delete categories and channels. You
-                  can Import other user's data.
+                  For the regular student YouTube is the one of the most used
+                  app and more then 50% of the YouTube time students watch
+                  unproductive videos because of the YouTube recommandation
+                  algorithm. So Videoster helps students to store videos in
+                  different ways inorder to reduce the distraction.
                   <br />
-                  <br />- Chand Vachhani
+                  <br />
+                  <span style={{ color: "#2ecc71" }}>- Chand Vachhani</span>
                 </h2>
               </div>
             </Col>

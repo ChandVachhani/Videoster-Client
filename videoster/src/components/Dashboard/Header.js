@@ -50,12 +50,9 @@ class Header extends React.Component {
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Brand>
               <span
-                onClick={() => {
-                  this.props.toggleSidebar(!this.props.hideSidebar);
-                }}
-                title={`Rename Category : Ctrl + Click
+                title={`Rename Category : Shift + Click
 
-Delete Category : Shift + Click
+Delete Category : Ctrl + Click
 
 Delete Channel : Ctrl + Click`}
                 style={{ cursor: "pointer" }}

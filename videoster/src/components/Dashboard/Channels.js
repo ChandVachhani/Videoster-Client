@@ -55,10 +55,20 @@ class Channels extends React.Component {
                 } else {
                   const responce = window.prompt("Say Yes!");
                   if (responce?.toLowerCase() == "yes") {
-                    if (this.props.hideChannel[channel.channelId]) {
-                      this.props.selectChannel(channel.channelId);
-                    }
+                    // if (this.props.hideChannel[channel.channelId]) {
+                    //   this.props.selectChannel(channel.channelId);
+                    // }
                     this.props.removeChannel(channel.channelId);
+                    Object.keys(this.props.hideChannel).forEach((c) => {
+                      if (this.props.hideChannel[c])
+                        this.props.selectChannel(c);
+                    });
+                    [...document.querySelectorAll(".channelIcon")].forEach(
+                      (c) => {
+                        c.classList.remove("changeBorderRadius");
+                        c.style.borderRadius = "50%";
+                      }
+                    );
                   }
                 }
               } else {

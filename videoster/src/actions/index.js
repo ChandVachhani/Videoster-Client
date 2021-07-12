@@ -6,7 +6,7 @@ import { createNotification } from "../utils/createNotification";
 export const verifyLogin = () => {
   return async (dispatch) => {
     try {
-      if(!(await localStorage.setItem("VideosterUserId", res.data.user.userId)))return;
+      if(!(await localStorage.getItem("VideosterUserId")))return;
       const res = await server.post("/auth/verifyLogin", {}, {
         headers: {
           Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,

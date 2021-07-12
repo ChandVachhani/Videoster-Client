@@ -4,12 +4,23 @@ import { createNotification } from "../utils/createNotification";
 
 // TODO make clear logic about verify login
 export const verifyLogin = () => {
-  return {
-    type: "VERIFY_LOGIN",
-    payload: {
-      userId: localStorage.getItem("VideosterUserId"),
-      userName: localStorage.getItem("VideosterUserName"),
-    },
+  return async (dispatch) => {
+    try {
+      const res = await server.post("/auth/verifyLogin", {token: await localStorage.getItem("VideosterToken")}, {
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+        },
+      });
+      dispatch({    
+        type: "VERIFY_LOGIN",
+        payload: {
+          userId: localStorage.getItem("VideosterUserId"),
+          userName: localStorage.getItem("VideosterUserName"),
+        },
+      });
+    } catch (err) {
+      createNotification("error", err.response.data.message)();
+    }
   };
 };
 

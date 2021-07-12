@@ -6,11 +6,11 @@ import { createNotification } from "../utils/createNotification";
 export const verifyLogin = () => {
   return async (dispatch) => {
     try {
-      const res = await server.post("/auth/verifyLogin", {token: await localStorage.getItem("VideosterToken")}, {
-        headers: {
-          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
-        },
-      });
+      // const res = await server.post("/auth/verifyLogin", {token: await localStorage.getItem("VideosterToken")}, {
+      //   headers: {
+      //     Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+      //   },
+      // });
       dispatch({    
         type: "VERIFY_LOGIN",
         payload: {

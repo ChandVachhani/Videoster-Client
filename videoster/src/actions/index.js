@@ -24,6 +24,10 @@ export const verifyLogin = () => {
       });      
     } catch (err) {
       createNotification("error", err.response.data.message)();
+      await localStorage.removeItem("VideosterToken");
+      await localStorage.removeItem("VideosterUserId");
+      await localStorage.removeItem("VideosterUserName");
+      history.push("/");      
     }
   };
 };

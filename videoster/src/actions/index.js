@@ -5,12 +5,13 @@ import { createNotification } from "../utils/createNotification";
 // TODO make clear logic about verify login
 export const verifyLogin = () => {
   return async (dispatch) => {
-    try {      
+    try {
+      if(!(await localStorage.setItem("VideosterUserId", res.data.user.userId)))return;
       const res = await server.post("/auth/verifyLogin", {}, {
         headers: {
           Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
         },
-      });      
+      });
       console.log(res.data.user);
       await localStorage.setItem("VideosterUserId", res.data.user.userId);
       await localStorage.setItem("VideosterUserName", res.data.user.userName);
@@ -318,10 +319,6 @@ export const getCategories = () => {
       });
     } catch (err) {
       console.error(err);
-      if(err.response.data.message == "User is not verified!"){
-        createNotification("error", err.response.data.message)();
-        history.push("/");
-      }
     }
   };
 };

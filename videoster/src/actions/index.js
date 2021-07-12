@@ -6,18 +6,20 @@ import { createNotification } from "../utils/createNotification";
 export const verifyLogin = () => {
   return async (dispatch) => {
     try {
-      // const res = await server.post("/auth/verifyLogin", {token: await localStorage.getItem("VideosterToken")}, {
-      //   headers: {
-      //     Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
-      //   },
-      // });
+      const res = await server.post("/auth/verifyLogin", {}, {
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("VideosterToken")}`,
+        },
+      });
+      createNotification("error", res.data.message)();
+      console.log(res.data.user);
       dispatch({    
         type: "VERIFY_LOGIN",
         payload: {
           userId: localStorage.getItem("VideosterUserId"),
           userName: localStorage.getItem("VideosterUserName"),
         },
-      });
+      });      
     } catch (err) {
       createNotification("error", err.response.data.message)();
     }
@@ -315,6 +317,10 @@ export const getCategories = () => {
       });
     } catch (err) {
       console.error(err);
+      if(err.response.data.message == "User is not verified!"){
+        createNotification("error", err.response.data.message)();
+        history.push("/");
+      }
     }
   };
 };

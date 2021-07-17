@@ -65,6 +65,7 @@ export const takeMeIn = (values) => {
           userName: res.data.userName,
         },
       });
+      // createNotification("success", `welcome ${res.data.userName}`)();
     } catch (err) {
       createNotification("error", err.response.data.message)();
     }
@@ -84,6 +85,7 @@ export const registerUser = (values) => {
         type: "REGISTER",
       });
       history.push("/");
+      createNotification("success", res.data.message)();
     } catch (err) {
       createNotification("error", err.response.data.message)();
     }

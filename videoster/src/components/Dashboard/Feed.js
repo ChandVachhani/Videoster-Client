@@ -135,7 +135,7 @@ class Feed extends React.Component {
                     views • {
                       (
                         new Date().getFullYear() - video.publishedAt.slice(0,4) != 0 ? `${new Date().getFullYear() - video.publishedAt.slice(0,4)} years` : 
-                        new Date().getMonth() + 1 - video.publishedAt.slice(5,7) != 0 ? `${new Date().getMonth() - video.publishedAt.slice(5,7)} months` : 
+                        new Date().getMonth() + 1 - video.publishedAt.slice(5,7) != 0 ? `${new Date().getMonth() + 1 - video.publishedAt.slice(5,7)} months` : 
                         new Date().getDate() - video.publishedAt.slice(8,10) != 0 ? `${new Date().getDate() - video.publishedAt.slice(8,10)} days` : 
                         new Date().getHours() - video.publishedAt.slice(11,13) != 0 ? `${new Date().getHours() - video.publishedAt.slice(11,13)} Hours` : 
                         new Date().getMinutes() - video.publishedAt.slice(14,16) != 0 ? `${new Date().getMinutes() - video.publishedAt.slice(14,16)} Minutes` : 

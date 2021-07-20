@@ -34,6 +34,7 @@ class App extends React.Component {
     console.log("app.componentDidMount");
     await this.props.verifyLogin();
     if (this.props.user.userId) {
+      await this.props.clearAllChannels();
       await this.props.getCategories();
       await this.props.videoPagination(0);
       await this.props.getChannels();
